@@ -1,0 +1,175 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=.5in]{geometry}
+
+% Author John H Allard
+% HW Assignment #1
+% CMPE 16 - Discrete Math
+% October 6th 2014
+
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\title{CMPE 16 - HomeWork 1}
+\author{John Allard, id:1437547}
+\date{October 6th, 2014}
+
+\begin{document}
+\maketitle
+
+% --- HW Questions ---
+\begin{enumerate}
+
+% --- Question #1, 8 Sub-Parts, 1 point each. ---
+\item \emph{Express each of the sets below by listing all of their elements when the set is finite, and otherwise listing at least 6 elements.}
+
+  % --- 8 Sub-Parts, 1 point each. ---
+  \begin{enumerate}
+  % a.)
+  \item \( \lbrace 9n - 7\text{ : }n \in \mathbb{Z}  \rbrace \) \\
+  \textbf{Answer} : \( \lbrace \ldots -7 \text{, } 2 \text{, } 11 \text{, } 20 \text{, } 29 \text{, } 38 \ldots\rbrace \) 
+  % b.)
+  \item \( \lbrace x \in \mathbb{Z} \text{ : } 2$x$^2-7 < 43 \rbrace \) \\
+  \textbf{Answer} : \( \lbrace -5 \text{, } -4 \text{, } -3 \text{, } -2 \text{, } -1 \text{, } 0 \text{, } 1 \text{, } 2 \text{, } 3 \text{, } 4 \text{, } 5  \rbrace \) 
+  % c.)
+  \item \( \lbrace x \in \mathbb{Z} \text{ : } 2$x$^2-7 \leq 43 \rbrace \) \\
+  \textbf{Answer} : \( \lbrace -4 \text{, } -3 \text{, } -2 \text{, } -1 \text{, } 0 \text{, } 1 \text{, } 2 \text{, } 3 \text{, } 4  \rbrace \) 
+  % d.)
+  \item \( \lbrace n \in \mathbb{Z} \text{ : } 0 < n^2 - 4 < 38 \rbrace \) \\
+  \textbf{Answer} : \( \lbrace 3 \text{, } 4 \text{, } 5 \text{, } 6 \text{, } 7 \rbrace \) 
+  % e.)
+  \item \( \lbrace  \sin{\frac{n\pi}{2}} \text{ : } n \in \mathbb{Z} \text{ and $n$ is \emph{odd}} \rbrace \) \\
+  \textbf{Answer} : \( \lbrace 1 \text{, } -1\rbrace \) 
+  % f.)
+  \item \( \lbrace  X \subseteq \lbrace 1 \text{,} 2 \text{,} 3 \text{,} 4 \rbrace \text{ : } \vert X \vert = 2 \rbrace \) \\
+  \textbf{Answer} : \( \lbrace 
+  \lbrace 1 \text{, } 2 \rbrace \text{, } 
+  \lbrace 1 \text{, } 3 \rbrace \text{, } 
+  \lbrace 1 \text{, } 4 \rbrace \text{, } 
+  \lbrace 2 \text{, } 3 \rbrace \text{, } 
+  \lbrace 2 \text{, } 4 \rbrace \text{, } 
+  \lbrace 3 \text{, } 4 \rbrace
+  \rbrace \) 
+
+  % g.)
+  \item \( \lbrace 1 \text{,} 2 \text{,} 3 \rbrace \times \lbrace 1 \text{,} 2 \rbrace  \) \\
+  \textbf{Answer} : \( \lbrace
+  (1 \text{,} 1) \text{,} 
+  (1 \text{,} 2) \text{,} 
+  (2 \text{,} 1) \text{,} 
+  (2 \text{,} 2) \text{,} 
+  (3 \text{,} 1) \text{,} 
+  (3 \text{,} 2) 
+   \rbrace \)
+
+
+   % h.)
+   \item \( \lbrace 1 \text{,} 2 \text{,} 3 \rbrace \times \mathbb{N} \times \emptyset \) \\
+   \textbf{Answer} : \( \emptyset \)
+
+  \end{enumerate}
+
+% --- Question 2, 8 Subparts, 1 point each --- %
+\item \emph{For each of the sets below give the size of the set if it is finite, and otherwise state that it
+is infinite.}
+  
+  \begin{enumerate}
+
+  % a.)
+  \item \( \lbrace 1 \text{,} 2 \text{,} 3 \rbrace \) \\
+  \textbf{Answer} : 3
+  % b.)
+  \item \( \emptyset \)\\
+  \textbf{Answer} : 0
+  % c.)
+  \item \( \lbrace \emptyset \rbrace \) \\
+  \textbf{Answer} : 1
+  % c.)
+  \item \( \lbrace \lbrace \emptyset \rbrace \text{, } \emptyset \rbrace \) \\
+  \textbf{Answer} : 2
+  % d.) 
+  \item (Save me the trouble of having to rewrite the purposfully tedious nested brackets) \\
+  \textbf{Answer} : 3
+   % e.)
+  \item \( \lbrace \mathbb{N} \text{, } \emptyset \text{, } \mathbb{Z} \rbrace \) \\
+  \textbf{Answer} : 1
+   % f.)
+  \item \( \lbrace 1 \text{,} 2 \text{,} 3 \text{,} 4 \text{,} 5 \rbrace \times \lbrace 7 \text{,} 8 \text{,} 9 \rbrace \times \lbrace 10 \text{,} 11 \text{,} 12 \text{,} 13 \rbrace  \) \\
+  \textbf{Answer} : 60
+   % f.)
+  \item The power set of \( \lbrace a \text{,} b \text{,} c \text{,} d \text{,} e \text{,} f \rbrace \) \\
+  \textbf{Answer} : $2^6 = 128$
+
+  \end{enumerate}
+  \newpage
+% Problem #3, 4 problems, 4 points
+\item For the problem let \( 
+A = \lbrace $3n + 4$ \text{ }\vert\text{ }  n \in \mathbb{N} \rbrace \text{, } 
+B =  \lbrace -5 \text{,} -4 \text{,} -3 \text{,} -2 \text{,} -1 \text{, } 0 \text{, } 1 \text{, } 2 \text{, } 3 \text{, } 4 \text{, } 5  \rbrace \text{ and } 
+C = \lbrace n^2 - 3 \text{ }\vert \text{ }  n \in \mathbb{Z} \rbrace\). State whether each of the statements below is True or False and justify your answer.
+  
+  \begin{enumerate}
+  % a.)
+  \item $B \subseteq A$ \\
+  \textbf{Answer} : False. $0 \in B$ but $0 \not\in A$ Therefor $B \not\subseteq A$
+
+  % b.)
+  \item $C \subseteq N$ \\
+  \textbf{Answer} : False. $\lbrace -3 \text{,} -1 \rbrace \in C$ but  $a > 0\text{ } \forall a \in \mathbb{N}$. Therefor C contains members that $\mathbb{N}$ does not and thus  $C \not\subseteq \mathbb{N}$
+
+  % c.)
+  \item $A \subseteq \mathbb{Z}$ \\
+  \textbf{Answer} : True, $a \in \mathbb{Z} \text{ } \forall \text{ } a \in A$, therefor $A \subseteq \mathbb{Z}$
+
+  % d.)
+  \item $A \subsetneq \mathbb{Z}$ \\
+  \textbf{Answer} : True. Here is a short proof-like justification. \\
+   $a \in \mathbb{Z} \text{ } \forall \text{ } a \in A$, but also $-5000 \in \mathbb{Z}$ while $-5000 \not\in A$  therefor $A \subsetneq \mathbb{Z}$
+
+  \end{enumerate}
+
+%--- Question 4, 4 parts, 4 points ---
+\item Give the power set of each of the sets below.
+
+  \begin{enumerate}
+  % a.)
+  \item $ \lbrace 1 \text{, } 2 \text{, } 3 \rbrace$ \\
+  Answer : $ \lbrace 
+   \lbrace \emptyset \rbrace \text{, } 
+   \lbrace 1 \rbrace \text{, } 
+   \lbrace 2 \rbrace \text{, } 
+   \lbrace 3 \rbrace \text{, } 
+   \lbrace 4 \rbrace \text{, } 
+   \lbrace 1 \text{, } 2 \rbrace \text{, } 
+   \lbrace 1 \text{, } 3 \rbrace \text{, } 
+   \lbrace 2 \text{, } 3 \rbrace
+   \rbrace$
+   % b.)
+   \item $ \lbrace \emptyset \rbrace$ \\
+   Answer : $ \lbrace\emptyset \rbrace$
+   % c.)
+   \item $ \lbrace 1 \text{, } \mathbb{R} \rbrace$ \\
+   Answer : $ \lbrace
+   \emptyset \text{, }
+   \lbrace 1  \rbrace \text{, } 
+   \lbrace \mathbb{R}  \rbrace \text{, }
+   \lbrace 1 \text{, } \mathbb{R} \rbrace 
+   \rbrace$
+   % d.)
+   \item $ \lbrace \emptyset \text{, } \lbrace \emptyset \rbrace \rbrace$ \\
+   Answer : $ \lbrace
+   \emptyset \text{, } 
+   \lbrace \emptyset \rbrace \text{, } 
+   \lbrace \emptyset \text{, } \lbrace \emptyset \rbrace
+   \rbrace$ ( This one was confusing, the emptyset would appear twice so one should be removed because you can't have redundant items in a single set, I think ... ?)
+  \end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
+
