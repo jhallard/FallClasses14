@@ -6,18 +6,22 @@
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{amssymb}
-
-\setlength{\voffset}{-0.75in}
-\setlength{\headsep}{5pt}
 \usepackage[margin=1in]{geometry}
 
+\setlength{\voffset}{-0.5in}
+\setlength{\headsep}{5pt}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+
+
+%===========---------================
 % Author John H Allard
 % HW Assignment #1
 % CMPE 16 - Discrete Math
 % October 6th 2014
+%===========---------================
 
-\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
-\title{CMPE 16 Homework 1}
+
+\title{ CMPE 16 Homework 1}
 \author{John Allard, id:1437547}
 \date{October 6th, 2014}
 
@@ -43,7 +47,7 @@
   \textbf{Answer} : \( \lbrace 1 \text{, } 2 \text{, } 3 \text{, } 4 \text{, } 5  \rbrace \) 
   % d.)
   \item \( \lbrace n \in \mathbb{Z} \text{ : } 0 < n^2 - 4 < 38 \rbrace \) \\
-  \textbf{Answer} : \( \lbrace 3 \text{, } 4 \text{, } 5 \text{, } 6 \text{, } 7 \rbrace \) 
+  \textbf{Answer} : \( \lbrace -7 \text{,} -6 \text{,} -5 \text{,} -4 \text{,} -3 \text{, } 3 \text{, } 4 \text{, } 5 \text{, } 6 \text{, } 7 \rbrace \) 
   % e.)
   \item \( \lbrace  \sin{\frac{n\pi}{2}} \text{ : } n \in \mathbb{Z} \text{ and $n$ is \emph{odd}} \rbrace \) \\
   \textbf{Answer} : \( \lbrace 1 \text{, } -1\rbrace \) 
@@ -110,6 +114,7 @@ is infinite.}
   \end{enumerate}
   \newpage
 % Problem #3, 4 problems, 4 points
+
 \item For the problem let \( 
 A = \lbrace $3n + 4$ \text{ }\vert\text{ }  n \in \mathbb{N} \rbrace \text{, } 
 B =  \lbrace -5 \text{,} -4 \text{,} -3 \text{,} -2 \text{,} -1 \text{, } 0 \text{, } 1 \text{, } 2 \text{, } 3 \text{, } 4 \text{, } 5  \rbrace \text{ and } 
@@ -122,7 +127,7 @@ C = \lbrace n^2 - 3 \text{ }\vert \text{ }  n \in \mathbb{Z} \rbrace\). State wh
 
   % b.)
   \item $C \subseteq \mathbb{N}$ \\
-  \textbf{Answer} : False. $\lbrace -3 \text{,} -1 \rbrace \in C$ but  $a > 0\text{ } \forall a \in \mathbb{N}$. Therefor $C \not\subseteq \mathbb{N}$
+  \textbf{Answer} : False. $ -3  \in C$ but  $a > 0\text{ } \forall a \in \mathbb{N}$. Therefor $C \not\subseteq \mathbb{N}$
 
   % c.)
   \item $A \subseteq \mathbb{Z}$ \\
@@ -131,7 +136,7 @@ C = \lbrace n^2 - 3 \text{ }\vert \text{ }  n \in \mathbb{Z} \rbrace\). State wh
   % d.)
   \item $A \subsetneq \mathbb{Z}$ \\
   \textbf{Answer} : True. 
-   $a \in \mathbb{Z} \text{ } \forall \text{ } a \in A$, but also $-3 \in \mathbb{Z}$ while $-3 \not\in A$  therefor $A \subsetneq \mathbb{Z}$
+   $a \in \mathbb{Z} \text{ } \forall \text{ } a \in A$,  also $\exists x < 0 \in \mathbb{Z}$ while $x < 0 \not\in A$  therefor $A \subsetneq \mathbb{Z}$
 
   \end{enumerate}
 
@@ -141,7 +146,7 @@ C = \lbrace n^2 - 3 \text{ }\vert \text{ }  n \in \mathbb{Z} \rbrace\). State wh
   \begin{enumerate}
   % a.)
   \item $ \lbrace 1 \text{, } 2 \text{, } 3 \rbrace$ \\
-  Answer : $ \lbrace 
+  \textbf{Answer} : $ \lbrace 
    \lbrace \emptyset \rbrace \text{, } 
    \lbrace 1 \rbrace \text{, } 
    \lbrace 2 \rbrace \text{, } 
@@ -153,10 +158,10 @@ C = \lbrace n^2 - 3 \text{ }\vert \text{ }  n \in \mathbb{Z} \rbrace\). State wh
    \rbrace$
    % b.)
    \item $ \lbrace \emptyset \rbrace$ \\
-   Answer : $ \lbrace\emptyset \rbrace$
+   \textbf{Answer} : $ \lbrace\emptyset \rbrace$
    % c.)
    \item $ \lbrace 1 \text{, } \mathbb{R} \rbrace$ \\
-   Answer : $ \lbrace
+   \textbf{Answer} : $ \lbrace
    \emptyset \text{, }
    \lbrace 1  \rbrace \text{, } 
    \lbrace \mathbb{R}  \rbrace \text{, }
@@ -164,11 +169,11 @@ C = \lbrace n^2 - 3 \text{ }\vert \text{ }  n \in \mathbb{Z} \rbrace\). State wh
    \rbrace$
    % d.)
    \item $ \lbrace \emptyset \text{, } \lbrace \emptyset \rbrace \rbrace$ \\
-   Answer : $ \lbrace
+   \textbf{Answer} : $ \lbrace
    \emptyset \text{, } 
    \lbrace \emptyset \rbrace \text{, } 
    \lbrace \emptyset \text{, } \lbrace \emptyset \rbrace
-   \rbrace$ ( This one was confusing, the emptyset would appear twice so one should be removed because you can't have redundant items in a single set, I think ... ?)
+   \rbrace$ \footnote{This one was confusing, the emptyset would appear twice so one occurence should be removed because you can't have redundant items in a single set, I think $\ldots$ ?}
   \end{enumerate}
 
 \end{enumerate}
