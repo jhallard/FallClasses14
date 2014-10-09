@@ -17,14 +17,38 @@
 
 \begin{document}
 \maketitle
+\section{Set Operation}
+\subsection{Intro}
 \begin{itemize}
-\item For sets  $A$ and $B$, the $\cup$ of $A$ and $B$ =  $\lbrace	x : x \in A or  x \in B \rbrace$  \\
-\item The intersection of $A$ and $B$ = $\lbrace x : x\in A and x \in B$ \\
-\item The difference of $A$ and $B$, $A-B$ = $\lbrace x : x \in A and x \not\in B$ \\
-\item $\mathbb{Z}-\mathbb{N} = \lbrace x : x \in \mathbb{Z} and x \leq 0 \rbrace$
-\item 
-\item 
+\item For sets  $A$ and $B$, the $\cup$ of $A$ and $B$ =  $\lbrace	x : x \in A or  x \in B \rbrace$  
+\item The intersection of $A$ and $B$ = $\lbrace x : x\in A and x \in B$ 
+\item The difference of $A$ and $B$, $A-B$ = $\lbrace x : x \in A and x \not\in B$ 
+\item $\mathbb{Z}-\mathbb{N} = \lbrace x\text{ : }x \in \mathbb{Z} \text{ and } x \leq 0 \rbrace$
+\end{itemize}
+
+\subsection{Compliments}
+The complement of $A$ = $\bar{A}$ = $ \lbrace x : x \in \mathbb{U} \text{ and } x \not\in A \rbrace $ \\
+Notice that to perform a complement operation you need to understand what the universe is. The answer depends on wether the universe is $\mathbb{R}^2$ or $\mathbb{N}$. 
+\begin{itemize}
+\item $A-B$ = $A \cap \bar{B}$
+\item $\bar{A \cap B}$ = $\bar{A} \cup \bar{B}$ (DeMorgans Law) 
 \item 
 \end{itemize}
+
+Examples :
+\begin{itemize}
+\item $\sigma = \lbrace 2n+1 : n \in \mathbb{Z}$ (odd numbers)
+\item $\mathbb{P} = \lbrace n \in \mathbb{Z} : n > 1 \text{, $n$ has no factor between 1 and  $n$ }\rbrace $
+\item $ S = \lbrace n^2 : n \in \mathbb{N} \rbrace $ = positive squares (0 is not in there)
+\item 9 is the only square that is a multiple of 9 false,  $S \cap \mathbb{N} = \lbrace 9 \rbrace $
+\item $ \mathbb{N} \cap \mathbb{P} $
+\item 
+\end{itemize}
+
+
+\section{Index Sets}
+$\sum_{n}^{i=1} i = 1+2+3 \ldots n$
+So for instance, we could write the natural numbers $\mathbb{N} \cup_{i=1}^{\infty} \lbrace i \rbrace $ \\
+$ \mathbb{Z} = \lbrace 0 \rbrace \cup ( \cup_{i=0}^{\infty}) \lbrace-i, i\rbrace $
 
 \end{document}
