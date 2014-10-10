@@ -21,26 +21,36 @@
 
 
 \title{ CMPE 12 Lab Report \# 1 \\[7 in]}
-\author{John Allard \\ TUTOR \\ MW 2:00 - 4:00pm}
+\author{John Allard \\ TUTOR \\ Lab Section \#2}
 \date{October 6th, 2014}
 
 \begin{document}
 \maketitle
 \newpage
 
+%*************************************%
+%************* OVERVIEW **************%
+%*************************************%
+
 \section{Overview}
 This lab served as an introduction to circuit design from truth tables using logic gates. All circuits were implemented using the free MultiMedia Logic (MML) program, which allows the user to drag, drop, and connect different circuit components. After the circuit is connected it can be simulated to help check for design errors. This lab consisted of 4 section, with each section varying in difficulty and length. 
 
+
+
+%*************************************%
+%************** PART A ***************%
+%*************************************%
+
 \section{Part A : Using MultiMedia Logic}
 \subsection{Procedure}
-This section was a combined introduction to MML and DeMorgan's laws. To start we were instructed to navigate to an MML tutorial on YouTube\footnote{\url{http://www.youtube.com/watch?v=hJq2gECXYWc&noredirect=1}} and build the circuit that is shown in the tutorial. After this, we were instructed to show our understanding of MMl by implemented DeMorgans laws \(A'B' = (A+B)'\) by building a circuit for each side of the aforementioned equation and showing their equivilence both in practice and by truth table. 
+This section was a combined introduction to MML and DeMorgan's laws. To start we were instructed to navigate to an MML tutorial on YouTube\footnote{\url{http://www.youtube.com/watch?v=hJq2gECXYWc&noredirect=1}} and build the circuit that is shown in the tutorial. After this, we were instructed to show our understanding of MML by implementing DeMorgans laws \(A'B' = (A+B)'\). To do this, we needed to build a circuit for each side of the DeMorgans equation and show their equivilence both in practice and by truth table. 
 \subsection{Results}
 To start, we completed an extremely simple circuit on the MML software. This circuit is about as simple as one can get, it is just a binary switch connected to an LED. For the first circuit, the LED is connected directly to the switch. In this case, if the switch is high, the LED is on, if the switch is low, the LED is off. Next we simply inserted an inverter between the switch and the LED. These two circuits are shown below :  
 \begin{figure}[h!]
    \centering
      \includegraphics[width=4.4in]{PartACircuit}
    \caption{Circuit for Part A1, MML Tutorial.}
-   \label{fig:map}
+   \label{fig:tutorial}
 \end{figure} 
 
 Our next goal was to create two new circuits which demonstrait DeMorgans law, specifically the fact that \(A'B' = (A+B)'\). This involved the use of two switch, labled $A$ and $B$. These switches will be used and the inputs for two circuits, the first one representing $A'B'$ and the second one representing $(A+B)'$. After these circuits are complete, the simulation can be run and it can be seen that the LED for each of the two circuits are in an identical state for the span of the message space, which happens to only be $ \lbrace 00, 01, 10, 11 \rbrace $ for this simple example. The first circuit, $A'B'$, is created by passing the $A$ and $B$ inputs through inverters before combining them into an AND gate. The output of the AND gate is run directly to an LED. The second circuit is made by running the $A$ and $B$ inputs directly into a NOR gate, then to an LED. The circuit and truth tables can be seen below. \\
@@ -48,38 +58,69 @@ Our next goal was to create two new circuits which demonstrait DeMorgans law, sp
    \centering
      \includegraphics[width=5in]{PartADM}
    \caption{Circuits for Part A2, Showing DeMorgans Law.}
-   \label{fig:map}
+   \label{fig:parta2}
 \end{figure}  \\
 
+
+
+%*************************************%
+%************ PART B *****************%
+%*************************************%
+
 \section{Part B : Implementing Functions as Sums of Products}
-\subsection{Procedure}
-This part of the lab consisted of two sections. The goal of both sections was the same, implement the truth table in figure 3 (below), the differences between the two sections are the restrictions on the gates that can be used to implement the truth table.  \\ 
 \begin{figure}[h!]
    \centering
      \includegraphics[width=2in]{PartBTT}
    \caption{Truth Table for Part B}
-   \label{fig:map}
-\end{figure} \\
+   \label{fig:partbtt}
+\end{figure} 
+\subsection{Procedure}
+This part of the lab consisted of two sections, B1 and B2. The goal of both sections was the same, implement the truth table in figure 3 (above), the differences between the two sections are the restrictions on the gates that can be used to implement the truth table. \par
 In the circuits that we are building, the following names will be used for the inputs listed in figure 3 : $\text{IN[2]} \to A$, $\text{IN[1]} \to B$, $\text{IN[0]} \to C$ (reading left to right). The output of the circuit will be a single LED with a basic $1 \to \text{HIGH}$, $0 \to \text{LOW}$ relationship. Part B1 asked us to construct a circuit to represent the truth table in figure 3 using AND, OR, or Inverter gates. Part B2 asked us to reimplement the same circuit using only NAND gates. This requires translation of the AND, OR, and Inversion gates into nested layers of NAND gates. Finally, we were supposed to run the circuits in both sections side by side to ensure their equivalence. 
 
 \subsection{Results}
 Before any circuitry could be properly constructed, the truth table had to be broken down into a boolean equation using the sum of products rule. Working from left to right in the truth table in figure 3, with $\text{IN[2]} \to A$, $\text{IN[1]} \to B$, $\text{IN[0]} \to C$, we arrive at the following equation.
-\[ \text{A'BC'} + \text{A'BC} + \text{AB'C} + \text{ABC'} \]
-Also this equation can be simplified significantly, we were instructed to not simplify it before designing our circuits. 
-\begin{itemize} 
-\item \textbf{Part B1 - AND, OR, \& NOT Gates}
-\item \textbf{Part B2 - NAND Gates}
-\item
-\end{itemize}
+ \begin{equation} \text{A'BC'} + \text{A'BC} + \text{AB'C} + \text{ABC'} \end{equation}
+
+\textbf{Part B1 }-\textbf{ AND, OR, \& NOT Gates} \\
+Part B1 involved directly translating equation 1 into a circuit using MML. Because we were allowed to use AND, OR, and NOT gates, the circuit reads all most exactly like equation 1. The circuit for part B1 is shown in figure 4.
+\begin{figure}[h!]
+   \centering
+     \includegraphics[width=6in]{PartB1Circuit}
+   \caption{Circuit for Part B1}
+   \label{fig:b1circuit}
+\end{figure} 
+The circuit is best read from left to right. It starts off with the three inputs, $A$, $B$, and $C$. These three switches can be toggled to create a total of $2^3 = 8$ possible combinations. Right of these switches is a layer of four 3-input AND gates. These AND gates represent the individual products in equation 1. The output from each of these four AND gates are routed to a single 4-input OR gate. This gate represents the sum of the individual products shown in equation 1.
+\par
+
+\textbf{Part B2 - NAND Gates}
+
+\par
+
+
+%*************************************%
+%************ PART C *****************%
+%*************************************%
 
 \section{Part C : Logic Minimization}
 \subsection{Procedure}
 \subsection{Results}
+
+
+%*************************************%
+%************ PART D *****************%
+%*************************************%
 
 \section{Part D : Guessing Game}
 \subsection{Procedure}
 \subsection{Results}
 \section{Results}
 
+
+%*************************************%
+%*********** CONCLUSION **************%
+%*************************************%
+
+\section{Conclusion}
 
 \end{document}
