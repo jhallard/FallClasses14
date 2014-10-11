@@ -1,5 +1,6 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage{amsmath}
+\usepackage{wrapfig}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{url}
@@ -45,21 +46,24 @@ This lab served as an introduction to circuit design from truth tables using log
 \subsection{Procedure}
 This section was a combined introduction to MML and DeMorgan's laws. To start we were instructed to navigate to an MML tutorial on YouTube\footnote{\url{http://www.youtube.com/watch?v=hJq2gECXYWc&noredirect=1}} and build the circuit that is shown in the tutorial. After this, we were instructed to show our understanding of MML by implementing DeMorgans laws \(A'B' = (A+B)'\). To do this, we needed to build a circuit for each side of the DeMorgans equation and show their equivilence both in practice and by truth table. 
 \subsection{Results}
-To start, we completed an extremely simple circuit on the MML software. This circuit is about as simple as one can get, it is just a binary switch connected to an LED. For the first circuit, the LED is connected directly to the switch. In this case, if the switch is high, the LED is on, if the switch is low, the LED is off. Next we simply inserted an inverter between the switch and the LED. These two circuits are shown below :  
-\begin{figure}[h!]
-   \centering
+\subsubsection{Results - Tutorial} 
+ \begin{wrapfigure}{r}{0.68\textwidth}
      \includegraphics[width=4.4in]{PartACircuit}
-   \caption{Circuit for Part A1, MML Tutorial.}
+   \caption{Circuits for Part A Tutorial.}
    \label{fig:tutorial}
-\end{figure} 
+\end{wrapfigure} 
+To start, we completed an extremely simple circuit using the MML software. This circuit is about as simple as one can get, it is just a binary switch connected to an LED. For the first circuit, the LED is connected directly to the switch. In this case, if the switch is high, the LED is on, if the switch is low, the LED is off. Next we simply inserted an inverter between the switch and the LED, causing it to only light up where the switch is in a low state. The two circuits for the tutorial section of part A can be seen in figure one. \\
 
-Our next goal was to create two new circuits which demonstrait DeMorgans law, specifically the fact that \(A'B' = (A+B)'\). This involved the use of two switch, labled $A$ and $B$. These switches will be used and the inputs for two circuits, the first one representing $A'B'$ and the second one representing $(A+B)'$. After these circuits are complete, the simulation can be run and it can be seen that the LED for each of the two circuits are in an identical state for the span of the message space, which happens to only be $ \lbrace 00, 01, 10, 11 \rbrace $ for this simple example. The first circuit, $A'B'$, is created by passing the $A$ and $B$ inputs through inverters before combining them into an AND gate. The output of the AND gate is run directly to an LED. The second circuit is made by running the $A$ and $B$ inputs directly into a NOR gate, then to an LED. The circuit and truth tables can be seen below. \\
+\subsubsection{Results - DeMorgans Law} 
+Our next goal was to create two new circuits which demonstrait DeMorgans law, specifically the fact that \(A'B' = (A+B)'\). This involved the use of two switch, labled $A$ and $B$. These switches will be used and the inputs for two circuits, the first one representing $A'B'$ and the second one representing $(A+B)'$.
+
+Once completed, a simulation of these circuits can be run and it can be seen that the LED for each of the two circuits are in an identical state for the entirety of the message space, which happens to only be $ \lbrace 00, 01, 10, 11 \rbrace $ for this simple example. The first circuit, $A'B'$, is created by passing the $A$ and $B$ inputs through inverters before combining them into an AND gate. The output of the AND gate is run directly to an LED. The second circuit is made by running the $A$ and $B$ inputs directly into a NOR gate, then to an LED. The circuit and truth tables can be seen below. \\
 \begin{figure}[h!]
    \centering
      \includegraphics[width=5in]{PartADM}
    \caption{Circuits for Part A2, Showing DeMorgans Law.}
    \label{fig:parta2}
-\end{figure}  \\
+\end{figure}  
 
 
 
@@ -68,34 +72,59 @@ Our next goal was to create two new circuits which demonstrait DeMorgans law, sp
 %*************************************%
 
 \section{Part B : Implementing Functions as Sums of Products}
-\begin{figure}[h!]
-   \centering
-     \includegraphics[width=2in]{PartBTT}
+\subsection{Procedure}
+
+\begin{wrapfigure}{l}{0.37\textwidth}
+   \includegraphics[width=2in]{PartBTT}
    \caption{Truth Table for Part B}
    \label{fig:partbtt}
-\end{figure} 
-\subsection{Procedure}
+\end{wrapfigure} 
+
 This part of the lab consisted of two sections, B1 and B2. The goal of both sections was the same, implement the truth table in figure 3 (above), the differences between the two sections are the restrictions on the gates that can be used to implement the truth table. \par
 In the circuits that we are building, the following names will be used for the inputs listed in figure 3 : $\text{IN[2]} \to A$, $\text{IN[1]} \to B$, $\text{IN[0]} \to C$ (reading left to right). The output of the circuit will be a single LED with a basic $1 \to \text{HIGH}$, $0 \to \text{LOW}$ relationship. Part B1 asked us to construct a circuit to represent the truth table in figure 3 using AND, OR, or Inverter gates. Part B2 asked us to reimplement the same circuit using only NAND gates. This requires translation of the AND, OR, and Inversion gates into nested layers of NAND gates. Finally, we were supposed to run the circuits in both sections side by side to ensure their equivalence. 
 
 \subsection{Results}
 Before any circuitry could be properly constructed, the truth table had to be broken down into a boolean equation using the sum of products rule. Working from left to right in the truth table in figure 3, with $\text{IN[2]} \to A$, $\text{IN[1]} \to B$, $\text{IN[0]} \to C$, we arrive at the following equation.
- \begin{equation} \text{A'BC'} + \text{A'BC} + \text{AB'C} + \text{ABC'} \end{equation}
+ \begin{equation}\label{eq:one} \text{A'BC'} + \text{A'BC} + \text{AB'C} + \text{ABC'} \end{equation}
 
-\textbf{Part B1 }-\textbf{ AND, OR, \& NOT Gates} \\
-Part B1 involved directly translating equation 1 into a circuit using MML. Because we were allowed to use AND, OR, and NOT gates, the circuit reads all most exactly like equation 1. The circuit for part B1 is shown in figure 4.
+\subsubsection{Results - AND, OR, \& NOT Gates} 
+Part B1 involved directly translating \eqref{eq:one} into a circuit using MML. Because we were allowed to use AND, OR, and NOT gates, the circuit reads all most exactly like \eqref{eq:one}. The circuit for part B1 is shown in figure 4.
+
 \begin{figure}[h!]
    \centering
      \includegraphics[width=6in]{PartB1Circuit}
    \caption{Circuit for Part B1}
    \label{fig:b1circuit}
 \end{figure} 
-The circuit is best read from left to right. It starts off with the three inputs, $A$, $B$, and $C$. These three switches can be toggled to create a total of $2^3 = 8$ possible combinations. Right of these switches is a layer of four 3-input AND gates. These AND gates represent the individual products in equation 1. The output from each of these four AND gates are routed to a single 4-input OR gate. This gate represents the sum of the individual products shown in equation 1.
+
+The circuit is best read from left to right. It starts off with the three inputs, $A$, $B$, and $C$. These three switches can be toggled to create a total of $2^3 = 8$ possible combinations. Right of these switches is a layer of four 3-input AND gates. These AND gates represent the individual products in \eqref{eq:one}. The output from each of these four AND gates are routed to a single 4-input OR gate. This gate represents the sum of the individual products shown in \eqref{eq:one}. The output of this OR gate is connected to a single LED that to display the circuit output to the user. As is shown in figure 4, this circuit consists of a total of 48 transistors using CMOS transistor logic. How I found this number is documented below.
+\[ \text{\# of Transistors per Gate}\]
+\[ \text{NOT} = 2 \]
+\[ \text{AND} = 2n+2 \]
+\[ \text{OR} = 2n+2 \]
+Where $n$ denotes the number of inputs for that specific gate. With 3 NOT gates, four 3-input AND gates, and one 4-input OR gate, the linear combination of transistors becomes \ldots
+\[ 3*(\text{NOT})+4*(\text{AND})+1*(\text{OR}) = \]
+\[ 3*2+4*(2*3+2)+1*(2*4+2) = 6+32+10 = 48\]
+Of course in the real world we would not use 48 transistors for this circuit, \eqref{eq:one} can be simplified significantly, as we will see in Part C.
 \par
 
-\textbf{Part B2 - NAND Gates}
+\subsubsection{Results - NAND Gates}
+Next we were instructed to take \eqref{eq:one}, implement it in a circuit using MML, but this time we were only permitted to use NAND gates. I started with the circuit in the previous section (Figure 4), and used the following substitutions to achieve the same output with only NAND gates.
+\[ \text{NOT($A$) $\to$ NAND($A$,$A$) }\]
+We simulate an inverter by routing a single signal to both inputs of a NAND gate. If the signal is high, both inputs to the NAND are high, which outputs a 0. If the signal is low, both inputs are low and thus the NAND outputs a 1.
 
+\[ \text{AND($A$,$B$) $\to$ NAND($x$, $x$), where $x = $NAND($A$,$B$) } \]
+I simulate an AND gate by first routing two inputs through a single NAND gate. I then route this output to both inputs of another NAND gate. This effectively creates a `double negative` effect, canceling out the `N` in NAND.
+
+\begin{figure}[h!]
+   \centering
+     \includegraphics[width=6.5in]{PartB2}
+   \caption{Circuit for Part B2, using only NAND gates.}
+   \label{fig:b2circuit}
+\end{figure}   
 \par
+
+You can simulate these two circuits by running the \url{lab1B.lgi} file included with this paper.
 
 
 %*************************************%
