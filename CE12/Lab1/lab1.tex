@@ -154,10 +154,10 @@ I started by reducing down \eqref{eq:one} using Boolean algebra. My steps are li
  \[ \text{A'B(1) $+$ A(B'C $+$ BC')  \qquad (($X+X$') is a tautology)} \]
  \[ \text{A'B(1) $+$ $A$($B \oplus C$)  \qquad (($X$'$Y$+$XY$') $=$ XOR = $\oplus$)} \]
 \begin{equation} \label{eq:two} \text{A'B $+$ $A$($B \oplus C$)} \end{equation}
-The final simplified equation that I ended up with is \eqref{eq:two}. Beyond this point simplification is no longer possible, but the equation is still been reduced from it's original form by quite a bit.
+The final simplified equation that I ended up with is \eqref{eq:two}. Beyond this point simplification is no longer possible, but the equation has still been reduced from its original form by quite a bit.
 
 \subsubsection{Building the Circuit}
-Now we were instructed to build a circuit corresponding to \eqref{eq:two}, which is equivilent to \eqref{eq:one}, which is derived from the turth table in Figure \ref{fig:partbtt}. So \eqref{eq:two} is just another way of representing the original truth table (Figure \ref{fig:partbtt}). This can be seen in Figure \ref{fig:partc}.
+Now we were instructed to build a circuit corresponding to \eqref{eq:two}, which is equivilent to \eqref{eq:one}, which is derived from the truth table in Figure \ref{fig:partbtt}. So \eqref{eq:two} is just another way of representing the original truth table (Figure \ref{fig:partbtt}). This can be seen in Figure \ref{fig:partc}.
  \begin{figure}[h!]
    \centering
      \includegraphics[width=6.5in]{partc}
@@ -202,5 +202,6 @@ So to start, we route the high bit from the user and the high bit from the rando
 %*************************************%
 
 \section{Conclusion}
+This lab served as an introduction to building virtual circuits using the MultiMedia Logic program. In learning to use this program, we also learned to use truth tables to design circuits. After this we saw how the tools of Boolean algebra can allow us to significantly simplify the number of components in a given circuit by removing redundancies. Finally, we learned how to compare bits and use a random number generator in our circuit design. 
 
 \end{document}

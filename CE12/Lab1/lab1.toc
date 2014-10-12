@@ -17,4 +17,4 @@
 \contentsline {section}{\numberline {5}Part D : Guessing Game}{8}
 \contentsline {subsection}{\numberline {5.1}Procedure}{8}
 \contentsline {subsection}{\numberline {5.2}Results}{8}
-\contentsline {section}{\numberline {6}Conclusion}{8}
+\contentsline {section}{\numberline {6}Conclusion}{9}
