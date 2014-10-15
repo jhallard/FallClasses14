@@ -80,7 +80,7 @@ $A_2 = \{\triangle, -2, 8, a\}$, $A_3 = \{\square, 12, 7, a, g\}$, and $A_4 = \{
 \textbf{Answer :} The set $Y = \bigcup_{i\in \mathbb{Z}} (i, i+1)$ can be written as the difference of $\mathbb{R}$ and $\mathbb{N}$ ; $Y = \mathbb{R}-\mathbb{N} $. This is because $Y$ includes all numbers in $\mathbb{R}$ up-to but not including the actual integer values in $\mathbb{Z}$
 
 
-%*******************************
+-%*******************************
 %******** Problem # 4************
 %*******************************
 
@@ -123,10 +123,14 @@ Rewrite each of the statements below using P and Q and logical connectives $(\ne
 \item Let P, Q and R be the statements \\ P I use plastic bags. \\ Q I use paper bags. \\ R I help the environment.
 
   \begin{enumerate}
-  \item $ \neg P$
-  \item $P \wedge Q$
-  \item $Q \implies \neg R$
-  \item $\neg (P \implies R)$
+  \item $ \neg P$ \\
+  \textbf{Answer :} I do not use plastic bags
+  \item $P \wedge Q$ \\
+  \textbf{Answer :} I use plastic bags and I use paper bags
+  \item $Q \implies \neg R$ \\
+  If I use paper bags, then I am not helping the environment.
+  \item $\neg (P \implies R)$ \\
+  It is not the case that if I use plastic bags I will help the environment.
   \end{enumerate}
 
 %*******************************
@@ -146,20 +150,39 @@ your truth tables should have at least 3 intermediate columns.
 \item Convert each of the following statements into the form “If P then Q” without changing
 their meanings. (Some of these statements might not be True and that’s okay.)
   \begin{enumerate}
-  \item
+  \item For a number to be prime, it must be greater than 1. \\
+  \textbf{Answer :} If $x$ is prime then $x > 1$
+  \item Whenever you bring an umbrella, it rains. \\
+  \textbf{Answer :} If I bring an umbrella, then it will rain.
+  \item A number is prime only if it is not even. \\
+  \textbf{Answer :} If a number is not even, then it is prime.  
+  \item Either $n > a$ or $m > a$ if $n+m > 2a$ \\
+  \textbf{Answer :} If $n+m > 2a$, then either $n > a \vee m > a$
   \end{enumerate}
 
 
 %*******************************
 %******** Problem # 9 ************
 %*******************************
-\item As discussed in class, given a finite set S of size n and an ordering s1, s2, . . . , sn of the n
-elements in S, we can represent the subsets of S using bit vectors of length n ({0, 1}
-n). For a subset
-A ⊆ S, the corresponding bit vector b(A) = (b1, b2, . . . , bn) where bi = 1 if si ∈ A and bi = 0 if si 6∈ A.
-Let S be the elements from the four sets in Problem 1 ordered as , 4, −2, 2, 7, 8, 12, a, b, g.
+\item As discussed in class, given a finite set $S$ of size $n$ and an ordering $s_1, s_2, . . . , s_n$ of the $n$
+elements in $S$, we can represent the subsets of $s$ using bit vectors of length $n$ $(\{0, 1 \}^n)$. For a subset $A \subseteq S$, the corresponding bit vector $b(A) = (b_1, b_2, . . . , b_n)$ where $b_i = 1 $ if $ s_i \in A$ and $b_i = 0$ if $ s_i  \not\in A$.
+Let $S$ be the elements from the four sets in Problem 1 ordered as $\square, \triangle, -2, 2, 7, 8, 12, a, b, g$.
   \begin{enumerate}
-  \item
+  \item Give the bit vector corresponding to $\emptyset$ \\
+  \textbf{Answer :} $ \{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 \}$
+  \item  Give the bit vector corresponding to the subset $A_1$ in Problem 1 \\
+  \textbf{Answer :} $ \{ 1, 0, 0, 1, 0, 1, 0, 1, 0, 1 \}$
+  \item  Give the bit vector corresponding to the subset $A_2$ in Problem 1 \\
+  \textbf{Answer :} $ \{ 0, 1, 1, 0, 0, 1, 0, 1, 0, 0 \}$
+  \item  Give the bit vector corresponding to the subset $A_3$ in Problem 1 \\
+  \textbf{Answer :} $ \{ 1, 0, 0, 0, 1, 0, 1, 1, 0, 1\}$
+  \item   Give the bit vector corresponding to the subset $A_4$ in Problem 1 \\
+  \textbf{Answer :} $ \{ 1, 1, 0, 1, 1, 0, 0, 1, 1, 1\}$
+  \item Give the bit vector corresponding to $S$ \\
+  \textbf{Answer :} $ \{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 \}$
+
+
+
   \end{enumerate}
 
 
@@ -167,11 +190,28 @@ Let S be the elements from the four sets in Problem 1 ordered as , 4, −2, 2, 7
 %*******************************
 %******** Problem # 10 ************
 %*******************************
-\item Given the bit vectors b(B) = (b1, b2, . . . , bn) and b(D) = (d1, d2, . . . , dn) representing two
-subsets B and D. In each case below explain how you would calculate the required bit vector (in
-general), and then apply your method to obtain the result for B = A1 and D = A4 from Problem 1.
+\item Given the bit vectors $\textbf{b}(B) = (b_1, b_2, . . . , b_n)$ and $\textbf{b}(D) = (d_1, d_2, . . . , d_n)$ representing two
+subsets $B$ and $D$. In each case below explain how you would calculate the required bit vector (in
+general), and then apply your method to obtain the result for $B = A_1$ and $D = A_4$ from Problem 1.
   \begin{enumerate}
-  \item
+  \item $\textbf{b}( B \bigcup D)$ \\
+  \textbf{Answer :} In general, if I want to find the union of two bit vectors representing subsets of the same set, I would simply perform a bitwise OR operation. The OR operation would put a 1 at any index where either $B$ or $D$ have 1's, which is the definition of union. \\ In the specific case of $U = S$, $B = A_1$, and $D = A_4$ ...
+  \[ \textbf{b}(A_1 \cup A_4) = \{ x_1, x_2, ..., x_n : x_i = (B_i\text{ OR }D_i)\}\]
+  \[ \textbf{b}(A_1 \cup A_4) = \{ 1, 1, 0, 1, 1, 1, 0, 1, 1, 1 \}\]
+
+  \item $ \textbf{b}( B \bigcap D) $ \\
+  \textbf{Answer :} In general, if I want to find the intersection of two bit vectors representing subsets of the same set, I would simply perform a bitwise AND operation.\\ In the specific case of $U = S$, $B = A_1$, and $D = A_4$ ...
+  \[ \textbf{b}(A_1 \cap A_4) = \{ x_1, x_2, ..., x_n : x_i = (B_i\text{ AND }D_i)\}\]
+  \[ \textbf{b}(A_1 \cap A_4) = \{ 1, 0, 0, 1, 0, 0, 0, 1, 0, 1 \}\]
+  
+  \item $ \textbf{b}( B - D) $ \\
+  \textbf{Answer :} To find the difference between the two subsets $B$ and $D$, I would need to only take members which are in B but also not in D. More formally,
+  \[ \textbf{b}(B - D) = \{ x_1, x_2, ..., x_n : x_i = (B_i\text{ AND }(\neg D_i))\}\]
+  \[ \textbf{b}(A_1 - A_4) = \{ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 \}\]
+
+  \item $ \textbf{b}( \overline{B}) $ \\
+  \textbf{Answer :} For sets, taking the compliment of a subset just means taking everything in the Universe that is not in that subset.  In other words
+  \[ \textbf{b}(\overline{B}) = \{ x_1, x_2, ..., x_n : x_i = (\neg B_i)\}\]
   \end{enumerate}
 
 \end{enumerate}
