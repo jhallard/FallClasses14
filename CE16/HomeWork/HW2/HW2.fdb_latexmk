@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1413356310 "HW2.tex" "HW2.pdf" "HW2" 1413356310
+["pdflatex"] 1413408149 "HW2.tex" "HW2.pdf" "HW2" 1413408149
   "/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -40,10 +40,9 @@
   "/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "2Avenn.png" 1413250041 30876 3298af5b5d445b487ca2f7a5f1d4d214 ""
   "2Bvenn.png" 1413250633 18553 69b839191965ddb2cd8ade1fd80ef3d4 ""
-  "2Cvenn" 0 -1 0 ""
-  "HW2.aux" 1413356310 416 c8b610517258c8131358c74582a157d6 ""
-  "HW2.tex" 1413356310 10045 0837a00acec019c960e26c06b656b3c6 ""
+  "HW2.aux" 1413408149 416 c8b610517258c8131358c74582a157d6 ""
+  "HW2.tex" 1413408148 10048 10d529f5ec15a665bceb1e4ccf1b7a04 ""
   (generated)
-  "HW2.pdf"
   "HW2.aux"
+  "HW2.pdf"
   "HW2.log"

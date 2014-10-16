@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  14 OCT 2014 23:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  15 OCT 2014 14:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -345,28 +345,14 @@ Package pdftex.def Info: 2Bvenn.png used on input line 226.
 Package wrapfig Warning: Collision between wrapping environments on input line 
 231.
 
-
-! LaTeX Error: File `2Cvenn' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.232      \includegraphics[width=4.4in]{2Cvenn}
-                                                
-I could not locate the file with any of these extensions:
-.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
 [4 <./2Avenn.png> <./2Bvenn.png>] (./HW2.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3220 strings out of 495028
- 42469 string characters out of 6181498
+ 3207 strings out of 495028
+ 42409 string characters out of 6181498
  112449 words of memory out of 5000000
  6359 multiletter control sequences out of 15000+600000
  11407 words of font info for 43 fonts, out of 8000000 for 9000
