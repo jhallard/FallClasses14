@@ -35,6 +35,62 @@
 %************* OVERVIEW **************%
 %*************************************%
 
+\section{Overview}
+This lab, unlike lab #1, consisted of a single goal. Construct a simple 8-bit ALU using the MultiMedia Logic program. The entire ALU had to be built from scratch, minus a few hints on how to design the input and output layout for the device. This meant that it was completely up to us to determine how we want to divide up, layout, and implement the functionality required by this lab. This meant that a large portion of our time would be spent planning and prototyping the different parts of the ALU individually before assembling them into one complete unit. Because this device consists of so many individual components, it has been laid out over 6 consectutive pages in the \textt{lab2.lgi} document. The list below will inform you what components are on which pages :
+\begin{enumerate}
+\item Page 1 - Opcode input, operand inputs, input and output displays, state LED's.
+\item Page 2 - Source Registers 1 and 2 (SR1 & SR2), Instruction Register (IR), and first level Opcode decoder.
+\item Page 3 - 8-bit Ripple Carry Full-Adder. This takes the data from the SR1 and SR2 registers, the carry-in bit, and produces an 8-bit sum plus a carry out bit.
+\item Page 4 - Destination Register (DR), holds the final output of the last operation. This page also contains the logic that controls the output LEDs (P, N, Z, COUT, etc.).
+\item Page 5 - ALU Logic Control Section. This section takes the data from SR1 and SR2 and performs the AND and NOT operations on the data. 
+\item Page 6 - The final output destination multiplexer. This device takes the results from all of the ALU's functions (AND, ADD, NOT), and determines which of these outputs to route to the destination register (DR) based on the current instruction from the IR. 
+\end{enumerate}
+
+%*************************************%
+%*********** INPUT/OUTPUT ************%
+%*************************************%
+\section{Device IO}
+
+\subsection{Input}
+
+\subsection{Output}
+
+%*************************************%
+%************* REGISTERS *************%
+%*************************************%
+\section{Registers}
+
+\subsection{Source Registers}
+
+\subsection{Instruction Register}
+
+\subsection{Destination Register}
+
+%*************************************%
+%*************** LOGIC ***************%
+%*************************************%
+\section{ALU Logic}
+
+\subsection{NOT}
+
+\subsection{AND}
+
+%*************************************%
+%************* Arithmetic ************%
+%*************************************%
+\section{ALU Arithmetic}
+
+
+%*************************************%
+%*********** DATA SELECTION **********%
+%*************************************%
+\section{Output Selection}
+
+\subsection{Bad Code}
+%*************************************%
+%************** ANALYSIS *************%
+%*************************************%
+
 
 
 \end{document}
