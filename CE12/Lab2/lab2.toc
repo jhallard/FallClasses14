@@ -9,6 +9,7 @@
 \contentsline {section}{\numberline {4}ALU Logic}{6}
 \contentsline {subsection}{\numberline {4.1}NOT}{7}
 \contentsline {subsection}{\numberline {4.2}AND}{7}
-\contentsline {section}{\numberline {5}ALU Arithmetic}{7}
-\contentsline {section}{\numberline {6}Output Selection}{7}
-\contentsline {subsection}{\numberline {6.1}Bad Code}{7}
+\contentsline {section}{\numberline {5}ALU Arithmetic}{8}
+\contentsline {section}{\numberline {6}Logistics}{8}
+\contentsline {subsection}{\numberline {6.1}Opcode Decoder}{8}
+\contentsline {subsection}{\numberline {6.2}Destination Multiplexer}{9}
