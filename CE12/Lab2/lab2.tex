@@ -53,7 +53,7 @@ When you are simulating my ALU, you will pretty much only need to be looking at 
 %*********** INPUT/OUTPUT ************%
 %*************************************%
 \section{Device IO}
-This project obviously needs some sort of input and output section to allow the user to properly interact with the ALU. All of the IO components can be found on the first page of the \texttt{lab2.lgi} document, and the layout will look pretty similar to the one presented to us in \texttt{Figure 4} of \texttt{the Lab 2 Instructions PDF}. A high level description of how the user interacts with the ALU is as follows :
+This project obviously needs some sort of input and output section to allow the user to properly interact with the ALU. All of the IO components can be found on the first page of the \texttt{lab2.lgi} document, and the layout will look pretty similar to the one presented to us in \texttt{Figure 4} of the \texttt{Lab 2 Instructions PDF}. A high level description of how the user interacts with the ALU is as follows :
 \begin{enumerate}
 \item Choose an instruction by entering an opcode. 
 \item Based on the opcode entered, enter either one or two 8-bit inputs via the HEX keypads. 
@@ -76,7 +76,7 @@ A more in-depth description of the ALLU IO functionality can be found in the two
 \subsection{Input}
 The input for the ALU is relatively simple, and is analagous to many other operations in programming. You need to choose a function to perform, and then give this function some agruments. This function will return a resul that depends on the arguments provided. This is almost exactly how the ALU that I built works, where in our case we have 3 function choices and two input choices. Below is a description of every input that the ALU needs.
 
-   \begin{wrapfigure}{l}{0.72\textwidth}
+   \begin{wrapfigure}{l}{0.65\textwidth}
      %\centering
        \includegraphics[width=4in]{pictures/opcodeinput}
      \caption{Opcode Input Section}
@@ -95,29 +95,62 @@ The input for the ALU is relatively simple, and is analagous to many other opera
 
   The output for the ALU is also extremely simple, it consists of 2 display screens (one for each HEX digit) and a handful of LED's that give the user more information on the current state of the ALU. The output displays will look identical to the input displays, except they will be labeled output and won't be connected to any keypads. After you complete an operation, the output will be displayed here. If you entered an invalid opcode, you will see an output of \texttt{BC}, which stands for `bad (op)code'. Refer to the previous section for the valid input opcodes. The LED array will tell the user various information about the state of the ALU, for more information, see Figure \ref{fig:resultinfo}
 
-      \begin{wrapfigure}{l}{0.72\textwidth}
-     %\centering
+    \begin{figure}[h!]
+     \centering
        \includegraphics[width=5in]{pictures/resultinfo}
      \caption{LED Output Display}
      \label{fig:resultinfo}
-  \end{wrapfigure} 
+  \end{figure} 
+
+
+
 %*************************************%
 %************* REGISTERS *************%
 %*************************************%
+
 \section{Registers}
+The registers are a very important part of the ALU, and there are 4 of them in my implementation. All of the registers in this program are synchronized to the global ALU clock signal, which means a clock cycle is needed to propogate a result into memory. The exception to this is the RESET signal which is connected to every register. This signal is asynchronous and thus will set all bits to \texttt{0} without the need for another clock cycle. All registers are listed below.
+  \begin{itemize}
+  \item \textbf{Source Registers 1 \& 2 -} 8 bits each. Labeled \texttt{SR1} and \texttt{SR2} in \texttt{lab2.lgi} 
+  \item \textbf{Instruction Register} - 4 bits. Labeled \texttt{IR} in \texttt{lab2.lgi}. 
+  \item \textbf{Destination Register} - 8 bits. Labeled \texttt{DR} in \texttt{lab2.lgi}
+  \end{itemize}
+
+All of these registers are very similar in layout, and with the exception of the instruction register being only 4 bits, they would be nearly identical. A picture of the instruction register can be seen in Figure \ref{fig:instructionregister}
 
 \subsection{Source Registers}
+ The ALU needs two registers to store the data it needs to perform computations on, these registers are called the Source Registers. These registers hold the two 8-bit input arguments needed by the ALU. They are 8-bit D-flip-flop registers, with a RESET override line connected to each bit. Every bit is synchronized to the clock signal for the ALU, which means you need a clock cycle to propogate a result into memory. The input to these registers comes from the input keypads on page 1 of \texttt{lab2.lgi}, and the output of these registers is routed to each of the three ALU functions. Both of these registers can be seen on page 2 of the \texttt{lab2.lgi} project.
 
 \subsection{Instruction Register}
 
+   \begin{wrapfigure}{l}{0.68\textwidth}
+     %\centering
+       \includegraphics[width=4.2in]{pictures/instructionregister}
+     \caption{4-bit Instruction Register}
+     \label{fig:instructionregister}
+  \end{wrapfigure} 
+
+  The instruction register is very much like the source registers, except it only needs to store 4 bits of information. Technically, since we only are using 3 valid opcodes, we could use as little as two bits for the IR, but having four bits available will allow us to easily add more opcodes in the near future. The instruction register (IR) can be seen in \ref{fig:instructionregister}. It, like the other registers, has the reset line tied to the clock input for each flip-flop, allowing it to be asynchronously reset with a push of the reset button on the first page of the project. 
+
 \subsection{Destination Register}
+
+The final register in that the ALU needs to operate is the Destination Register (DR). This register recieves the final 8-bit result of the last computation performed by the ALU, and stores it for use by the output displays or the user. The final value that is stored inside of this register depends on the opcode entered by the user. This is because all of the functions (NOT, ADD, AND) are computed during each clock cycle, then all of these outputs are routed to a final series of MUX's, which only direct the desired result to the destination register. This register also has a reset line connected to the clock signal, which allows an asynchronous reset.
 
 %*************************************%
 %*************** LOGIC ***************%
 %*************************************%
 \section{ALU Logic}
+The logic for this particular ALU was not too difficult to accomplish. This was in part because we are computing every function during every clock cycle, then choosing the appropriate result to route to the DR. This means we don't have to do any complicated signal choosing based on the opcode inside of the arithmetic or logic functions. The two functions that we were instructed to implement were the NOT and AND functions, which are discussed in more detail below.
 
 \subsection{NOT}
+The NOT function was extremely simple to implement, and can be seen in Figure \ref{fig:notfunction}. All we do is take each of the 8 bits from the Source Register \#1, route each of these through an inverter gate, and then send the output to the final destination MUX. 
+
+  \begin{wrapfigure}{l}{0.68\textwidth}
+     %\centering
+       \includegraphics[width=4.7in]{pictures/notfunction}
+     \caption{ALU Bitwise NOT Operation}
+     \label{fig:notfunction}
+  \end{wrapfigure} 
 
 \subsection{AND}
 

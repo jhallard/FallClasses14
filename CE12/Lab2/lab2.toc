@@ -2,13 +2,13 @@
 \contentsline {section}{\numberline {2}Device IO}{3}
 \contentsline {subsection}{\numberline {2.1}Input}{4}
 \contentsline {subsection}{\numberline {2.2}Output}{4}
-\contentsline {section}{\numberline {3}Registers}{6}
+\contentsline {section}{\numberline {3}Registers}{5}
 \contentsline {subsection}{\numberline {3.1}Source Registers}{6}
 \contentsline {subsection}{\numberline {3.2}Instruction Register}{6}
 \contentsline {subsection}{\numberline {3.3}Destination Register}{6}
 \contentsline {section}{\numberline {4}ALU Logic}{6}
-\contentsline {subsection}{\numberline {4.1}NOT}{6}
-\contentsline {subsection}{\numberline {4.2}AND}{6}
-\contentsline {section}{\numberline {5}ALU Arithmetic}{6}
-\contentsline {section}{\numberline {6}Output Selection}{6}
-\contentsline {subsection}{\numberline {6.1}Bad Code}{6}
+\contentsline {subsection}{\numberline {4.1}NOT}{7}
+\contentsline {subsection}{\numberline {4.2}AND}{7}
+\contentsline {section}{\numberline {5}ALU Arithmetic}{7}
+\contentsline {section}{\numberline {6}Output Selection}{7}
+\contentsline {subsection}{\numberline {6.1}Bad Code}{7}
