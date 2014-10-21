@@ -206,6 +206,7 @@ Normally, with a 4-bit opcode, a much more complicated decoder is needed than th
 
 
 This is a very important part of the ALU, it takes in the output from every function that the ALU can compute (AND, NOT, ADD), and based on the signal set by the opcode decoder, routes one of these 8-bit outputs to the destination register. Because the opcode was already decoded from it's 4-bit binary to form single signal lines, we only have to bitwise AND each bit from each output with the signal line, then OR the outputs for each bit together, finally routing the chosen 8-bits to the destination register. A small example of this can be seen in Figure \ref{fig:finalmux1}. The output from the NOT function is bitwise AND'd with the NOT opcode signal, so if the NOT opcode signal is high, the 8-bits coming from the NOT function pass through while the results from the other functions are blocked. 
+
 %*************************************%
 %************** ANALYSIS *************%
 %*************************************%
