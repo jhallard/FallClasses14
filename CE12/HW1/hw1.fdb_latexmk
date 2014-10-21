@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1413715616 "hw1.tex" "hw1.pdf" "hw1" 1413715616
+["pdflatex"] 1413879216 "hw1.tex" "hw1.pdf" "hw1" 1413879216
   "/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -37,11 +37,11 @@
   "/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def" 1306616590 55368 3c8a0d99822330f2dfabc0dfb09ce897 ""
   "/usr/share/texlive/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
-  "hw1.aux" 1413715616 78 4f7b3ed3a49f9693277aa9b79648aff3 ""
-  "hw1.tex" 1413715615 849 8deb28dfb179b0408ac22a462fc9541d ""
-  "hw1.toc" 1413715616 52 9a535f3da015fbcc3025b4b3e6e284bc ""
+  "hw1.aux" 1413879216 174 c8b2ea56c04b8b8a56ce717152132072 ""
+  "hw1.tex" 1413879215 8283 2c569cb8379fe9be6ad9ef1f9da93993 ""
+  "prob8.jpg" 1413874958 160300 705af0ab4787e9855ddac57b076292a3 ""
   (generated)
-  "hw1.aux"
-  "hw1.toc"
-  "hw1.pdf"
   "hw1.log"
+  "hw1.pdf"
+  "hw1.toc"
+  "hw1.aux"
