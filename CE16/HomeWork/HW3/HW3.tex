@@ -25,7 +25,7 @@
 
 \title{ CMPE 16 Homework \#3}
 \author{John Allard, id:1437547}
-\date{October 12th, 2014}
+\date{October 20th, 2014}
 
 \begin{document}
 \maketitle
@@ -57,8 +57,9 @@ Determine who is the honest friend by completing the table below. The first sect
   \item Fill in the middle section, with the truth value for each of the statements based on who the liars
   are in that row. 
   \item Fill in the last section on the right, with (Y)es or (N)o, to indicate whether friend X would make statement $S_X$ . Friend $X$ makes statement $S_X$ if either friend $X$ is honest (H) and $S_X$ is True, or if friend $X$ is a liar and $S_X$ is False.
-  \item Determine who the honest friend is from the contents of the last section. \\ \answer Joe is the honest friend, everyone else is a dirty liar.
+  \item Determine who the honest friend is from the contents of the last section. \\ \answer Joe is the honest friend, everyone else is a dirty liar. \\[.2in]
   \end{enumerate}
+
 \textbf{Truth Table :} \\
 \begin{tabular}{ l  c  c  c  c  c  ||  c  c  c  c  c  c  ||  c  c  c  c  c  c    }
  A & B & D & F & J & M  & $S_a$ & $S_b$ & $S_d$ & $S_f$ & $S_j$ & $S_m$  & $S_a$ & $S_b$ & $S_d$ & $S_f$ & $S_j$ & $S_m$ \\ \hline
@@ -68,12 +69,12 @@ Determine who is the honest friend by completing the table below. The first sect
   L & L & L & H & L & L   & T & F & F & F & F & T  & N & Y & Y & N & Y & N \\
   L & L & L & L & H & L   & F & F & F & F & T & F  & Y & Y & Y & Y & Y & Y \\
   L & L & L & L & L & H   & F & F & T & F & T & F  & Y & Y & N & Y & N & N \\
-\end{tabular}
+\end{tabular} \\[.2in]
 
 
 
 
-\newpage
+%\newpage
 
 %*********************************
 %******** Problem # 2 ************
@@ -96,7 +97,7 @@ Determine which two friends tell the truth using the same technique as in the pr
   H & H & L & L   & T & T & F & T  & Y & Y & Y & N \\
   H & L & H & L   & T & F & T & T  & Y & Y & Y & N \\ 
   H & L & L & H   & F & T & F & T  & N & N & Y & Y \\
-  L & H & H & H   & F & T & T & F  & Y & Y & Y & Y \\
+  L & H & H & L   & F & T & T & F  & Y & Y & Y & Y \\
   L & H & L & H   & F & F & F & T  & Y & N & Y & Y \\
   L & L & H & H   & F & T & F & T  & Y & N & N & Y \\
 \end{tabular}
@@ -112,35 +113,146 @@ Determine which two friends tell the truth using the same technique as in the pr
 domain for $x$ in all cases is the real numbers. You may use the fact that for all real numbers $x^2 \geq 0$.
 Start by stating clearly whether it is True or False.
 
-\begin{enumerate}
-\item $\forall x \in \mathbb{R}, (3x \leq 2^x)$ \\
-\answer  False, if $x = 1$ then $3x = 3$ and $2^x = 2$, thus $x = 1$ is a counter example. 
-\item $\exists x \in \mathbb{R}, (3x \leq 2^x)$ \\
-\answer True, $x = 1024$ would mean that $3x = 3072$ and $2^x = 1.79769313486231590772 \times 10^{308}$, which shows the inequality is true for at least one $x \in \mathbb{R}$
-\item $\forall x \in \mathbb{R}, (x \leq x^2)$ \\
-\answer False, any $0 < x < 1$ would suffice to show this is false, but for the sake of the proof I will choose $x = 0.5$. Then $x = 0.5$ and $ x^2 = 0.25$, thus $x > x^2$ for at least one $x \in \mathbb{R}$.
-\item $\forall x \in \mathbb{R}, (x < (x+1)^2 - x)$ \\
-\answer True. The proof is given below.  \\
+  \begin{enumerate}
+  \item $\forall x \in \mathbb{R}, (3x \leq 2^x)$ \\
+  \answer  False, if $x = 1$ then $3x = 3$ and $2^x = 2$, thus $x = 1$ is a counter example. 
+  \item $\exists x \in \mathbb{R}, (3x \leq 2^x)$ \\
+  \answer True, $x = 1024$ would mean that $3x = 3072$ and $2^x = 1.79769313486231590772 \times 10^{308}$, which shows   the inequality is true for at least one $x \in \mathbb{R}$  \qquad ;)
+  \item $\forall x \in \mathbb{R}, (x \leq x^2)$ \\
+  \answer False, any $0 < x < 1$ would suffice to show this is false, but for the sake of the proof I will choose $x = 0.5  $. Then $x = 0.5$ and $ x^2 = 0.25$, thus $x > x^2$ for at least one $x \in \mathbb{R}$.
+  \item $\forall x \in \mathbb{R}, (x < (x+1)^2 - x)$ \\
+  \answer True. The proof is given below.  \\
 
-\begin{tabular}{l | l}
- $0 < 1$                 & Obviously true statement \\
- $0 < 1 + x^2$           & $x^2 \geq 0$  $\forall x \in \mathbb{R}$ \\
- $2x < x^2 + 2x + 1$     & Added $2x$ to both sides, rearranged terms. \\
- $2x < (x+1)^2$          & Simplified further. \\
- $x < (x+1)^2 - x$       & Subtracted $x$ from both sides
-\end{tabular}
-
-QED
-
-
-
-%*********************************
-%******** Problem # 3 ************
-%*********************************
-\item Express the negation ($\neg$) of the statements belowso that negation symbols only precede $P$'s and $Q$'s
+  \begin{tabular}{l | l}
+   $0 < 1$                 & Well ordering principal of the Reals. \\
+   $0 < 1 + x^2$           & $x^2 \geq 0$  $\forall x \in \mathbb{R}$ \\
+   $2x < x^2 + 2x + 1$     & Added $2x$ to both sides, rearranged terms. \\
+   $2x < (x+1)^2$          & Simplified further. \\
+   $x < (x+1)^2 - x$       & Subtracted $x$ from both sides \\
+  \end{tabular} \\[.2in]
+  
+  \emph{That which was to be proved}
+  
 
 \end{enumerate}
 
+
+
+
+
+
+%*********************************
+%******** Problem # 4 ************
+%*********************************
+\item Express the negation ($\neg$) of the statements below so that negation symbols only precede $P$'s and $Q$'s
+
+  \begin{enumerate}
+  \item $\exists x \forall y \exists z$ $P(x, y , z)$ \\
+  \answer $\forall x \exists y \forall x$ $\neg P(x,y,z)$
+
+  \item $\forall x \exists y $ $[P(x,y)]$ $\vee$ $\forall x \forall y$ $Q(x, y)$ \\
+  \answer $\exists x \forall y $ $[\neg P(x,y)]$ $\wedge$ $\exists x \exists y$ $[\neg Q(x, y)]$
+
+  \item $\exists x \forall y$ $[P(x,y) \iff P(y,x)]$ \\
+  \answer $\forall x \exists y$ $[(P(x,y) \wedge \neg P(y,x))$ $\vee$ $(\neg P(x,y) \wedge P(y,x))]$ \footnote{I had to look up what the negation of an $x\iff y$ is, I worked out my answer using knowledge found on this page \url{http://math.stackexchange.com/questions/10435/negation-of-if-and-only-if} }
+
+  \item $\forall y \exists x \forall z $ $[P(x,y,z) \implies Q(z,y)]$ \\
+  \answer $\exists y \forall x \exists z$ $[P(x,y,z) \wedge \neg Q(z,y)]$
+  \end{enumerate}
+
+
+
+
+%*********************************
+%******** Problem # 5 ************
+%*********************************
+\item Determine the truth value of each of the statements below. Justify your answer. The domain
+for $x$ is the real numbers $(\mathbb{R})$ and the domain for y is the non-negative real numbers ($\mathbb{R}^+ \cup {0}$)
+
+   \begin{enumerate}
+     \item $\forall x \in \mathbb{R},$ $\forall y \in \mathbb{R}^+ \cup \{0\}$ \qquad $ 4x = y+4$ \\
+     \answer False, $x = 2, y = 1300$ is a counter example.
+
+     \item $\exists x \in \mathbb{R},$ $\exists y \in \mathbb{R}^+ \cup \{0\}$ \qquad $ 4x = y+4$ \\
+     \answer True, $x = 1, y = 0$ shows an $x$ and a $y$ for which this holds. 
+
+     \item $\exists x \in \mathbb{R},$ $\forall y \in \mathbb{R}^+ \cup \{0\}$ \qquad $ 4x = y+4$ \\
+     \answer False, for this to be true there would have to be one number in the reals that is equal to the output of the function $f(y) = y+4$ over the entire domain of $y$, namely $\mathbb{R}$. Because $f(y)$ can take on many different values ($f(1) = 5, f(2) = 6, f(3) = 7$, for example), and $x$ can only be one value, then there is no value, $x$, in the real numbers that can satisfy $ 4x = y+4$ for all values, $y$, in the reals.
+
+     \item $\forall x \in \mathbb{R},$ $\exists y \in \mathbb{R}^+ \cup \{0\}$ \qquad $ 4x = y+4$ \\
+     \answer False. This one is almost true, but the devil is in the fact that $y \geq 0$. Thus if $x = -100$, for the equation to balance out $y$ would have to be $-444$, which is not in the positive reals. 
+
+     \item $\exists y \in \mathbb{R}^+ \cup \{0\},$ $\forall x \in \mathbb{R},$ \qquad $ 4x = y+4$ \\
+     \answer False, once again, the function $f(x) = 4x$ takes on an infinite amount of values when $x \in \mathbb{R}$. There cannot exist one value, $y$, in the reals such that $y+4$ matches the output of $4x$ for all $x$ in the real numbers.
+     \item $\forall y \in \mathbb{R}^+ \cup \{0\},$ $\exists x \in \mathbb{R},$ \qquad $ 4x = y+4$ \\
+     \answer True, given any $y \in \mathbb{R}^+$, I can give you a $x \in \mathbb{R}$ such that the above equation holds true. \\[.1in]
+     \begin{tabular}{l | l}
+     Given $y \in \mathbb{R}^+$ & Start with any number from the positive reals. \\
+     Take $x = \frac{y}{4}+1$ & The reals are closed under addition and multiplication. \\ 
+     $4(\frac{y}{4}+1) = y+4$ & Plug $x$ into original equation. \\
+     $y+4 = y+4$, $y = y$ & This holds true for all values $y \in \mathbb{R}^+$ \\
+     \end{tabular}
+
+     \item $\exists x \in \mathbb{R},$ $\forall y \in \mathbb{R}^+ \cup \{0\}$ \qquad $ 4x = yx$ \\
+     \answer True, just take $x = 0$. Then the equation reduces to $0 = y*0$ which is always true.
+
+     \item $\exists y \in \mathbb{R}^+ \cup \{0\},$ $\forall x \in \mathbb{R},$ \qquad $ 4x = yx$ \\
+
+   \end{enumerate}
+
+
+
+
+
+%*********************************
+%******** Problem # 6 ************
+%*********************************
+\item In this problem you will calculate the number of UCSC that meet certain criteria. UCSC
+ID numbers all have 7 digits from 0 to 9 and the first digit is not 0. Be careful! There are subtleties
+lurking here.
+
+  \begin{enumerate}
+  \item How many student ID numbers start with either 1 or 2? \\
+  \answer $2 \times 10^6 = 2000000$
+
+  \item How many student ID numbers have only odd numbers? \\
+  \answer $5^7 =78125$
+
+  \item How many student ID numbers have only even numbers? \\
+  \answer $4 \times 5^6 = 62,500$
+
+  \item How many student ID numbers start and end with the same digit? \\
+  \answer $9 \times 10 \times 10 \times 10 \times 10 \times 1 = 900,000$
+
+  \item How many student ID numbers start and end with different digits? \\
+  \answer $9,000,000 \text{(total)} - 900,000 = 8,100,000$
+
+  \item How many student ID numbers have no repeated digits? \\
+  \answer $9 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 544,320$
+
+  \item How many student ID numbers are palindromes? \\
+  \answer $9 \times 10 \times 10 \times 10 \times 1 \times 1 \times 1 = 9000$
+
+  \end{enumerate}
+
+
+
+%*********************************
+%******** Problem # 7 ************
+%*********************************
+\item Using only paper and pencil calculate the following values. All of the answers are integers.
+You must show your calculations to receive credit.
+
+  \begin{enumerate}
+  \item $\dfrac{100!}{96! \times 4!}$\vspace{10pt} \\
+  \answer $\dfrac{100!}{96! \times 4!}$\vspace{10pt} $= \dfrac{100*99*98*97}{4*3*2*1} = 25*33*49*97 = 3,921,225$
+
+  \item $\dfrac{400!}{397!*3!}$ \\
+  \answer $ \dfrac{400!}{397!*3!} = \dfrac{400*399*398}{3*2*1} = 200*133*398 = 10,586,800$
+
+  \item $\dfrac{2^{20}!}{(2^{20}-1)!}$ \\
+  \answer $ \dfrac{2^{20}!}{(2^{20}-1)!} = 2^{20}$ (all other numbers cancel out)
+  \end{enumerate}
 
 
 \end{enumerate}
