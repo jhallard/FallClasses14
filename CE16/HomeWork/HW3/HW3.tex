@@ -12,6 +12,7 @@
 \setlength{\voffset}{-0.5in}
 \setlength{\headsep}{5pt}
 \newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand{\answer}{\textbf{Answer : }}
 
 
 %===========---------================
@@ -36,38 +37,112 @@
 \begin{enumerate}
 
 
-%*******************************
+%*********************************
 %******** Problem # 1 ************
-%*******************************
+%*********************************
 \item You have six friends, Ann, Bob, Doris, Fay, Joe and Matt. One of them always tells the
-truth and the other five always lie. They each make a statement as indicated below. \\
-Ann says \\
-Bob says \\
-Doris says \\
-Fay says \\
-Joe says \\
-Matt says \\
-“Fay tells the truth.” \\
-“Ann tells the truth.” \\
-“Matt or Bob tells the truth.” \\
-“Doris tells the truth.” \\
-“Fay lies.” \\
-“Joe and I lie.” \\
+truth and the other five always lie. They each make a statement as indicated below. \\[.2in]
+\begin{tabular}{l l}
+Ann says  & "Fay tells the truth." \\ 
+Bob says  & "Ann tells the truth." \\
+Doris says  & "Matt or Bob tells the truth." \\
+Fay says  & "Doris tells the truth." \\
+Joe says  & "Fay lies" \\
+Matt says  & "Joe and I lie." \\[.2in]
+\end{tabular}
 
-\textbf{Answer :}
+Determine who is the honest friend by completing the table below. The first section of the table has been filled in with the six possibilities for the veracity (truthfulness) of your six friends, In each row, there is only one honest friend (H) and the other 5 friends are liars (L).
 
+  \begin{enumerate}
+  \item Fill in the middle section, with the truth value for each of the statements based on who the liars
+  are in that row. 
+  \item Fill in the last section on the right, with (Y)es or (N)o, to indicate whether friend X would make statement $S_X$ . Friend $X$ makes statement $S_X$ if either friend $X$ is honest (H) and $S_X$ is True, or if friend $X$ is a liar and $S_X$ is False.
+  \item Determine who the honest friend is from the contents of the last section. \\ \answer Joe is the honest friend, everyone else is a dirty liar.
+  \end{enumerate}
+\textbf{Truth Table :} \\
+\begin{tabular}{ l  c  c  c  c  c  ||  c  c  c  c  c  c  ||  c  c  c  c  c  c    }
+ A & B & D & F & J & M  & $S_a$ & $S_b$ & $S_d$ & $S_f$ & $S_j$ & $S_m$  & $S_a$ & $S_b$ & $S_d$ & $S_f$ & $S_j$ & $S_m$ \\ \hline
+  H & L & L & L & L & L   & F & T & F & F & T & T  & N & N & Y & Y & N & N \\
+  L & H & L & L & L & L   & F & F & T & T & T & T  & Y & N & N & N & N & N \\ 
+  L & L & H & L & L & L   & F & F & F & T & T & T  & Y & Y & N & N & N & N \\
+  L & L & L & H & L & L   & T & F & F & F & F & T  & N & Y & Y & N & Y & N \\
+  L & L & L & L & H & L   & F & F & F & F & T & F  & Y & Y & Y & Y & Y & Y \\
+  L & L & L & L & L & H   & F & F & T & F & T & F  & Y & Y & N & Y & N & N \\
+\end{tabular}
+
+
+
+
+\newpage
+
+%*********************************
+%******** Problem # 2 ************
+%*********************************
 
 \item You have four friends, Meg, Pat, Zoe and Tim. Two of them always tell the truth and the
-other two always lie. They each make a statement as indicated below. \\
-Meg says \\
-Pat says \\
-Tim says \\
-Zoe says \\
-“I tell the truth, but Tim does not.” \\
-“Tim and I are different when it comes to telling the truth.” \\
-“Pat or Zoe lie. ” \\
-“I tell the truth, but Tim does not.” \\
+other two always lie. They each make a statement as indicated below. \\[.2in]
+\begin{tabular}{l l}
+Meg says & "I tell the truth, but Tim does not." \\
+Pat says & "Tim and I are different when it comes to telling the truth." \\
+Tim says & "Pat or Zoe lie. " \\
+Zoe says & "I tell the truth, but Tim does not." \\[.2in]
+\end{tabular}
+
 Determine which two friends tell the truth using the same technique as in the previous problem. \\
+
+\answer Pat and Zoe are the truth tellers, while Meg and Tim are the lying traitors! Work shown in table below. \\[.2in]
+\begin{tabular}{ l  c  c  c  ||  c  c  c  c  ||  c  c  c  c   }
+ M & P & Z & T  & $S_M$ & $S_P$ & $S_Z$ & $S_T$  & $S_M$ & $S_P$ & $S_Z$ & $S_T$ \\ \hline
+  H & H & L & L   & T & T & F & T  & Y & Y & Y & N \\
+  H & L & H & L   & T & F & T & T  & Y & Y & Y & N \\ 
+  H & L & L & H   & F & T & F & T  & N & N & Y & Y \\
+  L & H & H & H   & F & T & T & F  & Y & Y & Y & Y \\
+  L & H & L & H   & F & F & F & T  & Y & N & Y & Y \\
+  L & L & H & H   & F & T & F & T  & Y & N & N & Y \\
+\end{tabular}
+\\[.2in]
+
+
+
+
+%*********************************
+%******** Problem # 3 ************
+%*********************************
+\item Detemine the truth value of each of the statements below. Justify your answer. The
+domain for $x$ in all cases is the real numbers. You may use the fact that for all real numbers $x^2 \geq 0$.
+Start by stating clearly whether it is True or False.
+
+\begin{enumerate}
+\item $\forall x \in \mathbb{R}, (3x \leq 2^x)$ \\
+\answer  False, if $x = 1$ then $3x = 3$ and $2^x = 2$, thus $x = 1$ is a counter example. 
+\item $\exists x \in \mathbb{R}, (3x \leq 2^x)$ \\
+\answer True, $x = 1024$ would mean that $3x = 3072$ and $2^x = 1.79769313486231590772 \times 10^{308}$, which shows the inequality is true for at least one $x \in \mathbb{R}$
+\item $\forall x \in \mathbb{R}, (x \leq x^2)$ \\
+\answer False, any $0 < x < 1$ would suffice to show this is false, but for the sake of the proof I will choose $x = 0.5$. Then $x = 0.5$ and $ x^2 = 0.25$, thus $x > x^2$ for at least one $x \in \mathbb{R}$.
+\item $\forall x \in \mathbb{R}, (x < (x+1)^2 - x)$ \\
+\answer True. The proof is given below.  \\
+
+\begin{tabular}{l | l}
+ $0 < 1$                 & Obviously true statement \\
+ $0 < 1 + x^2$           & $x^2 \geq 0$  $\forall x \in \mathbb{R}$ \\
+ $2x < x^2 + 2x + 1$     & Added $2x$ to both sides, rearranged terms. \\
+ $2x < (x+1)^2$          & Simplified further. \\
+ $x < (x+1)^2 - x$       & Subtracted $x$ from both sides
+\end{tabular}
+
+QED
+
+
+
+%*********************************
+%******** Problem # 3 ************
+%*********************************
+\item Express the negation ($\neg$) of the statements belowso that negation symbols only precede $P$'s and $Q$'s
+
+\end{enumerate}
+
+
+
 \end{enumerate}
 
 \end{document}
