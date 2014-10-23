@@ -1,5 +1,7 @@
 /*
 	Author - John Allard, ID: 1437547
+	Class  - CS12B, HW #1
+	
 	File   - BusinessRecord.java
 	Info   - This file defines a helper class for the Business Search program. This class will serve as an abstract
 	representation of a business, it will contain the name of the business and the phone number at which this business can 

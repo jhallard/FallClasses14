@@ -1,5 +1,7 @@
 /*
 	Author - John Allard, ID: 1437547
+	Class  - CS12B, HW #1
+
 	File   - BusinessSearch.java
 	Info   - This file defines the main class for the Business Search program. This class will take in a file that 
 	contains a database of business name and number information, it will parse this file for the proper information,
@@ -41,7 +43,7 @@ class BusinessSearch {
 
    /* Constructor */
    // Takes in a file name and populates the records array in a sorted fashion
-   public  BusinessSearch(String fn) {
+   public BusinessSearch(String fn) {
  	  numRecords = 0;
     
       // Load the records from the file, populate the array in an unsorted fashion.
@@ -65,7 +67,7 @@ class BusinessSearch {
      } 
 
      // Use private member binary search function to look for querey. 
-     int index = binarySearch(name, 0, numRecords);
+     int index = binarySearch(name, 0, numRecords-1);
 
      // if the index is negative, we didn't find the querey.
      if(index < 0)
@@ -77,6 +79,7 @@ class BusinessSearch {
 
 
  public static void main(String[] args) {
+
  	if(args.length <= 0){
  		System.out.println("Must input filename as argv[0]");
  		return;
@@ -84,27 +87,34 @@ class BusinessSearch {
 
  	String filename = args[0];
 
- 	if(filename == null){
- 		System.out.println("Must input filename as argv[0]");
- 		return;
- 	}
-
  	BusinessSearch bs = new BusinessSearch(filename);
 
  	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
+ 	int numqueries = 0;
+ 	int numfound = 0;
  	try{
+	// Infinite loop where we ask the user for the input and give them output.
+	while(true){
+		System.out.println("Please Enter a Business Name\n");
+		String input = in.readLine();
 
- 		System.out.println("Please Enter a Business Name\n");
- 		String input = in.readLine();
+		if(input.compareTo("") == 0){
+			System.out.println(numqueries+" total queries, "+ numqueries-numfound + " not found.\n");
+		}
+		else{
+			String number = bs.search(input);
 
- 		String number = bs.search(input);
-
- 		if(number.compareTo("") == 0) {
- 			System.out.println("Could not find name " + input + " In the Database\n");
- 		}
-
- 	}catch(IOException ex) {
+			if(number.compareTo("") == 0) {
+				System.out.println(input + " NOT FOUND\n");
+			}
+			else {
+				System.out.println(number+"\n");
+			}
+	    }   
+	}
+ 	}
+ 	catch(IOException ex) {
  		ex.printStackTrace();
  	}
 
@@ -135,14 +145,14 @@ class BusinessSearch {
  	}
     
     // Instatiate the records array now that we know what size it should be
-    records = new BusinessRecord[numLines+1];
+    records = new BusinessRecord[numLines];
     numRecords = numLines;
 
     // Populate the array with records
  	for(int i = 0; i < numLines; i++) {
  		String[] subfields = lines[i].split(",");
  		
- 		if(subfields[0] == null || subfields[1] == null) {
+ 		if(subfields.length != 2 || subfields[0] == null || subfields[1] == null) {
  			System.out.println("Invalid Field");
  			break;
  		}
@@ -150,7 +160,6 @@ class BusinessSearch {
  		BusinessRecord br = new BusinessRecord(subfields[0], subfields[1]);
 		records[i] = br;
  	}
-
  	} catch(IOException ex){
  		System.out.println(ex.toString());
  		System.out.println("Could not locate file");
@@ -160,10 +169,13 @@ class BusinessSearch {
  	return true;
  }
 
+
+
+
  // @Method -- sortRecords
  // @Info   -- Performs a Merge Sort on the names assocaited with each record in the records array.
  private BusinessRecord[] sortRecords(BusinessRecord[] records) {
-  
+
     // My merge sort method is not in place so we will be populating a new records array with the sorted data. 
     BusinessRecord[] sortedRecords = new BusinessRecord[records.length];
 
@@ -186,19 +198,21 @@ class BusinessSearch {
     	leftrecs = new BusinessRecord[records.length/2];
     }
 
+
+    
     // Populate the left and right halves of the arrays //
-    for(int i = 0; i < records.length; i++) {
+    for(int i = 0, j = 0; i < records.length; i++) {
 
     	if(i < middle)
     		leftrecs[i] = records[i];
     	else
-    		rightrecs[i] = records[i];
+    		rightrecs[j++] = records[i];
     }
 
     // Recursion!!!! //
     leftrecs = sortRecords(leftrecs);
     rightrecs = sortRecords(rightrecs);
-  
+ 
 
     // Merge the two sublists together!
     sortedRecords = mergeRecords(leftrecs, rightrecs);
@@ -218,6 +232,11 @@ class BusinessSearch {
   	int rightInd = 0;
   	int mergeInd = 0;
 
+  	if(leftRecords == null)
+  		return rightRecords;
+  	if(rightRecords == null)
+  		return leftRecords;
+
   	// This will hold our merged list of records
   	BusinessRecord[] mergedRecords = new BusinessRecord[leftRecords.length+rightRecords.length];
 
@@ -226,19 +245,24 @@ class BusinessSearch {
 
   		// If we have run out of left records to merge, insert the right records. //
   		if(leftInd == leftRecords.length) {
-  			mergedRecords[mergeInd] = rightRecords[rightInd];
-  			mergeInd++;
-  			rightInd++;
+  			while(mergeInd < mergedRecords.length){
+  				mergedRecords[mergeInd] = rightRecords[rightInd];
+  				mergeInd++;
+  				rightInd++;
+  			}
+  			
   		}
   		// If we have run out of right records to merge , insert the left records
   		else if(rightInd == rightRecords.length){ 
-  			mergedRecords[mergeInd] = leftRecords[rightInd];
-  			mergeInd++;
-  			leftInd++;
+  			while(mergeInd < mergedRecords.length){
+  				mergedRecords[mergeInd] = leftRecords[leftInd];
+  				mergeInd++;
+  				leftInd++;
+  			}
   		}
   		else {
   			// if the left one comes before the right one alphabetically
-  			if(!leftRecords[leftInd].lessThan(rightRecords[rightInd])){
+  			if( !(leftRecords[leftInd].lessThan(rightRecords[rightInd])) ){
   				mergedRecords[mergeInd] = rightRecords[rightInd];
   				mergeInd++; rightInd++;
   			}
@@ -247,7 +271,6 @@ class BusinessSearch {
   				mergeInd++; leftInd++;
   			}
   		}
-
   		
   	}
 
@@ -260,22 +283,33 @@ class BusinessSearch {
   // @Purpose  - Takes a querey and searches through the records for that querey, returns the index of the querey if it exists
   // 			 and returns -1 if it cannot find the entry.
   private int binarySearch(String name, int ind1, int ind2) {
-  
-  // if there is only one element and it is not the right answer, return false
-  if(ind1 >= ind2 && records[ind1].name.compareTo(name) != 0)
-  	return -1;
+  		
 
-  int mid = (ind2-ind1)/2;
-  int compare = name.compareTo(records[mid].name);
+  	// if there is only one element and it is not the right answer, return false
+  	if(ind1 == ind2 && records[ind1].name.compareTo(name) != 0)
+  		return -1;
+
+  	// if there are only two elements I have to do this one annoying case. 
+  	if(ind2-ind1 == 1){
+  		if(records[ind1].name.compareTo(name) == 0)
+  			return ind1;
+  		else if(records[ind2].name.compareTo(name) == 0)
+  			return ind2;
+  		else
+  			return -1;
+  	}
+
+  	int mid = (ind2+ind1)/2;
+  	int compare = name.compareTo(records[mid].name);
   
-  // If it is in the left half of the array 
-  if(compare < 0)
-  	return binarySearch(name, ind1, mid);
+  	// If it is in the left half of the array 
+  	if(compare < 0)
+  		return binarySearch(name, ind1, mid);
   
-  // Else it is in the right half of the array
-  else if(compare > 0) {
-  	return binarySearch(name, mid, ind2);
-  }
+  	// Else it is in the right half of the array
+  	else if(compare > 0) {
+  		return binarySearch(name, mid, ind2);
+  	}
 
   return mid;
 } // end bianrySearch function
