@@ -1,0 +1,16 @@
+This README is for the BusinessSearch project, which is assignment #1 for CS12B. This project was written by John Allard, ID#1437547.
+
+This project contains the following files
+
+BusinessSearch.java
+BusinessRecord.java
+README
+Makefile
+
+BusinessSearch.java is the source for the BusinessSearch class, which is the main class for this program. This class encapsulates an array of BusinessRecord objects, which correspond to 'database' entries of business names and telephone numbers. This class contains the logic for sorting and searching the array of records.
+
+BusinessRecord.java is the source for the BusinessRecord class, which is a helper-class for the BusinessSearch class. This is a very simple class that holds two strings, a name and a phone number, and a function that allows you to compare two records for alphabetic ordering based on the name. 
+
+The README file is this. For more information, see README.
+
+The Makefile is used to build the program. It builds the classes BusinessSearch.class and BusinessRecord.class from their respective source files, then builds an executable out of these classes. 

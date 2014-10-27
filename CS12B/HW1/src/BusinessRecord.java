@@ -1,6 +1,7 @@
 /*
 	Author - John Allard, ID: 1437547
 	Class  - CS12B, HW #1
+	Date   - Oct 21st, 2014
 	
 	File   - BusinessRecord.java
 	Info   - This file defines a helper class for the Business Search program. This class will serve as an abstract

@@ -1,0 +1,27 @@
+This README is for the Reverse Polish Notation Calculator project, which is Lab#3 for CS12M at UCSC. This project was written by John Allard, ID#1437547.
+
+This project contains the following files
+
+Calc.java
+Stack.java
+CalcTest.java
+README
+Makefile
+
+Calc.java is the source for the Calc class, which is the main class for this program. This class is basically a wrapper for the Stack class, and allows the user to perform simple calculations using reverse polish notation. The available operations to the user are 
+pop
+peek
+push
+add
+multiply
+subtract
+divide
+reciprocal
+
+Stack.java is the source for the Stack class, which is a helper-class for the Calc class. This is a very simple implementation of a stack that I developed just for this project.
+
+CalcTest.java is the testing program for Calc class. It will perform a suite of 26 tests to help ensure that everything is running okay. It can be run from the command line with the command `make test`.
+
+The README file is this. For more information, see README.
+
+The Makefile is used to build the program. It builds the classes Calc.class, Stack.class, and CalcTest.class from their respective source files, then builds an executable out of these classes. 

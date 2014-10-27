@@ -1,6 +1,7 @@
 /*
 	Author - John Allard, ID: 1437547
 	Class  - CS12B, HW #1
+	Date   - Oct 21st, 2014
 
 	File   - BusinessSearch.java
 	Info   - This file defines the main class for the Business Search program. This class will take in a file that 
@@ -39,7 +40,7 @@ class BusinessSearch {
 
  /**************************/
  /***** Public Methods *****/
- /**************************/
+ /**-************************/
 
    /* Constructor */
    // Takes in a file name and populates the records array in a sorted fashion
@@ -100,7 +101,7 @@ class BusinessSearch {
 		String input = in.readLine();
 
 		if(input.compareTo("") == 0){
-			System.out.println(numqueries+" total queries, "+ numqueries-numfound + " not found.\n");
+			System.out.println(numqueries+" total queries, "+ (numqueries-numfound) + " not found.\n");
 		}
 		else{
 			String number = bs.search(input);
