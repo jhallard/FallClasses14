@@ -1,0 +1,82 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Author : John Allard
+; CE12, Lab #3   
+; Oct 28th, 2014
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; R0 - General temporary value holder
+;; R1 - Number of words to analyze (value at x3100)
+;; R2 - Holds constant value 16
+;; R3 - Outer-loop counter, goes from 0 to R1
+;; R4 - Inner-loop counter, goes from 0 to 16 (R2)
+;; R5 - Global counter of the number of 1's
+;; R6 - Stores the value 3200, the starting address of the data
+;; R7 - Holds the value of the current word we are evaluating (address)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;.orig x3000
+0011000000000000 
+;LD R2 29
+0010 010 000011101        ;Load the word size into R2 (16 bits)
+;LD R1 25
+0010 001 000011001        ;R1 contains 3100
+;LD R6 26
+0010 110 000011010        ;3200, the address we start from
+;LDR R1 R1 #0
+0110 001 001 000000       ;Put value at x3100 into R1
+;AND R3 R3 #0
+0101 011 011 1 00 000     ;initialize outer-loop counter to 0
+;AND R5 R5 #0
+0101 101 101 1 00 000     ;intitialize 1's counter
+;AND R4 R4 #0
+0101 100 100 1 00 000     ;initialize the inner loop counter to zero
+;LDR R7 R6 #0
+0110 111110000000         ;load the value at 3200+x into R7, where x is going to be incremented
+;ADD R7 R7 #0
+0001 111 111 1 00 000     ; All this does is force the computer to set the conditional flags based on the R7 register instead of another previous result.
+
+;BRN INC
+0000 1 0 0 000000001      ;If R7 is negative, high bit is one, so increment counter
+;BR BSFT
+0000 1 1 1 000000010      ;Perform a bitshift
+;ADD R5 R5 #1 
+0001 101 101 1 00 001     ;Increment the global 1's counter
+;BR BSFT
+0000 1 1 1 000000000      ;Go to shift the bits
+;DD R7 R7 R7      
+0001 111111000111         ;Double the R7 value, shifting the bits to the left 
+;ADD R4 R4 #1      
+0001 100100100001         ;Increment Inner Counter
+;NOT R0 R2         
+1001 000010111111         ;Invert 16
+;ADD R0 R0 #1      
+0001 000000100001         ;Add 1 to make two's compliment -16
+;ADD R0 R4 R0      
+0001 000100000000         ;Subtract 16 from our inner counter
+;BRNZ loop2               
+0000 110111110101         ;If it's negative do another inner loop
+;ADD R3 R3 #1
+0001 011011100001         ;Increment outerloop counter
+;ADD R6 R6 #1      
+0001 110110100001         ;Go to the next 320x address
+;OT R0 R1         
+1001 000001111111         ;Invert value at x3100 (number of words to count)
+;ADD R0 R0 #1      
+0001 000000100001         ;Add 1 to create -R1
+;ADD R0 R3 R0      
+0001 000011000000         ;Subtract the number of words to count from the words we have counted to so far
+;BRN loop1         
+0000 100111101101         ;If negative we still have more words to count
+;LD R0 WRITE       
+0010 000000000010         ;Load 3101 into R0 (write address)
+;halt
+1111 000000100101         ;halt program execution
+;x3100
+0011 000100000000         ;where the number of elements to analyze is stored
+;x3101
+0011 000100000001         ;Where we store the final result
+;x3200
+0011 001000000000         ;Where to begin searching
+;x000f
+0000 000000001111         ;Number of pits per word (16)

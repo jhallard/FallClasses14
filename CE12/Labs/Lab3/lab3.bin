@@ -1,0 +1,29 @@
+;; CMPE12 - Fall 2014
+;; hello.bin
+;; This program echoes the text "Hello, world" to the output.
+;; The code will begin in memory at address x3000
+0011 0000 0000 0000
+;; load the greeting address
+;; LEA R0, x002
+1110 000 000000010
+;; print out the greeting
+;; TRAP x22
+1111 0000 00100010
+;; stop the processor
+;; TRAP x25
+1111 0000 00100101
+;; data declarations from here on
+0000 0000 0100 1000 ; H
+0000 0000 0110 0101 ; e
+0000 0000 0110 1100 ; l
+0000 0000 0110 1100 ; l
+0000 0000 0110 1111 ; o
+0000 0000 0010 1100 ; ,
+0000 0000 0010 0000 ; <space>
+0000 0000 0111 0111 ; w
+0000 0000 0110 1111 ; o
+0000 0000 0111 0010 ; r
+0000 0000 0110 1100 ; l
+0000 0000 0110 0100 ; d
+0000 0000 0000 1010 ; newline
+0000 0000 0000 0000 ; null
