@@ -17,12 +17,12 @@
 
 ;.orig x3000
 0011000000000000 
-;LD R2 29
-0010 010 000011101        ;Load the word size into R2 (16 bits)
-;LD R1 25
-0010 001 000011001        ;R1 contains 3100
-;LD R6 26
-0010 110 000011010        ;3200, the address we start from
+;LD R2 30
+0010 010 000011110        ;Load the word size into R2 (16 bits)
+;LD R1 26
+0010 001 000011010        ;R1 contains 3100
+;LD R6 27
+0010 110 000011011        ;3200, the address we start from
 ;LDR R1 R1 #0
 0110 001 001 000000       ;Put value at x3100 into R1
 ;AND R3 R3 #0
@@ -32,7 +32,7 @@
 ;AND R4 R4 #0
 0101 100 100 1 00 000     ;initialize the inner loop counter to zero
 ;LDR R7 R6 #0
-0110 111110000000         ;load the value at 3200+x into R7, where x is going to be incremented
+0110 111 110 000000         ;load the value at 3200+x into R7, where x is going to be incremented
 ;ADD R7 R7 #0
 0001 111 111 1 00 000     ; All this does is force the computer to set the conditional flags based on the R7 register instead of another previous result.
 
@@ -44,34 +44,36 @@
 0001 101 101 1 00 001     ;Increment the global 1's counter
 ;BR BSFT
 0000 1 1 1 000000000      ;Go to shift the bits
-;DD R7 R7 R7      
-0001 111111000111         ;Double the R7 value, shifting the bits to the left 
+;ADD R7 R7 R7      
+0001 111 111 0 00 111     ;Double the R7 value, shifting the bits to the left 
 ;ADD R4 R4 #1      
-0001 100100100001         ;Increment Inner Counter
+0001 100 100 1 00 001     ;Increment Inner Counter
 ;NOT R0 R2         
-1001 000010111111         ;Invert 16
+1001 000 010 111111       ;Invert 16
 ;ADD R0 R0 #1      
-0001 000000100001         ;Add 1 to make two's compliment -16
+0001 000 000 1 00 001     ;Add 1 to make two's compliment -16
 ;ADD R0 R4 R0      
-0001 000100000000         ;Subtract 16 from our inner counter
+0001 000 100 0 00 000     ;Subtract 16 from our inner counter
 ;BRNZ loop2               
-0000 110111110101         ;If it's negative do another inner loop
+0000 1 1 0 111110101      ;If it's negative do another inner loop
 ;ADD R3 R3 #1
-0001 011011100001         ;Increment outerloop counter
+0001 011 011 1 00 001     ;Increment outerloop counter
 ;ADD R6 R6 #1      
-0001 110110100001         ;Go to the next 320x address
-;OT R0 R1         
-1001 000001111111         ;Invert value at x3100 (number of words to count)
+0001 110 110 1 00 001     ;Go to the next 320x address
+;NOT R0 R1         
+1001 000 001 111111       ;Invert value at x3100 (number of words to count)
 ;ADD R0 R0 #1      
-0001 000000100001         ;Add 1 to create -R1
+0001 000 000 1 00 001     ;Add 1 to create -R1
 ;ADD R0 R3 R0      
-0001 000011000000         ;Subtract the number of words to count from the words we have counted to so far
+0001 000 011 0 00 000     ;Subtract the number of words to count from the words we have counted to so far
 ;BRN loop1         
 0000 100111101101         ;If negative we still have more words to count
-;LD R0 WRITE       
-0010 000000000010         ;Load 3101 into R0 (write address)
-;halt
-1111 000000100101         ;halt program execution
+;LD R0 #3     
+0010 000 000000011        ;Load 3101 into R0 (write address)
+;STR R5 R0 #0
+0111 101 000 000000       ;Store the final counter variable in x3101
+;TRAP 37
+1111 0000 00100101        ;halt program execution
 ;x3100
 0011 000100000000         ;where the number of elements to analyze is stored
 ;x3101
