@@ -41,7 +41,19 @@ class edfile{
               }
             break;
 
-            case '*': auxlib.STUB ("Call * command function."); break;
+            // Display all lines in the current list
+            case '*': 
+              lines.setPosition(dllist.position.FIRST);
+              for(int i = 0; i < lines.getMembers(); i++){
+                 try{
+                   System.out.println(lines.getItem()+"\n");
+                 }catch(Exception ex){
+                   ex.printStackTrace();
+                 }
+              }
+              lines.setPosition(dllist.position.LAST);
+            break;
+            
             case '.': auxlib.STUB ("Call . command function."); break;
             case '0': auxlib.STUB ("Call 0 command function."); break;
             case '<': auxlib.STUB ("Call < command function."); break;
