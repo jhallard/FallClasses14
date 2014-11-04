@@ -1,0 +1,117 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+
+%\setlength{\voffset}{-0.5in}
+%\setlength{\headsep}{5pt}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand{\answer}{\textbf{Answer : }}
+
+
+%===========---------================
+% Author John H Allard
+% CMPE 12, Lab #2 Write-up
+% October 9th, 2014
+%===========---------================
+
+
+\title{ CMPE 12 Homework \#1 \\[7 in]}
+\author{John Allard \\ Lab Section \#2}
+\date{October 20th, 2014}
+
+\begin{document}
+\maketitle
+\newpage
+
+%==========================================
+%==========================================
+%====== Begin Problems, 15 Total ==========
+%==========================================
+%==========================================
+
+\begin{enumerate}
+
+% 4.5
+\item Refer to the table supplied in the textbook for the next few questions.
+  
+  \begin{enumerate}
+  \item What binary value does location 3 contain? What about location 6? \\
+  \answer Location 3 contains the binary value \small{0000 0000 0000 0000}, location 6 contains \small{000 0110 1101 1001}.
+
+  \item Binary values can be interpreted in different ways, interpret the values in the given table as instructed so by the probnlems below.
+    \begin{enumerate}
+    \item Interpret location 0 and location 1 in two's compliment. \\
+    \answer Location 0 contains 7,747, location 1 contains -4,059.
+    \item Interpret location 4 as an ASCII value. \\
+    \answer `e'.
+    \item Interpret locations 6 and 7 and an IEEE floating point number. (7 being the high bits, 6 being the low). \\
+    \answer \small{0 00001101 10110011111111011010011} = 8.20007582580913043462315872541E-35 
+    \item Interpret locations 1 and 0 and unsigned integers.
+    \answer Location 0 contains 7,474, and location 1 contains 61,477.
+    \end{enumerate}
+
+  \item Interpret the data in location 0 as an instruction. \\
+  \answer The opcode \small{0001} corresponds to the ADD operation. This operation has a \small{0} in the 5th bit place, which means it is operating on two source registers. The operation is $R7= R1+R3$.
+
+  \item Interpret the data in location 5 as an address, then state the data that is at that address. \\
+  \answer Location 5 contains the address 6. Location 6 contains the value \texttt{0xfed3}.
+  \end{enumerate} 
+
+% 4.7
+\item Suppose a 32-bit opcode takes the format of 
+\begin{tabular}{|c|c|c|c|}
+\hline OPCODE & SR & DR & IMM \\
+\hline
+\end{tabular}
+
+If there are 60 opcodes and 32 registers, what is the range of values that can be represented by the intermediate (IMM)? \\
+\answer To represent 60 opcodes, you would need 6 bits (this would give you 4 extra). To address 32 registers, you would need exactly 5 bits. Thus to state an opcode and 2 registers, you would need to use 16 bits. This would leave 16 bits for the IMM. $2^{16} = 65,536$. Thus any addressed within 65,536 of the current position can be accessed.
+
+% 4.8
+\item Using the same 32-bit instruction format as above, except there needs to be 225 opcodes and a 120 registers to address.
+  \begin{enumerate}
+  \item Minimum number of bits to represent an opcode? \answer 8 bits.
+  \item Min. number of bits to represent the Destination register? \answer 7 bits. 
+  \item What is the maximum number of unused bits in the instruction encoding? \answer 3 unused bits.
+  \end{enumerate}
+
+% 4.14
+\item Describe the execution of the JMP instruction if R3 contains \texttt{x369C}. \\
+\answer This instruction will be stored at x36A2. The IR is loading with the JMP instruction, and the PC is incremented to x36A3. Then, when the jump command is processed, the PC is made to point to x369C, when the RET command is found, it will jump back to x36A3 and continue execution.
+
+% 5.4
+\item If we have a memory consisting of 256 locations, and each location contains 16 bits.
+  \begin{enumerate}
+  \item How many bits are required for the address? \answer 8 bits
+  \item If we use the PC-relative addressing mode, and want to allow control transfer between instructions 20 locations away, how many bits of a branch instruction are needed to specify the pc-relative offset? \answer 5 bits, would allow us to jump up to 32 spaces away.
+  \item If a control instruction is in location 3, what is the PC-relative offset of address 10? Assume that the control transfer instructions work the same wat as in the LC-3.
+  \end{enumerate}
+
+% 5.14
+\item
+
+% 5.16
+\item
+
+% 6.16
+\item
+
+% 6.18
+\item
+
+% 7.5
+\item
+
+
+% 7.10
+\item
+\end{enumerate}
+
+\end{document}
