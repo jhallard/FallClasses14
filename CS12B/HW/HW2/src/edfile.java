@@ -4,6 +4,7 @@
 // sequence of nodes in a doubly linked list, with each line in the file representing a single node in the list. 
 
 import java.util.Scanner;
+import java.util.NoSuchElementException;
 import static java.lang.System.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -126,7 +127,16 @@ class edfile{
               ex.printStackTrace();
             }
             break;
-            case 'd': auxlib.STUB ("Call d command function."); break;
+
+
+            case 'd': 
+            try {
+            lines.delete();
+            }catch( NoSuchElementException ex){
+              ex.printStackTrace();
+            }
+            break;
+
             case 'i': auxlib.STUB ("Call i command function."); break;
             case 'r': auxlib.STUB ("Call r command function."); break;
             case 'w': auxlib.STUB ("Call w command function."); break;

@@ -59,40 +59,10 @@ public class dllist {
 
 
 
-   public boolean isEmpty () {
-      return (first == null && last == null);
-   }
-
-
-
-   public String getItem () throws NoSuchElementException {
-      if(current == null)
-         throw new NoSuchElementException();
-      return current.item;
-   }
-
-   public int getPosition () {
-      return currentPosition;
-   }
-
    public void delete () {
 
       if(current == null || members == 0)
          throw new NoSuchElementException();
-
-      if(currentPosition == 0){
-         first = current.next;
-         current = current.next;
-         members--;
-         return;
-      }
-
-      if(currentPosition == members-1){
-         last = current.prev;
-         current = null;
-         members--;
-         return;
-      }
 
       if(members == 1) {
          first = null;
@@ -102,11 +72,40 @@ public class dllist {
          return;
       }
 
+      if(currentPosition == 0){
+         first = current.next;
+         if(current.next != null)
+            current.next.prev = null;
+         current = current.next;
+         members--;
+         return;
+      }
+
+      if(currentPosition == members-1){
+         last = current.prev;
+         current.prev.next = null;
+         current = last;
+         members--;
+         return;
+      }
+
       // wrap the links in the chain around the current node.
-      current.prev.next = current.next;
-      current = null;
-      members--;
+      else {
+         if(current.prev != null) {
+         current.prev.next = current.next;
+         }
+         if(current.next != null){
+            current.next.prev = current.prev;
+         }
+         current = current.next;
+         members--;
+        
+      } 
+
+
    }
+
+
 
    public void insert (String item, position pos) {
       node temp = new node();
@@ -179,6 +178,25 @@ public class dllist {
          break;
       }
 
+   }
+
+
+
+   public boolean isEmpty () {
+      return (first == null && last == null);
+   }
+
+
+
+   public String getItem () throws NoSuchElementException {
+      if(current == null)
+         throw new NoSuchElementException();
+      return current.item;
+   }
+
+
+   public int getPosition () {
+      return currentPosition;
    }
 
 
