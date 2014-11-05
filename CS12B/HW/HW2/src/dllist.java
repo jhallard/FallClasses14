@@ -20,9 +20,6 @@ public class dllist {
 
    public void setPosition(position pos) {
 
-      if(current == null)
-         return;
-
       switch(pos){
 
          case FIRST:
@@ -31,6 +28,8 @@ public class dllist {
          break;
 
          case PREVIOUS:
+         if(current == null)
+            break;
          if(current.prev == null)
             break;
          current = current.prev;
@@ -38,6 +37,8 @@ public class dllist {
          break;
 
          case FOLLOWING:
+         if(current == null)
+            break;
          if(current.next == null)
             break;
          current = current.next;
@@ -145,5 +146,9 @@ public class dllist {
       members++;
    }
 
+
+   public int getMembers(){
+      return members;
+   }
 }
 
