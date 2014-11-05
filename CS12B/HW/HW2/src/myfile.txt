@@ -1,0 +1,11 @@
+I'm writing this file for a project.
+The project is not too interesting
+Although I guess it's a bit better than
+I though it would be, so that is nice.
+Damn i am hungry, these words don't mean much
+I just need tsome test text.
+you know something?
+this is the second test file
+hopefully it appends all 5 lines okay
+this in line 4 
+this is line 5

@@ -8,6 +8,8 @@ import java.util.NoSuchElementException;
 import static java.lang.System.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.File;
 
 class edfile{
 
@@ -154,6 +156,11 @@ class edfile{
               ex.printStackTrace();
             }
              break;
+
+            case 'w':
+            if(!writeFile(inputline.substring(1)))
+              System.out.println("Unable to write file\n");
+            break;
             default : auxlib.STUB ("Print invalid command."); break;
          }
       }
@@ -228,5 +235,24 @@ class edfile{
    }
 
 
+
+   private static boolean writeFile(String fn) {
+
+    try{
+      File file = new File(fn);
+      PrintWriter pw = new PrintWriter(file);
+      lines.setPosition(dllist.position.FIRST);
+      for(int i = 0; i < lines.getMembers(); i++){
+        pw.println(lines.getItem());
+        lines.setPosition(dllist.position.FOLLOWING);
+      }
+      pw.close();
+     }catch(Exception ex){
+       return false;
+     }
+
+
+     return true;
+   }
 }
 
