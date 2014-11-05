@@ -1,0 +1,5 @@
+you know something?
+this is the second test file
+hopefully it appends all 5 lines okay
+this in line 4 
+this is line 5

@@ -22,37 +22,32 @@ class edfile{
          return;
 
       // Create new doubly-linked list
-       try{
-        lines = populateList();
-       }catch(Exception ex){
-        ex.printStackTrace();
-      }
+      try{ lines = populateList(); }
+      catch(Exception ex){ ex.printStackTrace(); }
 
       lines.setPosition(dllist.position.LAST);
 
       Scanner stdin = new Scanner (in);
       for (;;) {
 
-         // if eof, break from inf loop
-         if (!stdin.hasNextLine()) break;
+  
+         if (!stdin.hasNextLine()) break;                 // if eof, break from inf loop
 
-         // get next line of input from user
-         String inputline = stdin.nextLine();
+         String inputline = stdin.nextLine();             // get next line of input from user
+         if (want_echo) out.printf("%s%n", inputline);    // echo the line if user requested
 
-         // echo the line if user requested
-         if (want_echo) out.printf("%s%n", inputline);
+         if (inputline.matches("^\\s*$")) continue;       // ?? regex of some sort
 
-         // ?? regex of some sort
-         if (inputline.matches("^\\s*$")) continue;
+         char command = inputline.charAt(0);              // Get the command, the first input char
 
-         // Get the command, the first input char
-         char command = inputline.charAt(0);
+
          switch (command) {
 
             // Ignored Comment by User
             case '#':  break;
 
-            // Set current line to last line
+
+            // Set current line to last line in the list
             case '$':
               lines.setPosition(dllist.position.LAST);
               try{
@@ -61,6 +56,7 @@ class edfile{
                  ex.printStackTrace();
               }
             break;
+
 
             // Display all lines in the current list
             case '*': 
@@ -76,7 +72,8 @@ class edfile{
               lines.setPosition(dllist.position.LAST);
             break;
 
-            // Display current line
+
+            // Display the current line
             case '.':
               try{
                  System.out.println(lines.getItem());
@@ -87,7 +84,7 @@ class edfile{
             break;
 
 
-            // set current line to first and print first line
+            // Set current line to first and print first line
             case '0':
               lines.setPosition(dllist.position.FIRST);
               try{
@@ -96,6 +93,7 @@ class edfile{
                  ex.printStackTrace();
               }
             break;
+
 
             // Go to previous line and display it
             case '<':
@@ -107,6 +105,7 @@ class edfile{
               }
             break;
 
+
             // Go to next line and display it
             case '>':
              lines.setPosition(dllist.position.FOLLOWING);
@@ -117,29 +116,44 @@ class edfile{
               }
             break;
 
-
+            // Insert the string following 'a' into the next line of the file.
             case 'a': 
-            String temp = inputline.substring(1);
-            try {
-            lines.insert(temp, dllist.position.FOLLOWING);
-            System.out.println(lines.getItem());
-            }catch(IllegalArgumentException ex){
-              ex.printStackTrace();
-            }
+              String temp = inputline.substring(1);
+              try {
+              lines.insert(temp, dllist.position.FOLLOWING);
+              System.out.println(lines.getItem());
+              }catch(IllegalArgumentException ex){
+                ex.printStackTrace();
+              }
             break;
 
-
+            // Delete the current line in the file.
             case 'd': 
-            try {
-            lines.delete();
-            }catch( NoSuchElementException ex){
-              ex.printStackTrace();
-            }
+              try {
+              lines.delete();
+              }catch( NoSuchElementException ex){
+                ex.printStackTrace();
+              }
             break;
 
-            case 'i': auxlib.STUB ("Call i command function."); break;
-            case 'r': auxlib.STUB ("Call r command function."); break;
-            case 'w': auxlib.STUB ("Call w command function."); break;
+            case 'i': 
+              String temp1 = inputline.substring(1);
+              try {
+              lines.insert(temp1, dllist.position.PREVIOUS);
+              System.out.println(lines.getItem());
+              }catch(IllegalArgumentException ex){
+                ex.printStackTrace();
+              }
+            break;
+
+            case 'r': 
+            try{ 
+              if(!appendList(inputline.substring(1)))
+                System.out.println("File not found!\n");
+            }catch(Exception ex){
+              ex.printStackTrace();
+            }
+             break;
             default : auxlib.STUB ("Print invalid command."); break;
          }
       }
@@ -186,6 +200,31 @@ class edfile{
  
       br.close();
       return newlist;
+   }
+
+   // This function appends the contents of a new file onto the current file.
+   private static boolean appendList(String fn) throws Exception {
+
+      BufferedReader br;
+      // Construct BufferedReader from FileReader
+      try{
+        br = new BufferedReader(new FileReader(fn));
+      } catch(Exception ex){
+        return false;
+      }
+ 
+      String line = null;
+      int x = 0;
+      while ((line = br.readLine()) != null) {
+      lines.insert(line, dllist.position.LAST);
+      x++;
+      }
+ 
+      br.close();
+
+      System.out.println(x+" Lines Added To File \n");
+      lines.setPosition(dllist.position.LAST);
+      return true;
    }
 
 
