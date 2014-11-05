@@ -45,11 +45,7 @@ public class dllistTest {
         lst.insert("3", dllist.position.FIRST);
         lst.insert("4", dllist.position.FIRST);
         lst.insert("5", dllist.position.FIRST);
-        lst.setPosition(dllist.position.FIRST);
-        lst.delete();
-        lst.delete();
-        lst.delete();
-        lst.delete();
+        lst.setPosition(dllist.position.LAST);
         assertEquals(true, lst.getItem().equals("1"));
     }
 

@@ -24,6 +24,8 @@ class edfile{
         ex.printStackTrace();
       }
 
+      lines.setPosition(dllist.position.LAST);
+
       Scanner stdin = new Scanner (in);
       for (;;) {
 
@@ -67,6 +69,7 @@ class edfile{
                  }catch(Exception ex){
                    ex.printStackTrace();
                  }
+                lines.setPosition(dllist.position.FOLLOWING);
               }
               lines.setPosition(dllist.position.LAST);
             break;
@@ -161,7 +164,7 @@ class edfile{
  
       String line = null;
       while ((line = br.readLine()) != null) {
-      newlist.insert(line, dllist.position.FOLLOWING);
+      newlist.insert(line, dllist.position.LAST);
       }
  
       br.close();

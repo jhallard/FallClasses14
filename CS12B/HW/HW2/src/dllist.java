@@ -110,15 +110,29 @@ public class dllist {
 
       switch(pos){
          case FIRST:
+         if(first != null)
+            first.prev = temp;
          temp.next = first;
          first = temp;
          currentPosition = 0;
+         if(members == 0)
+            last = temp;
+         if(members == 1 && last != null)
+            last.prev = temp;
          break;
 
          case LAST:
          temp.prev = last;
+         temp.next = null;
+         if(last != null)
+            last.next = temp;
          last = temp;
          currentPosition = members-1;
+         if(members == 0)
+            first = temp;
+         if(members == 1)
+            first.next = temp;
+
          break;
 
          case PREVIOUS:
