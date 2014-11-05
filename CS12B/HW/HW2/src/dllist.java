@@ -1,5 +1,9 @@
-// dllist.java
-// Template code for doubly-linked list of strings.
+// File    - dllist.java
+// Author  - John H Allard Jr. (template provided by Prof. Whitehead)
+// Purpose - The purpose of this file is to define a doubly-linked-list class. This data structure is a linked list that allows
+// O(1) access from either end of the list. This class is used as a helper class in the edfile program. This project was made 
+// for CS12B HW #2 Fall Quarter 2014 at UCSC 
+
 import java.util.NoSuchElementException;
 
 public class dllist {
@@ -108,18 +112,23 @@ public class dllist {
       node temp = new node();
       temp.item = item;
 
+
       switch(pos){
          case FIRST:
          if(first != null)
             first.prev = temp;
          temp.next = first;
          first = temp;
-         currentPosition = 0;
          if(members == 0)
             last = temp;
          if(members == 1 && last != null)
             last.prev = temp;
+
+         current = first;
+         currentPosition = 0;
+         members++;
          break;
+
 
          case LAST:
          temp.prev = last;
@@ -127,15 +136,20 @@ public class dllist {
          if(last != null)
             last.next = temp;
          last = temp;
-         currentPosition = members-1;
          if(members == 0)
             first = temp;
          if(members == 1)
             first.next = temp;
-
+         current = last;
+         members++;
+         currentPosition = members -1;
          break;
 
+
          case PREVIOUS:
+
+         if(members == 0)
+            insert(item, position.FIRST);
          if(currentPosition == 0)
             throw new IllegalArgumentException();
 
@@ -143,9 +157,15 @@ public class dllist {
          current.prev.next = temp;
          temp.next = current;
          current.prev = temp;
+         current = temp;
+         members++;
+         currentPosition--;
          break;
 
+
          case FOLLOWING:
+         if(members==0)
+            insert(item, position.FIRST);
          if(currentPosition == members-1)
             throw new IllegalArgumentException();
 
@@ -153,11 +173,12 @@ public class dllist {
          temp.prev = current;
          temp.next = current.next;
          current.next = temp;
+         current = temp;
+         members++;
          currentPosition++;
          break;
       }
 
-      members++;
    }
 
 

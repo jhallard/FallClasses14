@@ -49,4 +49,28 @@ public class dllistTest {
         assertEquals(true, lst.getItem().equals("1"));
     }
 
+    // Step 16 Test #1
+    @Test
+    public void check4() {
+        dllist lst = new dllist();
+        lst.insert("A", dllist.position.LAST);
+        lst.insert("B", dllist.position.LAST);
+        lst.insert("C", dllist.position.LAST);
+        lst.insert("D", dllist.position.PREVIOUS);
+        lst.setPosition(dllist.position.LAST);
+        assertEquals(true, lst.getItem().equals("C"));
+    }
+
+    // Step 16 Test #2
+    @Test
+    public void check5() {
+        dllist lst = new dllist();
+        lst.insert("A", dllist.position.FIRST);
+        lst.insert("B", dllist.position.FIRST);
+        lst.insert("C", dllist.position.FIRST);
+        lst.insert("D", dllist.position.FOLLOWING);
+        lst.setPosition(dllist.position.FIRST);
+        assertEquals(true, lst.getItem().equals("C"));
+    }
+
 }

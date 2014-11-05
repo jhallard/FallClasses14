@@ -1,5 +1,7 @@
-// edfile.java
-// Template for a line-oriented text editor inspired by ed.
+// File    - edfile.java
+// Author  - John H Allard Jr. (template provided by Prof. Whitehead)
+// Purpose - This file defines the edfile program, a simple command line text file editor. This program represents the file as a 
+// sequence of nodes in a doubly linked list, with each line in the file representing a single node in the list. 
 
 import java.util.Scanner;
 import static java.lang.System.*;
@@ -14,6 +16,7 @@ class edfile{
    private static dllist lines;
    public static void main (String[] args) {
 
+      // validate the command-line input
       if(!validateInput(args))
          return;
 
@@ -50,7 +53,6 @@ class edfile{
 
             // Set current line to last line
             case '$':
-              auxlib.STUB ("Call $ command function.");
               lines.setPosition(dllist.position.LAST);
               try{
                  System.out.println(lines.getItem());
@@ -61,7 +63,6 @@ class edfile{
 
             // Display all lines in the current list
             case '*': 
-              auxlib.STUB ("Call * command function.");
               lines.setPosition(dllist.position.FIRST);
               for(int i = 0; i < lines.getMembers(); i++){
                  try{
@@ -81,13 +82,12 @@ class edfile{
               }catch(Exception ex){
                  ex.printStackTrace();
               }
-              auxlib.STUB ("Call . command function.");
+             
             break;
 
 
             // set current line to first and print first line
             case '0':
-              auxlib.STUB ("Call 0 command function."); 
               lines.setPosition(dllist.position.FIRST);
               try{
                  System.out.println(lines.getItem());
@@ -98,7 +98,6 @@ class edfile{
 
             // Go to previous line and display it
             case '<':
-            auxlib.STUB ("Call < command function.");
               lines.setPosition(dllist.position.PREVIOUS);
               try{
                  System.out.println(lines.getItem());
@@ -109,7 +108,6 @@ class edfile{
 
             // Go to next line and display it
             case '>':
-            auxlib.STUB ("Call > command function.");
              lines.setPosition(dllist.position.FOLLOWING);
               try{
                  System.out.println(lines.getItem());
@@ -119,7 +117,15 @@ class edfile{
             break;
 
 
-            case 'a': auxlib.STUB ("Call a command function."); break;
+            case 'a': 
+            String temp = inputline.substring(1);
+            try {
+            lines.insert(temp, dllist.position.FOLLOWING);
+            System.out.println(lines.getItem());
+            }catch(IllegalArgumentException ex){
+              ex.printStackTrace();
+            }
+            break;
             case 'd': auxlib.STUB ("Call d command function."); break;
             case 'i': auxlib.STUB ("Call i command function."); break;
             case 'r': auxlib.STUB ("Call r command function."); break;
@@ -147,6 +153,7 @@ class edfile{
          filename = args[1];
       }
       else{
+        want_echo = false;
          filename = args[0];
       }
       return true;
