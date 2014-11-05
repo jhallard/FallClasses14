@@ -17,6 +17,9 @@ class edfile{
    public static boolean want_echo = false;
    public static String filename;
    private static dllist lines;
+
+
+   // Main function
    public static void main (String[] args) {
 
       // validate the command-line input
@@ -164,7 +167,10 @@ class edfile{
             default : auxlib.STUB ("Print invalid command."); break;
          }
       }
-      auxlib.STUB ("(eof)");
+
+
+      // if we got this far then we are exiting without failure, so return a success code.
+      auxlib.exit_status =  auxlib.EXIT_SUCCESS;
    }
 
 

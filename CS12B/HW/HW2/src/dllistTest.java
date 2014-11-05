@@ -25,7 +25,7 @@ public class dllistTest {
 
 
     @Test
-    public void check2() {
+    public void check2ndPosition() {
         dllist lst = new dllist();
         lst.insert("1", dllist.position.FIRST);
         lst.insert("2", dllist.position.FIRST);
@@ -38,7 +38,7 @@ public class dllistTest {
     }
 
     @Test
-    public void check3() {
+    public void checkLastPosition() {
         dllist lst = new dllist();
         lst.insert("1", dllist.position.FIRST);
         lst.insert("2", dllist.position.FIRST);
@@ -51,7 +51,7 @@ public class dllistTest {
 
     // Step 16 Test #1
     @Test
-    public void check4() {
+    public void checkPosition2() {
         dllist lst = new dllist();
         lst.insert("A", dllist.position.LAST);
         lst.insert("B", dllist.position.LAST);

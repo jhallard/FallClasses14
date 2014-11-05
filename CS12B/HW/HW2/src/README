@@ -1,0 +1,19 @@
+This is the README file for edfile project, which is assignment 2 for CS12 at UCSC under Prof. Whitehead.
+This project allows the user to edit a file via the command line with a very basic set of commands. The editor makes
+use of a doubly linked list to perform the storing and editing of each file, with each line in the file making a single
+node in the doubly linked list. The dll is defined in dllist.java, and the main program is defined inside of edfile.java.
+
+A list of files is given below :
+dllist.java      - Defines the doubly linked list.
+dllistTest.java  - Testing suite for the doubly linked list.
+edfile.java      - Main class for the program, includes the main function.
+auxlib.java      - Contains auxilary functions for the project.
+Makefile         - Defines how to make all of the different parts of the project, including the individual classes, the testing suite, the main program, and more.
+README           - This file, describes the project.
+
+The project usage is as follows :
+
+java edfile [-e] filename
+
+"-e"          is an optional argument that will make the program echo any commands back to the user.
+"filename"    is the name of the file that you wish to open for editing.

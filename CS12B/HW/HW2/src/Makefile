@@ -1,4 +1,5 @@
 # Makefile for Programming Assignment 2
+# Author - John Allard, template provided by Professor Whitehead.
 
 JAVASRC    = edfile.java dllist.java auxlib.java dllistTest.java
 SOURCES    = ${JAVASRC} Makefile README
@@ -8,7 +9,7 @@ JARCLASSES = ${CLASSES} dllist\$$*.class
 JARFILE    = edfile
 SUBMITDIR  = cmps12b-nojw.f14 asg2
 TESTCLASS  = dllist
-CLASSPATH  = "junit-4.12-beta-1.jar:hamcrest-core-1.3.jar:."
+CLASSPATH  = "junit-4.12-beta-2.jar:hamcrest-core-1.3.jar:."
 
 all : ${JARFILE}
 
