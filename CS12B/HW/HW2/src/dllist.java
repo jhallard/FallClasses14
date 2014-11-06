@@ -85,7 +85,8 @@ public class dllist {
 
       if(currentPosition == members-1){
          last = current.prev;
-         current.prev.next = null;
+         if(current.prev != null)
+            current.prev.next = null;
          current = last;
          members--;
          currentPosition--;
@@ -155,8 +156,10 @@ public class dllist {
             throw new IllegalArgumentException();
 
          // If we are at the front of the list, insert the new line as the new first line in the list.
-         if(currentPosition == 0)
+         if(currentPosition == 0){
             insert(item, position.FIRST);
+            break;
+         }
 
          // General case for inserting to the previous line
          temp.prev = current.prev;
@@ -176,11 +179,14 @@ public class dllist {
             throw new IllegalArgumentException();
 
          // If we are at the last space in the list, insert the new line into the last space.
-         if(currentPosition == members-1)
+         if(currentPosition == members-1){
             insert(item, position.LAST);
+            break;
+         }
             
          // General case for inserting into the next line
-         current.next.prev = temp;
+         if(current.next != null)
+            current.next.prev = temp;
          temp.prev = current;
          temp.next = current.next;
          current.next = temp;

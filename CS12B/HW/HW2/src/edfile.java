@@ -15,7 +15,7 @@ class edfile{
 
    // member variables
    public static boolean want_echo = false;
-   public static String filename;
+   public static String filename = "";
    private static dllist lines;
 
 
@@ -125,10 +125,18 @@ class edfile{
             case 'a': 
               String temp = inputline.substring(1);
               try {
+
+              if(lines.getMembers() == 0){
+                lines.insert(temp,dllist.position.FIRST);
+                break;
+              }
+              
+
               lines.insert(temp, dllist.position.FOLLOWING);
               System.out.println(lines.getItem());
               }catch(IllegalArgumentException ex){
                 ex.printStackTrace();
+                auxlib.die("Illegal Insert Command \n");
               }
             break;
 
@@ -137,40 +145,53 @@ class edfile{
               try {
               lines.delete();
               }catch( NoSuchElementException ex){
-                ex.printStackTrace();
+                // ex.printStackTrace();
+                System.out.println("\n File is empty, no lines to delete! \n");
               }
             break;
 
+            // Insert into the previous position
             case 'i': 
               String temp1 = inputline.substring(1);
               try {
-              lines.insert(temp1, dllist.position.PREVIOUS);
-              System.out.println(lines.getItem());
+                if(lines.getMembers() == 0){
+                  lines.insert(temp1,dllist.position.FIRST);
+                  break;
+                }
+
+                lines.insert(temp1, dllist.position.PREVIOUS);
+                System.out.println(lines.getItem());
               }catch(IllegalArgumentException ex){
                 ex.printStackTrace();
+                auxlib.die("Illegal Insert Command \n");
               }
             break;
 
+
+            // append file to list buffer
             case 'r': 
             try{ 
               if(!appendList(inputline.substring(1)))
                 System.out.println("File not found!\n");
-            }catch(Exception ex){
+               }catch(Exception ex){
               ex.printStackTrace();
             }
              break;
 
+            // Write list buffer to file
             case 'w':
             if(!writeFile(inputline.substring(1)))
               System.out.println("Unable to write file\n");
             break;
-            default : auxlib.STUB ("Print invalid command."); break;
+
+
+            default : System.out.println("Invalid Command \n"); break;
          }
       }
 
 
       // if we got this far then we are exiting without failure, so return a success code.
-      auxlib.exit_status =  auxlib.EXIT_SUCCESS;
+      exit(auxlib.EXIT_SUCCESS);
    }
 
 
@@ -180,8 +201,8 @@ class edfile{
    private static boolean validateInput(String[] args){
        // Make sure input format is valid
       if(args.length == 0){
-         System.out.println("Usage edfile [-e] filename");
-         return false;
+         // System.out.println("Usage edfile [-e] filename");
+         return true;
       }
 
       //Check if user wants to echo lines
@@ -203,6 +224,12 @@ class edfile{
    // by the user.
    private static dllist populateList() throws Exception{
       dllist newlist = new dllist();
+
+      if(filename.equals("")){
+        // newlist.insert("", dllist.position.FIRST);
+        return newlist;
+      }
+
       // Construct BufferedReader from FileReader
       BufferedReader br = new BufferedReader(new FileReader(filename));
  
@@ -228,15 +255,28 @@ class edfile{
  
       String line = null;
       int x = 0;
-      while ((line = br.readLine()) != null) {
-      lines.insert(line, dllist.position.LAST);
-      x++;
+
+      //special case where list is originally empty.
+      if(lines.getMembers() == 0){
+        line = br.readLine();
+        lines.insert(line, dllist.position.FIRST);
+       
+        while ((line = br.readLine()) != null) {
+        lines.insert(line, dllist.position.FOLLOWING);
+        x++;
+        }
+        return true;
+      }
+      else {
+        while ((line = br.readLine()) != null) {
+          lines.insert(line, dllist.position.FOLLOWING);
+          x++;
+        }
       }
  
       br.close();
 
       System.out.println(x+" Lines Added To File \n");
-      lines.setPosition(dllist.position.LAST);
       return true;
    }
 

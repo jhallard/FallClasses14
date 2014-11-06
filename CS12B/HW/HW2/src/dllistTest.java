@@ -173,4 +173,66 @@ public class dllistTest {
     }
 
 
+    // Should throw an exception by deleting too many elements
+     @Test(expected=Exception.class)
+    public void deleteException() {
+        boolean hold = false;
+        dllist lst = new dllist();
+        lst.insert("A", dllist.position.LAST);
+        lst.insert("B", dllist.position.LAST);
+        lst.insert("C", dllist.position.LAST);
+        lst.insert("D", dllist.position.LAST);
+
+        lst.setPosition(dllist.position.FIRST);
+        
+        lst.delete();
+        lst.delete();
+        lst.delete();
+        lst.delete();
+        lst.delete();
+    }
+
+
+    @Test
+    public void combineItems() {
+        dllist lst = new dllist();
+        lst.insert("A", dllist.position.LAST);
+        lst.insert("B", dllist.position.LAST);
+        lst.insert("C", dllist.position.LAST);
+        lst.insert("D", dllist.position.LAST);
+        lst.insert("ABG", dllist.position.LAST);
+        lst.insert("DF", dllist.position.LAST);
+        lst.insert("RQE", dllist.position.LAST);
+        lst.insert("ERFF", dllist.position.LAST);
+
+        lst.setPosition(dllist.position.FIRST);
+        String temp="";
+
+        for(int i = 0; i < lst.getMembers(); i++){
+            temp += lst.getItem();
+            lst.setPosition(dllist.position.FOLLOWING);
+        }
+
+        assertEquals(true, temp.equals("ABCDABGDFRQEERFF"));
+    }
+
+    // Should throw an exception by deleting too many elements
+     @Test(expected=Exception.class)
+    public void deleteException2() {
+        boolean hold = false;
+        dllist lst = new dllist();
+
+        lst.insert("lvl",dllist.position.PREVIOUS);
+    }
+
+    // Should throw an exception by deleting too many elements
+    @Test(expected=Exception.class)
+    public void deleteException3() {
+        boolean hold = false;
+        dllist lst = new dllist();
+
+        lst.insert("lvl",dllist.position.FOLLOWING);
+    }
+
+
 }
