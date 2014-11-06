@@ -1,3 +1,8 @@
+Name   - John H Allard Jr.
+ID     - 1437547
+cruzid - jhallard
+Date   - Nov 4th, 2014
+
 This is the README file for edfile project, which is assignment 2 for CS12 at UCSC under Prof. Whitehead.
 This project allows the user to edit a file via the command line with a very basic set of commands. The editor makes
 use of a doubly linked list to perform the storing and editing of each file, with each line in the file making a single

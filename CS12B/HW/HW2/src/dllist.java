@@ -69,6 +69,7 @@ public class dllist {
          last = null;
          current = null;
          members--;
+         currentPosition = 0;
          return;
       }
 
@@ -78,6 +79,7 @@ public class dllist {
             current.next.prev = null;
          current = current.next;
          members--;
+         currentPosition = 0;
          return;
       }
 
@@ -86,6 +88,7 @@ public class dllist {
          current.prev.next = null;
          current = last;
          members--;
+         currentPosition--;
          return;
       }
 
@@ -147,11 +150,15 @@ public class dllist {
 
          case PREVIOUS:
 
+         // If there are zero memebrs, we cannot insert in the previous slot
          if(members == 0)
-            insert(item, position.FIRST);
-         if(currentPosition == 0)
             throw new IllegalArgumentException();
 
+         // If we are at the front of the list, insert the new line as the new first line in the list.
+         if(currentPosition == 0)
+            insert(item, position.FIRST);
+
+         // General case for inserting to the previous line
          temp.prev = current.prev;
          current.prev.next = temp;
          temp.next = current;
@@ -163,11 +170,16 @@ public class dllist {
 
 
          case FOLLOWING:
+
+         //Canot insert into the following space if there are no nodes
          if(members==0)
-            insert(item, position.FIRST);
-         if(currentPosition == members-1)
             throw new IllegalArgumentException();
 
+         // If we are at the last space in the list, insert the new line into the last space.
+         if(currentPosition == members-1)
+            insert(item, position.LAST);
+            
+         // General case for inserting into the next line
          current.next.prev = temp;
          temp.prev = current;
          temp.next = current.next;

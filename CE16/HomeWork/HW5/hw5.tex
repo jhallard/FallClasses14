@@ -1,0 +1,95 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+
+\setlength{\voffset}{-0.5in}
+\setlength{\headsep}{5pt}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand{\answer}{\textbf{Answer : }}
+
+
+%===========---------================
+% Author John H Allard
+% HW Assignment #4
+% CMPE 16 - Discrete Math
+% October 27th 2014
+%===========---------================
+
+
+\title{ CMPE 16 Homework \#5}
+\author{John Allard}
+\date{November 4th, 2014}
+
+\begin{document}
+\maketitle
+
+%***************************************
+%*********** HomeWork Problems *********
+%************** Three Total ************
+\begin{enumerate}
+
+
+%********************************
+%*********** Problem #1 *********
+%********************************
+\item Prove the following theorum \\
+ \[ \text{For } x \in \mathbb{Z}, \text{ if $x^3-1$ is even, then $x$ is odd}\]
+
+ \answer \\
+ \begin{itemize}
+ \item This will be a proof by contrapositive.
+ \item Let $\mathbb{E}$ and $\mathbb{O}$ represent the even and odd integers for this proof. 
+ \item $x^2-1 \in \mathbb{E} \implies x \in \mathbb{O}$ is logically equivilent to $x \in \mathbb{E} \implies x^3-1 \in \mathbb{O}$. 
+ \item I will prove the later to will prove the former.
+ \end{itemize}
+
+ \begin{tabular}{l | c}
+ Given some general $x \in \mathbb{E}$ & $\exists a \in \mathbb{Z} : x = 2a$ \\
+ $x^3 = (2a)^3 = 8a^3$ & Cubing and substituting \\
+ $8a^3-1 = 2(4a^3)-1$  & Factor out a two \\
+ $\forall a \in \mathbb{Z}$ : $2(4a^3)-1 \in \mathbb{O}$ & Shows this will always be odd \\
+ \end{tabular}
+
+ Thus if $x$ is even, $x^3-1$ will always be odd, which is logically equivalent to the the fact that if $x^3-1$ is even, then $x$ must be odd.
+
+
+
+
+%********************************
+%*********** Problem #2 *********
+%********************************
+ \item Prove the following theorum \\
+ \[ \text{If $x^2$ is a prime number, then $x$ is not an integer}\]
+
+ \answer 
+ 
+ \begin{enumerate}
+ \item This will be proof by contrapositive.
+ \item $x^2 \in \mathbb{P} \implies x \not\in \mathbb{Z}$ is the same as $x \in \mathbb{Z} \implies x^2 \not\in \mathbb{P}$
+ \item I will directly prove the later which will prove the former.
+ \item If $x \in \mathbb{Z}, then x^2 \in \mathbb{Z}$
+ \item $x^2 = x*x$ which is the product of two integers that are not $1$ and $x^2$.
+ \item This means that $x^2 \not\in \mathbb{P}$
+ \end{enumerate}
+
+
+
+ \item EXTRA CREDIT - Prove the following theorum
+
+ \[ \text{If $a$, $b$, and $c$ are integers that satisfy $a^2 + b^2 + c^2$, then either $a$ or $b$ is even.} \]
+
+ Two cases, first if $c$ is odd, second if $c$ is even.
+
+ \begin{enumerate}
+ \item $c$ is odd. If $c$ is odd, then $c^2 = (2d+1)^2 = 4d^2+4d+1$
+ \item Thus $a^2 + b^2 = 4d^2+4d+1$
+\end{enumerate}
+
+\end{document}
