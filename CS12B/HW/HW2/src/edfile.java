@@ -83,7 +83,8 @@ class edfile{
               try{
                  System.out.println(lines.getItem());
               }catch(Exception ex){
-                 ex.printStackTrace();
+                 // ex.printStackTrace();
+                System.out.println("No Current Line Selected");
               }
              
             break;
