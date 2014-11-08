@@ -79,7 +79,7 @@ q_status q_destroy(void) {
 }
 
 int q_is_empty(void){
-    return(num_items == 0);
+    return (num_items == 0)? 1 : 0;
 }
 
 /**** Unit tests ****/
@@ -262,17 +262,15 @@ char * add_3_remove_3(void) {
 }
 
 char * is_empty_1(void) {
-    int v;
     mu_assert("init", q_init() == q_success);
-    mu_assert("isEmpty", q_is_empty() == q_success);
+    mu_assert("isEmpty", q_is_empty() == 1);
     return NULL;
 }
 
 char * is_empty_2(void) {
-    int v;
     mu_assert("init", q_init() == q_success);
     mu_assert("insert", q_insert(65) == q_success);
-    mu_assert("isEmpty", q_is_empty() == q_failure);
+    mu_assert("isEmpty", q_is_empty() == 0);
     return NULL;
 }
 
