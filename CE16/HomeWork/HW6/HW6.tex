@@ -1,0 +1,188 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+
+\setlength{\voffset}{-0.5in}
+\setlength{\headsep}{5pt}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand{\answer}{\textbf{Answer : }}
+
+
+%===========---------================
+% Author John H Allard
+% HW Assignment #6
+% CMPE 16 - Discrete Math
+% November 12th 2014
+%===========---------================
+
+
+\title{ CMPE 16 Homework \#6}
+\author{John Allard}
+\date{November 11th, 2014}
+
+\begin{document}
+\maketitle
+
+%***************************************
+%*********** HomeWork Problems *********
+%************** Nine Total *************
+\begin{enumerate} 
+
+
+%********************************
+%*********** Problem #1 *********
+%********************************
+\item Prove or disprove that for any real number $x$ if $\sqrt{x}$ is irrational then $x$ is irrational. \\
+\textbf{Proposition} : For any real number $x$ if $\sqrt{x}$ is irrational then $x$ is irrational.   % $x \in \mathbb{R}$, $\forall a, b, c, d \in \mathbb{Z} : \sqrt{x} \neq \frac{a}{b} \implies x \neq \frac{c}{d}  $ \\
+This propsition is \textbf{False}, a single counter example will show this. \\
+
+Let $\sqrt{x} \in \mathbb{R} = \sqrt{2}$, which is irrational. \footnote{See proof that $\sqrt{2}$ is irrational on bottom of page} \\
+Then $x = \sqrt{x}^2 = \sqrt{2}^2 = 2 = \frac{2}{1}$.
+Thus $\exists a,b \in \mathbb{Z} : $ $x = \frac{a}{b}$, which shows that $x$ is rational, which is a counter example to the proposition above.
+
+
+
+
+%********************************
+%*********** Problem #2 *********
+%********************************
+\item Prove or disprove that for any real number $x$ if $x$ is irrational the $\sqrt{x}$ is irrational. \\
+\textbf{Proposition} : For any real number $x$, is $x$ is irrational then $\sqrt{x}$ is irrational. \\
+This proposition is \textbf{True}, proof given below \\
+
+Assume for the purposes of contradiction that $x$ is irrational but $\sqrt{x}$ is rational. \\
+\begin{tabular}{l | c}
+$\forall a,b \in \mathbb{Z} :$ $x \neq \frac{a}{b}$     & $x$ is not a rational number \\
+$\exists c,d \in \mathbb{Z} :$ $\sqrt{x} = \frac{c}{d}$ & $\sqrt{x}$ is a rational number \\
+$\sqrt{x}^2 = (\frac{c}{d})^2 = \frac{c^2}{d^2}$          & Taking the square of $\sqrt{x}$ \\
+$\sqrt{x}^2 = x = \frac{c^2}{d^2} = \frac{j}{k} : $ $ j,k \in \mathbb{Z}$ & Substituting \\
+$\exists j,k \in \mathbb{Z} : $ $x = \frac{j}{k}$         & Contadicts our assumption that $x$ is irrational \\
+\end{tabular}
+
+Thus our assumption is false, and thus if $x$ is irrational then $\sqrt{x}$ must also be irrational.
+
+
+
+%********************************
+%*********** Problem #3 *********
+%********************************
+\item Prove or disprove that the product of an irrational number and a non-zero rational number is irrational. \\
+\textbf{Proposition} : Product of an irrational number and a non-zero rational number yields an irrational number. \\[.1in]
+Assume for the purposes of contradiction that the product of an irrational number and a non-zero rational yields a rational number. \\
+\begin{tabular}{l | c}
+$\forall a,b \in \mathbb{Z} :$ $x \neq \frac{a}{b}$                 & $x$ is not a rational number \\
+$\exists c,d \in \mathbb{Z} :$ $y = \frac{c}{d} \wedge c \neq 0$    & $y$ is a rational number \\
+$x*y = z :$ $z = \frac{j}{k}$ where $j,k \in \mathbb{Z}$            & $x*y$ yields a rational number \\
+$x*\frac{c}{d} = \frac{j}{k}$                                       & Substituting in for $y$ and $z$ \\
+$x = \frac{jd}{kc}$                                                 & Cross multiplying \\
+$jd = a : a \in \mathbb{Z}$                                         & Product of to integers is an integer \\
+$kc = b : b \in \mathbb{Z}$                                         & Product of to integers is an integer \\
+$\exists a,b \in \mathbb{Z} : $ $x = \frac{a}{b}$                   & This contadicts our original assumption that x is irrational \\
+\end{tabular}   
+
+Thus the product of an irrational number and a non-zero rational number always yields another irrational number. \\
+
+
+%********************************
+%*********** Problem #4 *********
+%********************************
+\item  In each of the following give a value for $x > -1$ and $x < \text{mod}$ (the number after mod inside the parentheses).
+
+  \begin{enumerate}
+
+  \item $x \equiv -75 (\textrm{ mod } 11)$
+  \answer $x = 2$
+
+  \item $x \equiv 895 (\textrm{ mod } 7)$
+  \answer $x = 6$
+
+  \item $x \equiv 2^{126} (\textrm{ mod } 5)$
+
+  \item $x^2 \equiv 9 (\textrm{ mod } 11)$
+  \answer $x^2 = 9, x = 3$
+  \end{enumerate}
+
+
+
+%********************************
+%*********** Problem #5 *********
+%********************************
+\item Prove the following theorum
+
+
+%********************************
+%*********** Problem #6 *********
+%********************************
+\item Prove the following theorum \\
+For an integer $n$, $n$ is an odd number iff $n^2-1$ is a multiple of $4$. \\
+This proof will entail two sub-proofs, if both are true than the above iff statement will be true.\\[.25in]
+\textbf{Proof \#1} - For an integer $n$, $n$ being odd implies $n^2-1$ is a multiple of $4$. \\
+
+\begin{tabular}{l | c}
+$\exists k \in \mathbb{Z} : $ $n = 2k+1$             & Defintion of an off number \\
+$n^2-1 = (2k+1)^2-1 = 4k^2 + 4k$                     & Substituting and expanding \\
+$n^2-1 = 4k^2 + 4k = 4(k^2+k)$                       & Factoring \\
+$n^2-1 = 4(k^2+k) = 4j :$ $j \in \mathbb{Z}$         & $k^2+k$ is an integer because integers are closed under $*, +$ \\
+$n = (2k+1) \implies n^2-1 = 4j :$ $j \in \mathbb{Z}$ & If an integer $n$ is odd, $n^2-1$ is a mult. of $4$. \\
+\end{tabular} \\
+
+\textbf{Proof \#2} - For an integer $n$, $n^2-1$ being a multiple of $4$ implies $n$ is an odd number. \\[.1in]
+I will use a proof by contrapositive. This will entail assuming $n$ is an even number, and showing this implies $n^2-1$ is not a multiple of $4$. \\[.2in]
+\begin{tabular}{l | c}
+$\exists j \in \mathbb{Z} : $ $n = 2j$                   & $n$ is an even number \\
+$n^2-1 = (2j)^2 -1 = 4(j^2) -1$                          & Substituting and expanding \\
+$n^2-1 = 4j^2 - 1 \neq 4m :$ $\forall m \in \mathbb{Z}$  & $4m - 1$ cannot be a multiple of 4 \\
+\end{tabular} \\
+
+
+
+%********************************
+%*********** Problem #7 *********
+%********************************
+\item Consider the two sets $S_1$ and $S_2$ \\
+$$ S_1 = \{ k^2 : k \text{ is an odd integer } \} \text{ and } S_2 = \{ 4m+1 : \text{ $m$ is an integer} \} $$
+
+\begin{enumerate}
+% Part A
+\item Prove that $S_1$ is a subset of $S_2$ \\
+
+\begin{tabular}{l | c}
+$ S_1 = \{k^2 : k = (2n+1) \}$                       &  $S_1$ contains the squares of all odd integers \\
+$ S_1 = \{(2n+1)^2 : n \in \mathbb{Z} \}$            & Substituting \\ 
+$ S_1 = \{ 4n^2 + 4n + 1 : n \in \mathbb{Z} \}$      & Expanding \\
+$ S_1 = \{ 4(n^2+n) + 1 : n \in \mathbb{Z}  \}$      & Factoring \\
+$ S_1 = \{ 4j + 1 : j = n^2+n, n \in \mathbb{Z} \}$  & Substituting \\
+\end{tabular} \\[.15in]
+Since the set $X = \{ n^2+n : n \in \mathbb{Z} \} \subseteq \mathbb{Z}$, then 
+the set $S_1 = \{ 4j + 1 : j = X \} \subseteq S_2$
+
+% Part B
+\item Prove that $S_2$ is not a subset of $S_1$ \\
+The number $3$ is in the set $S_2$ (take $m = 1$ to show this), but the number $3$ is not in the set $S_1$. This is because for $3$ to be in $S_1$ would imply $3 = n^2$ for some odd number $n$. But $3$ is not the square of an integer, none the less an odd integer, so 3 cannot be in the set $S_1$.
+
+\end{enumerate}
+
+%********************************
+%*********** Problem #8 *********
+%********************************
+\item Prove that the two sets $A$ and $B$ below are equal \\
+$$ A = \{ 7m - 5 : m \in \mathbb{Z} \} \text{  } B = \{ 14k+b : k \in \mathbb{Z}, b \in \{2, 9\} \}$$
+
+The proof will need two very similar cases, one for $b = 2$, and one for $b = 9$. \\[.2in]
+If $b = 9$ then $B = \{14k + 9 : k \in \mathbb{Z}\} $
+
+
+
+
+
+\end{enumerate}
+
+
+\end{document}

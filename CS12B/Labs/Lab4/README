@@ -1,0 +1,20 @@
+file   - README
+Author - John H Allard 
+CruzID - jhallard
+Date   - Nov 7th, 2014
+
+This is the README file for Lab #4 for CS12 at UCSC during the Fall of 2014. The purpose of this lab was to create a 
+circular buffered queue in the C programming language, then run a series of unit tests on this queue's implementation to make
+sure that it is correct. The queue can hold a maximum of 100 elements, where each element is a single integer. The queue's 
+implementation consists of 2 points, one to the front of the queue and one to the back of the queue. 
+
+Files included in this project -
+queue.c
+minunit.h
+Makefile
+README
+
+To make the project, navigate to the directory containing the code and type 
+make test
+
+A message will appear letting you know if you passed or failed the tests. There are 18 tests total.

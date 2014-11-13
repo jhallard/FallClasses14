@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "minunit.h"
+
+/* file: queue.c
+*  Author  - John Allard, template provided by Prof Whitehead.
+*  CruzID  - jhallard
+*  Class   - CS12M, Lab #4
+*  Date    - Nov 7th, 2014
+*  Prupose - This is an implementation of a circular queue in C. */
 
 #define MAXSIZE 100
 
