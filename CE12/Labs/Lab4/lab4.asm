@@ -39,10 +39,7 @@ STARTENCODE
     LEA R0, PROMPT2 ; Prompt the user for the character string
     PUTS
     JSR GETASCII
-    ;LD R5, EE
-    ;ST R5, ENCBIT
-    ;JSR ENCODE
-    ;LD R5, ENCBIT
+    JSR PRINTENC
     BR FINISH
 
 STARTDECODE
@@ -75,8 +72,8 @@ NEWLINE:   .FILL #-10
 
 ; memory locations
 ENCDEC: .FILL x3200  ; location where we save the users E/D input char
-INPUT:  .FILL x3201  ; 30 saved locations for the input chars
-OUTPUT:  .FILL x3221  ; 30 saved locations for the output chars
+INPUT:  .FILL x3401  ; 30 saved locations for the input chars
+OUTPUT:  .FILL x3421  ; 30 saved locations for the output chars
 ENCBIT .FILL #0
 DECBIT .FILL #0
 
@@ -189,7 +186,7 @@ GETASCII ; get a series of up to 30 ascii characters
     LD R1, MSGLENGTH ; Load the number of characters
     AND R2, R2, #0  ; Initialize Counter to zero
     LD R5, INPUT    ; Load the address x3201 to R5
-    LEA R7, OUTPUT
+    LD R3, OUTPUT
 
     ASCIILOOP ; 
         GETC
@@ -197,15 +194,15 @@ GETASCII ; get a series of up to 30 ascii characters
         LD R4, NEWLINE
         ADD R4, R0, R4
         BRz ASCIIDONE  ; if the char is a newline escape the loop
-        ST R0, ENCBIT
-        JSR ENCODE
-        LD R3, ENCBIT
-        STR R3, R7, #0
-        ADD R7, R7, #1
         STR R0, R5, #0 ; store the char into memory
         ADD R5, R5, #1 ; Incrmement the memory location for the next str
+        ST R0, ENCBIT
+        JSR ENCODE
+        LD R0, ENCBIT
+        STR R0, R3, #0
+        ADD R3, R3, #1
         ADD R2, R2, #-1 ; increment counter
-        ADD R3, R2, R1 ; check if we have hit 31
+        ADD R0, R2, R1 ; check if we have hit 31
         BRp ASCIILOOP
         JSR ERRMSG3     ; if we made it this far we messed upII
 
@@ -314,13 +311,14 @@ ENCODE
 
 
     ENCFOUND
-        ADD R5, R4, #0 ; return the value via the R5 register
-        ST R5, ENCBIT
+        ;ADD R5, R4, #0 ; return the value via the R5 register
+        ST R4, ENCBIT
         LD R0, reg0;
         LD R1, reg1;
         LD R2, reg2;
         LD R3, reg3;
         LD R4, reg4;
+        LD R5, reg5;
         ;LD R7, reg7
 RET
 
@@ -342,7 +340,7 @@ reg7:   .FILL x0000  ;
 
 
 
-NUMHEX:  .FILL #-16 ; Number of unique hex numbers with 1 digit
+NUMHEX:  .FILL #16 ; Number of unique hex numbers with 1 digit
 NUMCHARS: .FILL #26 ; Number of letters in alphabet
 NUMNUMS: .FILL #10 ; Decimal numbers (0-9)
 
@@ -393,10 +391,62 @@ CHARS .FILL x00A0 ; A
 
 A: .FILL x0041
 Z: .FILL x0050
-ZERO .FILL x0030
-NINE .FILL x0039
+ZERO:  .FILL x0030
+NINE:  .FILL x0039
+EIGHT: .FILL x0008
+OUTPUT1:  .FILL x3421  ; 30 saved locations for the output chars
+
+PRINTENC:
+    AND R5, R5, #0  ; Initialize Counter to zero
+    LD  R3, OUTPUT1  ; Load add x3221
+    LDR R1, R3, #0  ; Load value at x3221
+    LD R0, #0
+
+    PRINTENCLOOP:
+
+    LD R4, EIGHT      ; load 8
+    ADD R4, R4, R4 ; load 16 (bit 5)
+    AND R2, R4, R1 ; See if R1 has bit 5 high
+    BRz NEXT1
+    ADD R5, R5, #1
+    NEXT1:
+    LD R4, EIGHT      ; load 8
+    ADD R4, R4, R4 ; load 16 (bit 5)
+    ADD R4, R4, R4 ; load 32 (bit 6)
+    AND R2, R4, R1 ; See if R1 has bit 5 high
+    BRz NEXT2
+    ADD R5, R5, #2
+    NEXT2:
+    LD R4, EIGHT      ; load 8
+    ADD R4, R4, R4 ; load 16 (bit 5)
+    ADD R4, R4, R4 ; load 32 (bit 6)
+    ADD R4, R4, R4 ; load 64 (bit 6)
+    AND R2, R4, R1 ; See if R1 has bit 5 high
+    BRz NEXT3
+    ADD R5, R5, #4
+    NEXT3:
+    LD R4,  EIGHT     ; load 8
+    ADD R4, R4, R4 ; load 16 (bit 5)
+    ADD R4, R4, R4 ; load 32 (bit 6)
+    ADD R4, R4, R4 ; load 64 (bit 7)
+    ADD R4, R4, R4 ; load 128 (bit 8)
+    AND R2, R4, R1 ; See if R1 has bit 5 high
+    BRz PRINTCHAR1
+    ADD R5, R5, #8
+
+    PRINTCHAR1:
+        JSR HEX2CHAR
+        ST R5  TEMPCHAR
+        LD R0  TEMPCHAR
+        PUTC
+        ADD R3, R3, #1
+        LDR R1, R2, #0
+        ;BR PRINTENCLOOP
+        RET
 
 
+
+TEMPCHAR: .FILL x0000
 
 
 
@@ -404,7 +454,7 @@ NINE .FILL x0039
 ;; @Function CHAR2HEX
 ;; @Input    Character ascii code in R5
 ;; @Returns  Hex Number that the char represents, in R5 (example A -> #10, 0b1010)
-CHAR2HEX
+CHAR2HEX:
     ST R0, reg0;
     ST R1, reg1;
     ST R2, reg2;
@@ -417,18 +467,18 @@ CHAR2HEX
     AND R2, R2, #0 ; counter is R2
     LEA R0, HEX
 
-    CHARHEXLOOP
+    CHARHEXLOOP:
         LDR R4, R0, #0
         NOT R4, R4
         ADD R4, R4, #1
         ADD R4, R5, R4
         BRz FOUND1
-        ADD R2, R2 #1  ; increment the loop counter
+        ADD R2, R2 #-1  ; increment the loop counter
         ADD R0, R0, #1 ; incrmement the address we are reading from
         ADD R1, R2, R3 ; see if we have checked all 16 available
         BRn CHARHEXLOOP
 
-    FOUND1
+    FOUND1:
         ADD R5, R2, #0 ; return the value via the R5 register
         LD R0, reg0;
         LD R1, reg1;
@@ -441,7 +491,7 @@ RET
 ;; @Function HEX2CHAR
 ;; @Input    Single hex digit (0x00-0x0F) in R5
 ;; @Returns  ASCII value that corresponds to the hex digit (ex 0x0C -> 'C' -> 0x43)
-HEX2CHAR
+HEX2CHAR:
     ST R0, reg0;
     ST R1, reg1;
     ST R2, reg2;
@@ -454,18 +504,20 @@ HEX2CHAR
     AND R2, R2, #0 ; counter is R2
     LEA R0, HEX
 
-    HEXCHARLOOP
+    HEXCHARLOOP:
         LDR R4, R0, #0
-        NOT R1, R2
-        ADD R1, R1, #1
-        ADD R7, R5, R1
+        ADD R7, R5, R2
         BRz FOUND2
-        ADD R2, R2 #1  ; increment the loop counter
+        ADD R2, R2 #-1  ; increment the loop counter
         ADD R0, R0, #1 ; incrmement the address we are reading from
         ADD R1, R2, R3 ; see if we have checked all 16 available
-        BRn HEXCHARLOOP
+        BRp HEXCHARLOOP
 
-    FOUND2
+        AND R5, R5 #0
+        ADD R5, R5, #-1
+        RET
+
+    FOUND2:
         ADD R5, R4, #0 ; return the value via the R5 register
         LD R0, reg0;
         LD R1, reg1;
