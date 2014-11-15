@@ -50,6 +50,13 @@ STARTDECODE:
     BR FINISH
 
 FINISH:
+
+LD R0, NEWLINE
+NOT R0, R0
+ADD R0, R0, #1
+PUTC
+
+BR START
     ; stop the processor
 
 HALT
