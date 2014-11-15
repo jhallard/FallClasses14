@@ -207,9 +207,8 @@ GETASCII ; get a series of up to 30 ascii characters
         JSR ERRMSG3     ; if we made it this far we messed upII
 
     ASCIIDONE
-        LD R4, NEWLINE
-        ADD R5, R5, #1
-        STR R4, R5, #0 ;; store the final newline character
+        LD R4, NEWLINE2
+        STR R4, R3, #0 ;; store the final newline character
         LD R7, reg7
         LD R5, reg5
         LD R4, reg4
@@ -220,6 +219,7 @@ GETASCII ; get a series of up to 30 ascii characters
 
 RET
 
+NEWLINE2: .FILL #10
 
 
 
@@ -397,13 +397,12 @@ EIGHT: .FILL x0008
 OUTPUT1:  .FILL x3421  ; 30 saved locations for the output chars
 
 PRINTENC:
-    AND R5, R5, #0  ; Initialize Counter to zero
     LD  R3, OUTPUT1  ; Load add x3221
     LDR R1, R3, #0  ; Load value at x3221
-    LD R0, #0
 
     PRINTENCLOOP:
-
+    AND R5, R5, #0  ; Initialize Counter to zero
+    AND R0, R0, #0
     LD R4, EIGHT      ; load 8
     ADD R4, R4, R4 ; load 16 (bit 5)
     AND R2, R4, R1 ; See if R1 has bit 5 high
@@ -435,18 +434,27 @@ PRINTENC:
     ADD R5, R5, #8
 
     PRINTCHAR1:
+        ST R7, PRINTCHRET
         JSR HEX2CHAR
+        LD R7, PRINTCHRET
         ST R5  TEMPCHAR
         LD R0  TEMPCHAR
+        ST R7, PRINTCHRET
         PUTC
-        ADD R3, R3, #1
-        LDR R1, R2, #0
-        ;BR PRINTENCLOOP
+        LD R7, PRINTCHRET
+        ADD R3, R3, #1 ; incrmement to the next address
+        LDR R1, R3, #0 ; load the value at that address
+        LD R0 NEWLINE1  
+        ADD R0, R0, R1
+        BRnp PRINTENCLOOP ; if the next value is a newline then exit
+
+    EXITPRINTCHAR:
         RET
 
 
-
+PRINTCHRET .FILL x0000
 TEMPCHAR: .FILL x0000
+NEWLINE1: .FILL #-10
 
 
 
