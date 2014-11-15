@@ -35,20 +35,21 @@ LEA R0, ERROR1      ; else they entered an invalid character
 PUTS
 BR START            ; have the redo the input
 
-STARTENCODE 
+STARTENCODE:
     LEA R0, PROMPT2 ; Prompt the user for the character string
     PUTS
     JSR GETASCII
     JSR PRINTENC
     BR FINISH
 
-STARTDECODE
+STARTDECODE:
     LEA R0, PROMPT2 ; Prompt the user for the character string
     PUTS
     JSR GETHEX
+    JSR PRINTDEC
     BR FINISH
 
-FINISH
+FINISH:
     ; stop the processor
 
 HALT
@@ -71,11 +72,11 @@ MSGLENGTH: .FILL #31
 NEWLINE:   .FILL #-10
 
 ; memory locations
-ENCDEC: .FILL x3200  ; location where we save the users E/D input char
+ENCDEC: .FILL x3400  ; location where we save the users E/D input char
 INPUT:  .FILL x3401  ; 30 saved locations for the input chars
 OUTPUT:  .FILL x3421  ; 30 saved locations for the output chars
 ENCBIT .FILL #0
-DECBIT .FILL #0
+
 
 
 
@@ -92,7 +93,7 @@ DECBIT .FILL #0
 ;;;;;; ERRORS AND PROMPTS ;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-PROMPTMSG2
+PROMPTMSG2:
     LDI R0 ENCDEC
     LD  R1, E
     ADD R1, R1, R0
@@ -103,7 +104,7 @@ PROMPTMSG2
     BR START
 
 
-ERRMSG2
+ERRMSG2:
     LEA R0, ERROR2 ; Prompt the user for the character string
     PUTS
     LDI R0 ENCDEC
@@ -115,7 +116,7 @@ ERRMSG2
     BRz STARTDECODE     ; if input is 'D', jump to decode
     BR START
 
-ERRMSG3
+ERRMSG3:
     LEA R0, ERROR3 ; Prompt the user for the character string
     PUTS
     LDI R0 ENCDEC
@@ -128,7 +129,7 @@ ERRMSG3
 
 
 
-
+GETHEXRET: .FILL x0000
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;; GET HEX INPUT ;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -141,9 +142,12 @@ GETHEX ;get a series of up to 30 characters representing hex digits
     ST R5 reg5;
     ST R7, reg7
 
+    ST R7, GETHEXRET
+
     LD R1, NUMCHARS ; Load the number of characters
     AND R2, R2, #0  ; Initialize Counter to zero
     LD R5, INPUT    ; Load the address x3201 to R5
+    LD R3, OUTPUT
 
     GETHEXLOOP ; R4, R5 will hold each digit of the hex input
         GETC
@@ -153,13 +157,32 @@ GETHEX ;get a series of up to 30 characters representing hex digits
         BRz GETHEXDONE  ; if the char is a newline escape the loop
         STR R0, R5, #0 ; store the char into memory
         ADD R5, R5, #1 ; Incrmement the memory location for the next str
-        ADD R2, R2, #1 ; increment counter
-        ADD R3, R2, R1 ; check if we have hit 31
-        BRn GETHEXLOOP
+        ADD R2, R2, #-1 ; increment counter
+        ST R0, DECBIT1
+ 
+
+        GETC
+        PUTC
+        LD R4, NEWLINE
+        ADD R4, R0, R4
+        BRz GETHEXDONE  ; if the char is a newline escape the loop
+        STR R0, R5, #0 ; store the char into memory
+        ADD R5, R5, #1 ; Incrmement the memory location for the next str
+
+        ST R0, DECBIT2
+        JSR DECODE
+        LD R0, DECBIT1
+        STR R0, R3, #0
+        ADD R3, R3, #1
+        ADD R2, R2, #-1 ; increment counter
+        ADD R4, R2, R1 ; check if we have hit 31
+        BRp GETHEXLOOP
         JSR ERRMSG3     ; if we made it this far we messed up
 
     GETHEXDONE
-        LD R7, reg7
+        LD R4, NEWLINE2
+        STR R4, R3, #0 ;; store the final newline character
+        LD R7, GETHEXRET
         LD R5, reg5
         LD R4, reg4
         LD R3, reg3
@@ -173,7 +196,7 @@ GETHEX ;get a series of up to 30 characters representing hex digits
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;; GET ASCII INPUT ;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-GETASCII ; get a series of up to 30 ascii characters
+GETASCII: ; get a series of up to 30 ascii characters
 
     ST R0, reg0;
     ST R1, reg1;
@@ -188,7 +211,7 @@ GETASCII ; get a series of up to 30 ascii characters
     LD R5, INPUT    ; Load the address x3201 to R5
     LD R3, OUTPUT
 
-    ASCIILOOP ; 
+    ASCIILOOP: ; 
         GETC
         PUTC 
         LD R4, NEWLINE
@@ -206,7 +229,7 @@ GETASCII ; get a series of up to 30 ascii characters
         BRp ASCIILOOP
         JSR ERRMSG3     ; if we made it this far we messed upII
 
-    ASCIIDONE
+    ASCIIDONE:
         LD R4, NEWLINE2
         STR R4, R3, #0 ;; store the final newline character
         LD R7, reg7
@@ -220,6 +243,8 @@ GETASCII ; get a series of up to 30 ascii characters
 RET
 
 NEWLINE2: .FILL #10
+DECBIT1 .FILL #0
+DECBIT2 .FILL #0
 
 
 
@@ -323,10 +348,36 @@ ENCODE
 RET
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;; DECODE FUNCTION ;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
+
+
+
+
+
+NINE:  .FILL x0039
+NUMHEX:  .FILL #16 ; Number of unique hex numbers with 1 digit
+NUMCHARS: .FILL #26 ; Number of letters in alphabet
+NUMNUMS: .FILL #10 ; Decimal numbers (0-9)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;; MORSE CODE ;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;; LOOK-UP TABLE ;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+NUMS .FILL x0004 ; 0
+     .FILL x0084 ; 1
+     .FILL x00C4 ; 2
+     .FILL x00E4 ; 3
+     .FILL x00F4 ; 4
+     .FILL x00FC ; 5
+     .FILL x007C ; 6
+     .FILL x003C ; 7
+     .FILL x001C ; 8
+     .FILL x000C ; 9
 
 ;;;;; Register Storage Destinations ;;;;
 reg0:   .FILL x0000  ;
@@ -336,30 +387,6 @@ reg3:   .FILL x0000  ;
 reg4:   .FILL x0000  ;
 reg5:   .FILL x0000  ;
 reg7:   .FILL x0000  ;
-
-
-
-
-NUMHEX:  .FILL #16 ; Number of unique hex numbers with 1 digit
-NUMCHARS: .FILL #26 ; Number of letters in alphabet
-NUMNUMS: .FILL #10 ; Decimal numbers (0-9)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;; MORSE CODE ;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;; LOOK-UP TABLE ;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-NUMS .FILL x0084 ; 0
-     .FILL x00C4 ; 1
-     .FILL x00E4 ; 2
-     .FILL x00F4 ; 3
-     .FILL x00FC ; 4
-     .FILL x007C ; 5
-     .FILL x003C ; 6
-     .FILL x001C ; 7
-     .FILL x000C ; 8
-     .FILL x0004 ; 9
 
 
 CHARS .FILL x00A0 ; A
@@ -392,14 +419,158 @@ CHARS .FILL x00A0 ; A
 A: .FILL x0041
 Z: .FILL x0050
 ZERO:  .FILL x0030
-NINE:  .FILL x0039
 EIGHT: .FILL x0008
 OUTPUT1:  .FILL x3421  ; 30 saved locations for the output chars
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;; DECODE FUNCTION ;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+DECODE:  
+    ST R0, reg0;
+    ST R1, reg1;
+    ST R2, reg2;
+    ST R3, reg3;
+    ST R4, reg4;
+    ST R5, reg5;
+    ;ST R7, reg7
+
+    LD R5, DECBIT1 ; high bit
+    ST R7, PRINTCHRET
+    JSR CHAR2HEX
+    LD R7, PRINTCHRET
+    AND R1, R1, #0
+    AND R2, R2, #0
+
+    ADD R5, R5, #0
+    BRz DB2
+
+    DECLOOP:
+    ADD R1, R1, #8
+    ADD R1, R1, #8
+    ADD R5, R5, #-1
+    BRp DECLOOP
+
+    DB2:
+    LD R5, DECBIT2 ; high bit
+    ST R7, PRINTCHRET
+    JSR CHAR2HEX
+    LD R7, PRINTCHRET
+
+    ADD R5, R5, #0
+    BRz CHECKNUMS1
+
+    DECLOOP2:
+    ADD R1, R1, #1
+    ADD R5, R5, #-1
+    BRp DECLOOP2
+
+    ;;; Now R2 contains the number that the 2 digit hex value represents ;;;
+    ;;; Example "1""A" = 16+10 = 26 ;;;;
+    CHECKNUMS1
+        LD R3, NUMNUMS ; LD -10 for the loop comparison
+        AND R2, R2, #0 ; counter is R2
+        LEA R0, NUMS   ; ADDRESS of nums
+
+    NUMLOOP2
+        LDR R4, R0, #0
+        NOT R4, R4
+        ADD R4, R4, #1
+        ADD R4, R4, R1
+        BRz DECFOUNDNUM
+        ADD R2, R2 #-1  ; increment the loop counter (count down)
+        ADD R0, R0, #1 ; incrmement the address we are reading from
+        ADD R5, R2, R3 ; see if we have checked all 10 available
+        BRp NUMLOOP2
+
+
+
+        AND R3, R3, #0 ;NUMCHARS ; LD -10 for the loop comparison
+        LD R3, NUMCHARS
+        AND R2, R2, #0 ; counter is R2
+        LEA R0, CHARS   ; ADDRESS of nums
+
+    CHARLOOP2
+        LDR R4, R0, #0
+        NOT R4, R4
+        ADD R4, R4, #1
+        ADD R4, R4, R1
+        BRz DECFOUNDCHAR
+        ADD R2, R2 #-1  ; increment the loop counter
+        ADD R0, R0, #1 ; incrmement the address we are reading from
+        ADD R5, R2, R3 ; see if we have checked all 10 available
+        BRp CHARLOOP2
+
+        JSR ERRMSG2     ; if we got here, the input was not valid
+
+    DECFOUNDNUM:
+    LD R5, ZERO
+    NOT R2, R2
+    ADD R2, R2, #1
+    ADD R2, R2, R5
+    ST R2, DECBIT1
+    LD R0, reg0;
+    LD R1, reg1;
+    LD R2, reg2;
+    LD R3, reg3;
+    LD R4, reg4;
+    LD R5, reg5;
+    RET
+
+    DECFOUNDCHAR:
+    LD R5, A
+    NOT R2, R2
+    ADD R2, R2, #1
+    ADD R2, R2, R5
+    ST R2, DECBIT1
+    LD R0, reg0;
+    LD R1, reg1;
+    LD R2, reg2;
+    LD R3, reg3;
+    LD R4, reg4;
+    LD R5, reg5;
+    RET
+
+MSGLENGTH1: .FILL #30
+REG7HOLD:   .FILL #0
+
+PRINTDEC:
+    ST R7, REG7HOLD
+    LD  R3, OUTPUT1  ; Load add x3221
+    LDR R0, R3, #0  ; Load value at x3221
+    LD R4, NEWLINE1
+    LD R1, MSGLENGTH1
+    ADD R5, R4, R1
+    BRz PRINTDECDONE
+
+    AND R2, R2, #0
+    
+
+    PRINTDECLOOP:
+    PUTC
+    ADD R3, R3, #1
+    LDR R0, R3, #0
+    ADD R5, R4, R0
+    BRz PRINTDECDONE
+    ADD R2, R2, #-1
+    ADD R5, R2, R1
+    BRz PRINTDECDONE
+    BR PRINTDECLOOP
+
+
+PRINTDECDONE:
+    LD R7, REG7HOLD
+    RET
+
+
 
 PRINTENC:
     LD  R3, OUTPUT1  ; Load add x3221
     LDR R1, R3, #0  ; Load value at x3221
 
+    ;; This parts performs the equivilent of a bit shift to find the corresponding
+    ;; character for the top 4 bits of the 8 bit morse code.
     PRINTENCLOOP:
     AND R5, R5, #0  ; Initialize Counter to zero
     AND R0, R0, #0
@@ -433,7 +604,26 @@ PRINTENC:
     BRz PRINTCHAR1
     ADD R5, R5, #8
 
+
     PRINTCHAR1:
+        ST R7, PRINTCHRET
+        JSR HEX2CHAR
+        LD R7, PRINTCHRET
+        ST R5  TEMPCHAR
+        LD R0  TEMPCHAR
+        ST R7, PRINTCHRET
+        PUTC
+        LD R7, PRINTCHRET
+
+        ;; This part prints the second digit representing the lower 4 bits of the 8 bit morse code
+        LDR R1, R3, #0 ; load the value at that address
+        AND R4, R4, #0
+        ADD R4, R4, #1
+        ADD R4, R4, #2
+        ADD R4, R4, #4
+        ADD R4, R4, #8 ; R4 = 0x000f
+        AND R5, R4, R1
+
         ST R7, PRINTCHRET
         JSR HEX2CHAR
         LD R7, PRINTCHRET
@@ -448,8 +638,13 @@ PRINTENC:
         ADD R0, R0, R1
         BRnp PRINTENCLOOP ; if the next value is a newline then exit
 
+
     EXITPRINTCHAR:
         RET
+
+
+
+
 
 
 PRINTCHRET .FILL x0000
@@ -484,9 +679,11 @@ CHAR2HEX:
         ADD R2, R2 #-1  ; increment the loop counter
         ADD R0, R0, #1 ; incrmement the address we are reading from
         ADD R1, R2, R3 ; see if we have checked all 16 available
-        BRn CHARHEXLOOP
+        BRp CHARHEXLOOP
 
     FOUND1:
+        NOT R2, R2
+        ADD R2, R2, #1
         ADD R5, R2, #0 ; return the value via the R5 register
         LD R0, reg0;
         LD R1, reg1;
