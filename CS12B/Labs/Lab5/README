@@ -1,0 +1,17 @@
+file   - README
+Author - John H Allard 
+CruzID - jhallard
+Date   - Nov 7th, 2014
+
+This is the README file for Lab #5 for CS12 at UCSC during the Fall of 2014. The purpose of this lab was to debug a given implementation of a singly linked list in the c programming language. We were supposed to use the Valgrind program to help with memory debugging, record the bugs we found, and ensure that there were no error when we are finished. The BUGS file contains a small list of the bugs found in the given program.
+
+Files included in this project -
+list.c
+BUGS
+Makefile
+README
+
+To make the project, navigate to the directory containing the code and type 
+make test
+
+Valgrind output will show on the console letting you know there are 0 errors.

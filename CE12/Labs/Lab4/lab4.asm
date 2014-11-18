@@ -4,7 +4,8 @@
 ; @purpose - This is my LC3 assembly code for the lab #4 assignment for CE12 at UCSC during the Fall of 2014. This program can either 
 ;            encode or decode messages to/from morse code for the user. 
 
-.ORIG x3000
+.ORIG x2800 ; I'm sorry but I have to start at x2800 in order to use x3200 - x3240 as memory locations for data as was required by the lab. My program
+            ; is more than 750 lines long and couldn't fit between x3000 and x3200
 
 START:
 
@@ -79,9 +80,9 @@ MSGLENGTH: .FILL #31
 NEWLINE:   .FILL #-10
 
 ; memory locations
-ENCDEC: .FILL x3400  ; location where we save the users E/D input char
-INPUT:  .FILL x3401  ; 30 saved locations for the input chars
-OUTPUT:  .FILL x3421  ; 30 saved locations for the output chars
+ENCDEC: .FILL x3200  ; location where we save the users E/D input char
+INPUT:  .FILL x3201  ; 30 saved locations for the input chars
+OUTPUT:  .FILL x3221  ; 30 saved locations for the output chars
 ENCBIT .FILL #0
 
 
@@ -427,7 +428,7 @@ A: .FILL x0041
 Z: .FILL x0050
 ZERO:  .FILL x0030
 EIGHT: .FILL x0008
-OUTPUT1:  .FILL x3421  ; 30 saved locations for the output chars
+OUTPUT1:  .FILL x3221  ; 30 saved locations for the output chars
 
 
 

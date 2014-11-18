@@ -1,0 +1,10 @@
+John Allard
+11-16-2014
+BUGS report
+CS12 Data Structures
+
+This file lists and breifly describes the bugs that I found and corrected in the original list.c file
+
+Line 23,     list_insert2 function - simplified this by turning it into two calls to list insert, one for b and one for a
+Line 39,     list_remove  function - We need to free n->next when we remove it from the chain, at the original state we were just removing the reference to it.
+Lines 57-59, list_destroy function - It only destroyed the head ptr, it needs to go through the entirety of the list and delete all pointers.
