@@ -1,0 +1,135 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+
+\setlength{\voffset}{-0.5in}
+\setlength{\headsep}{5pt}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand{\answer}{\textbf{Answer : }}
+
+
+%===========---------================
+% Author John H Allard
+% HW Assignment #6
+% CMPE 16 - Discrete Math
+% November 12th 2014
+%===========---------================
+
+
+\title{ CMPE 16 Homework \#7}
+\author{John Allard}
+\date{November 11th, 2014}
+
+\begin{document}
+\maketitle
+
+%***************************************
+%*********** HomeWork Problems *********
+%************** Nine Total *************
+\begin{enumerate} 
+
+
+%********************************
+%*********** Problem #1 *********
+%********************************
+\item Prove by induction that
+$$ \forall n \in \mathbb{N} : \sum_{i = 1}^{n} i^3 = \frac{n^2(n+1)^2}{4}$$ \\
+\textbf{ Base Case : } $n = 1$,  $ \sum_{i = 1}^{1} i^3 = 1^3 = \frac{1^2(1+1)^2}{4} = \frac{4}{4} = 1$ \\[.1in]
+\textbf{ Inductive Hypothesis : } $n \in \mathbb{N}$,  $ \sum_{i = 1}^{n} i^3 = \frac{(n)^2(n+1)^2}{4}$ \\[.1in]
+\textbf{ Inductive Conclusion : } $n \in \mathbb{N}$,  $ \sum_{i = 1}^{n+1} i^3 = \frac{(n+1)^2(n+2)^2}{4}$ \\[.1in]
+
+\begin{tabular}{l | r}
+$ \sum_{i = 1}^{n+1} i^3 = 1^3+2^3+3^3 \ldots + n^3 + (n+1)^3 $ & Defintion of a sum \\[.1in]
+$ \sum_{i = 1}^{n+1} i^3 = \sum_{i = 1}^{n} i^3 + (n+1)^3 $     & Subsituting in the previous case \\[.1in]
+$ \sum_{i = 1}^{n+1} i^3 = \frac{(n)^2(n+1)^2}{4} + (n+1)^3 $   & We know what the sum of cubes from $1$ to $n$ is. \\[.1in]
+$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2(\frac{n^2}{4} + (n+1)) $     & Factoring out a $(n+1)^2$ \\[.1in]
+$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2(\frac{n^2 + 4n + 4}{4}) $    & Put it all over one denominator \\[.1in]
+$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2 \frac{(n+2)^2}{4} $          & $n^2+4n+4 = (n+2)^2$ \\[.1in]
+\end{tabular}
+
+That which was to be shown has been thus shown.
+
+
+
+
+\item Prove by induction that
+$$ \forall k \in \mathbb{N} : \sum_{k = 1}^{n} \frac{k}{2^k} = 2 - \frac{n+2}{2^n}$$ \\
+\textbf{ Base Case : } $n = 1$,  $  \sum_{k = 1}^{1} \frac{k}{2^k} = \frac{1}{2}\text{, } 2 - \frac{1+2}{2^1} = 2 - \frac{3}{2} = \frac{1}{2} $ \\[.1in]
+\textbf{ Inductive Hypothesis : } $n \in \mathbb{N}$,  $ \sum_{k = 1}^{n} \frac{k}{2^k} =  2 - \frac{n+2}{2^{n}}$ \\[.1in]
+\textbf{ Inductive Conclusion : } $n \in \mathbb{N}$,  $ \sum_{k = 1}^{n+1} \frac{k}{2^k} =  2 - \frac{n+3}{2^{n+1}}$ \\[.1in]
+
+\begin{tabular}{l | r}
+$ \sum_{k = 1}^{n+1} \frac{k}{2^k}=\frac{1}{2}+\frac{2}{4}+\frac{n}{2^n}+\frac{n+1}{2^{n+1}} $  & Defintion of our sum \\[.1in]
+$ \sum_{k = 1}^{n+1} \frac{k}{2^k} = \sum_{k = 1}^{n} \frac{k}{2^k} + \frac{n+1}{2^{n+1}} $     & Subsituting summation expression for first $n$ terms \\[.1in]
+$ \sum_{k = 1}^{n+1} \frac{k}{2^k} = 2 - \frac{n+2}{2^n} + \frac{n+1}{2^{n+1}} $     			& Summation expressioni s known  \\[.1in]
+$ \sum_{k = 1}^{n+1} \frac{k}{2^k} = 2 - 2^{-n}(\frac{n+2}{1} - \frac{n+1}{2}) $     & Factor out $2^n$ \\[.1in]
+$ \sum_{k = 1}^{n+1} \frac{k}{2^k} = 2 - 2^{-n}(\frac{2n+4 - n+1}{2}) $              & Common denominator \\[.1in]
+$ \sum_{k = 1}^{n+1} \frac{k}{2^k} = 2 - 2^{-n}(\frac{n+3}{2}) $                     & Combine like terms \\[.1in]
+$ \sum_{k = 1}^{n+1} \frac{k}{2^k} = 2 - \frac{n+3}{2^{n+1}} $                       & Distribute leading term\\[.1in]
+\end{tabular}
+
+That which was to be shown has been thus shown.
+
+
+\item Prove by induction that
+$$ \forall n \in \mathbb{N} : (n > 2) \implies = ((\sqrt{2}^n) \leq n!)$$ \\
+\textbf{ Base Case : } $n = 3$,  $ \sqrt{2}^3 \leq 3!$ : $2.8015 \leq 6$ \\[.1in]
+\textbf{ Inductive Hypothesis : } $n > 2 \in \mathbb{N}$,  $ \sqrt{2}^{n} \leq (n)!$ \\[.1in]
+\textbf{ Inductive Conclusion : } $n > 2 \in \mathbb{N}$,  $ \sqrt{2}^{n+1} \leq (n+1)!$ \\[.1in]
+\begin{tabular}{l | r}
+$\sqrt{2}^n \leq n!$                & Our original assumption \\
+$n > 2$ : $\sqrt{2} < (n+1)$    &   $\sqrt{2} < 2 < n$  \\
+$\sqrt{2^n}\sqrt{2} \leq (n+1)n!$   & Combining the two above equations.\footnote{If $a < b$ and $c < d$ but $a, b, c, d > 0$ then $ac < bd$}  \\
+$\sqrt{2^{n+1}} \leq (n+1)! $       & Simplifying the above equation \\
+\end{tabular}
+
+Thus the inductive conclusion has been shown.
+
+
+
+\item Prove by induction that
+$$ \forall n \in \mathbb{N} : 2n^3+4n \text{ is a multiple of }3$$ \\
+\textbf{ Base Case : } $n = 1$,  $ 2+4 = 6 = 2*3$ \\[.1in]
+\textbf{ Inductive Hypothesis : } $n, k \in \mathbb{N}$,  $ 2n^3+4n = k*3$ \\[.1in]
+\textbf{ Inductive Conclusion : } $n, j \in \mathbb{N}$,  $ 2(n+1)^3+4(n+1) = j*3$ \\[.1in]
+\begin{tabular}{l | r}
+$ 2(n+1)^3+4(n+1) = 2(n^3 + 3n^2 + 3n + 1) + 4n + 4$    & Distributing terms \\
+$ 2(n+1)^3+4(n+1) = 2n^3 + 6n^2 + 6n + 2 + 4n + 4$      & Distributing ..  \\
+$ 2(n+1)^3+4(n+1) = 2n^3 + 4n + (6n^2 + 6n + 6)$        & Grouping terms   \\
+$ 2(n+1)^3+4(n+1) = k*3 + (6n^2 + 6n + 6)$              & See inductive hypthesis   \\
+$ 2(n+1)^3+4(n+1) = k*3 + 3(2n^2 + 2n + 2)$             & Factor out a 3 \\
+$ 2(n+1)^3+4(n+1) = 3k + 3j = 3r$                       & $k, j, r \in \mathbb{N}$   \\
+\end{tabular}
+
+The Inductive conclusion has been shown.
+
+\item Rancher Pat is planning to raise ducks. Based on extensive research Pat estimates
+that every year there will be at least 1 new baby duck for every 4 ducks in his ranch, and
+that he will lose no more than 10 ducks each year. To be exact there will be dD/4e new baby
+ducks next year if there are D ducks in the current year. If Pat starts with 60 ducks in year
+0, prove by induction that in year n Pat will have at least
+$$ 20(\frac{5}{4})^n + 40 \text{ Ducks }s $$
+
+\item In this problem you will prove Fermat’s Little Theorem in a different manner than we did in
+class
+
+\begin{enumerate}
+\item Begin by first showing that for any prime number $p$ and integers $a$ and $b$
+$$ (a+b)^p \equiv a^p + b^p \text{ mod } p$$
+\end{enumerate}
+
+
+
+
+
+\end{enumerate}
+
+
+\end{document}
