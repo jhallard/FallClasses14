@@ -23,12 +23,21 @@
 %===========---------================
 
 
-\title{ CMPE 16 Homework \#7}
-\author{John Allard}
-\date{November 11th, 2014}
+% \title{ CMPE 16 Homework \#7}
+% \author{John Allard}
+% \date{November 11th, 2014}
 
 \begin{document}
-\maketitle
+% \begin{titlepage}
+   \vspace*{\stretch{1.0}}
+   \begin{center}
+      \Large\textbf{CMPE 16 Homework \#7}\\
+      \large\texttt{John Allard} \\
+      \small\texttt{November 18th, 2014}
+   \end{center}
+   \vspace*{\stretch{2.0}}
+% \end{titlepage}
+% \maketitle
 
 %***************************************
 %*********** HomeWork Problems *********
@@ -46,12 +55,12 @@ $$ \forall n \in \mathbb{N} : \sum_{i = 1}^{n} i^3 = \frac{n^2(n+1)^2}{4}$$ \\
 \textbf{ Inductive Conclusion : } $n \in \mathbb{N}$,  $ \sum_{i = 1}^{n+1} i^3 = \frac{(n+1)^2(n+2)^2}{4}$ \\[.1in]
 
 \begin{tabular}{l | r}
-$ \sum_{i = 1}^{n+1} i^3 = 1^3+2^3+3^3 \ldots + n^3 + (n+1)^3 $ & Defintion of a sum \\[.1in]
-$ \sum_{i = 1}^{n+1} i^3 = \sum_{i = 1}^{n} i^3 + (n+1)^3 $     & Subsituting in the previous case \\[.1in]
-$ \sum_{i = 1}^{n+1} i^3 = \frac{(n)^2(n+1)^2}{4} + (n+1)^3 $   & We know what the sum of cubes from $1$ to $n$ is. \\[.1in]
-$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2(\frac{n^2}{4} + (n+1)) $     & Factoring out a $(n+1)^2$ \\[.1in]
-$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2(\frac{n^2 + 4n + 4}{4}) $    & Put it all over one denominator \\[.1in]
-$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2 \frac{(n+2)^2}{4} $          & $n^2+4n+4 = (n+2)^2$ \\[.1in]
+$ \sum_{i = 1}^{n+1} i^3 = 1^3+2^3+3^3 \ldots + n^3 + (n+1)^3 $ & Defintion of a sum \\[.07in]
+$ \sum_{i = 1}^{n+1} i^3 = \sum_{i = 1}^{n} i^3 + (n+1)^3 $     & Subsituting in the previous case \\[.07in]
+$ \sum_{i = 1}^{n+1} i^3 = \frac{(n)^2(n+1)^2}{4} + (n+1)^3 $   & We know what the sum of cubes from $1$ to $n$ is. \\[.07in]
+$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2(\frac{n^2}{4} + (n+1)) $     & Factoring out a $(n+1)^2$ \\[.07in]
+$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2(\frac{n^2 + 4n + 4}{4}) $    & Put it all over one denominator \\[.07in]
+$ \sum_{i = 1}^{n+1} i^3 = (n+1)^2 \frac{(n+2)^2}{4} $          & $n^2+4n+4 = (n+2)^2$ \\[.07in]
 \end{tabular}
 
 That which was to be shown has been thus shown.
@@ -66,7 +75,7 @@ $$ \forall k \in \mathbb{N} : \sum_{k = 1}^{n} \frac{k}{2^k} = 2 - \frac{n+2}{2^
 \textbf{ Inductive Conclusion : } $n \in \mathbb{N}$,  $ \sum_{k = 1}^{n+1} \frac{k}{2^k} =  2 - \frac{n+3}{2^{n+1}}$ \\[.1in]
 
 \begin{tabular}{l | r}
-$ \sum_{k = 1}^{n+1} \frac{k}{2^k}=\frac{1}{2}+\frac{2}{4}+\frac{n}{2^n}+\frac{n+1}{2^{n+1}} $  & Defintion of our sum \\[.1in]
+$ \sum_{k = 1}^{n+1} \frac{k}{2^k}=\frac{1}{2}+\frac{2}{4}+ \ldots + \frac{n}{2^n}+\frac{n+1}{2^{n+1}} $  & Defintion of our sum \\[.1in]
 $ \sum_{k = 1}^{n+1} \frac{k}{2^k} = \sum_{k = 1}^{n} \frac{k}{2^k} + \frac{n+1}{2^{n+1}} $     & Subsituting summation expression for first $n$ terms \\[.1in]
 $ \sum_{k = 1}^{n+1} \frac{k}{2^k} = 2 - \frac{n+2}{2^n} + \frac{n+1}{2^{n+1}} $     			& Summation expressioni s known  \\[.1in]
 $ \sum_{k = 1}^{n+1} \frac{k}{2^k} = 2 - 2^{-n}(\frac{n+2}{1} - \frac{n+1}{2}) $     & Factor out $2^n$ \\[.1in]
@@ -79,14 +88,14 @@ That which was to be shown has been thus shown.
 
 
 \item Prove by induction that
-$$ \forall n \in \mathbb{N} : (n > 2) \implies = ((\sqrt{2}^n) \leq n!)$$ \\
-\textbf{ Base Case : } $n = 3$,  $ \sqrt{2}^3 \leq 3!$ : $2.8015 \leq 6$ \\[.1in]
-\textbf{ Inductive Hypothesis : } $n > 2 \in \mathbb{N}$,  $ \sqrt{2}^{n} \leq (n)!$ \\[.1in]
-\textbf{ Inductive Conclusion : } $n > 2 \in \mathbb{N}$,  $ \sqrt{2}^{n+1} \leq (n+1)!$ \\[.1in]
+$$ \forall n \in \mathbb{N} : (n \geq 2) \implies = ((\sqrt{2}^n) \leq n!)$$ \\
+\textbf{ Base Case : } $n = 2$,  $ \sqrt{2}^2 \leq 3!$ : $2 \leq 6$ \\[.1in]
+\textbf{ Inductive Hypothesis : } $n \geq 2 \in \mathbb{N}$,  $ \sqrt{2}^{n} \leq (n)!$ \\[.1in]
+\textbf{ Inductive Conclusion : } $n \geq 2 \in \mathbb{N}$,  $ \sqrt{2}^{n+1} \leq (n+1)!$ \\[.1in]
 \begin{tabular}{l | r}
 $\sqrt{2}^n \leq n!$                & Our original assumption \\
-$n > 2$ : $\sqrt{2} < (n+1)$    &   $\sqrt{2} < 2 < n$  \\
-$\sqrt{2^n}\sqrt{2} \leq (n+1)n!$   & Combining the two above equations.\footnote{If $a < b$ and $c < d$ but $a, b, c, d > 0$ then $ac < bd$}  \\
+$n \geq 2$ : $\sqrt{2} < (n+1)$    &   $\sqrt{2} < 2 < (n+1)$  \\
+$\sqrt{2^n}\sqrt{2} \leq (n+1)n!$   & Combining the two above equations. \footnotemark\footnotetext{If $a < b$ and $c < d$ but $a, b, c, d > 0$ then $ac < bd$}  \\
 $\sqrt{2^{n+1}} \leq (n+1)! $       & Simplifying the above equation \\
 \end{tabular}
 
@@ -112,10 +121,16 @@ The Inductive conclusion has been shown.
 
 \item Rancher Pat is planning to raise ducks. Based on extensive research Pat estimates
 that every year there will be at least 1 new baby duck for every 4 ducks in his ranch, and
-that he will lose no more than 10 ducks each year. To be exact there will be dD/4e new baby
+that he will lose no more than 10 ducks each year. To be exact there will be $\lceil$D/4$\rceil$ new baby
 ducks next year if there are D ducks in the current year. If Pat starts with 60 ducks in year
 0, prove by induction that in year n Pat will have at least
-$$ 20(\frac{5}{4})^n + 40 \text{ Ducks }s $$
+$$ 20(\frac{5}{4})^n + 40 \text{ Ducks }s $$ \\
+\textbf{ Base Case : } $n = 0$, $ \sum_{i=0}^{0} 60(\frac{5}{4})^0 = 60$, $20(\frac{5}{4})^0 + 40 = 60 $ \\[.1in]
+\textbf{ Inductive Hypothesis : } $n \in \mathbb{N}$,  $\sum_{i=0}^{n} 60(\frac{5}{4})^n = 20(\frac{5}{4})^n + 40$ \\[.1in]
+\textbf{ Inductive Conclusion : } $n \in \mathbb{N}$,  $\sum_{i=0}^{n+1} 60(\frac{5}{4})^{n+1} = 20(\frac{5}{4})^{n+1} + 40$ \\[.1in]
+% \begin{tabular}{l | r}
+% . \\
+% \end{tabular}
 
 \item In this problem you will prove Fermat’s Little Theorem in a different manner than we did in
 class
@@ -123,7 +138,27 @@ class
 \begin{enumerate}
 \item Begin by first showing that for any prime number $p$ and integers $a$ and $b$
 $$ (a+b)^p \equiv a^p + b^p \text{ mod } p$$
+
+\item Prove by induction on $a$ that for any natural number $a$
+$$ a^p \equiv a \text{ mod } p$$
 \end{enumerate}
+
+
+\item Prove by induction that for $n \in \mathbb{N}$ (where $F_n$ is the $n^{th}$ Fib. number)
+$$ F_1^2 + F_2^2 + \ldots + F_n^2 = F_nF_{n+1}$$
+\textbf{ Base Case : } $n = 0$, $ F_0 = 1$; $F_1 = 1$; $F_0F_1 = 1$ \\[.1in]
+\textbf{ Inductive Hypothesis : } $n \in \mathbb{N}$,  $\sum_{i=0}^{n} F_i^2 = F_nF_{n+1}$ \\[.1in]
+\textbf{ Inductive Conclusion : } $n \in \mathbb{N}$,  $\sum_{i=0}^{n+1} F_i^2 = F_{n+1}F_{n+2}$ \\[.1in]
+\begin{tabular}{l | r}
+$\sum_{i=0}^{n+1} F_i^2 =  F_1^2 + F_2^2 + \ldots + F_n^2 + F_{n+1}^2 $    & Defintion of our summation \\
+$\sum_{i=0}^{n+1} F_i^2 =  \sum_{i=0}^{n} F_i^2  + F_{n+1}^2 $	   		   & Substitute summation for first $n$ terms  \\
+$\sum_{i=0}^{n+1} F_i^2 =  F_nF_{n+1}  + F_{n+1}^2 $	   		   		   & Substitute Inductive Hypothesis  \\
+$\sum_{i=0}^{n+1} F_i^2 =  F_nF_{n+1}  + F_{n+1}F_{n+1} $	   		   	   & Simplifying-ish  \\
+$\sum_{i=0}^{n+1} F_i^2 =  F_{n+1}(F_{n}  + F_{n+1}) $	   		   		   & Factoring  \\
+$\sum_{i=0}^{n+1} F_i^2 =  F_{n+1}F_{n+2} $	   		   		  			   & $F_{n+2} = F_n + F_{n+1}$  \\
+\end{tabular}
+Thus the inductive conclusion has been shown.
+
 
 
 

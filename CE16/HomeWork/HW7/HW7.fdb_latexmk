@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1416371143 "HW7.tex" "HW7.pdf" "HW7" 1416371144
+["pdflatex"] 1416393207 "HW7.tex" "HW7.pdf" "HW7" 1416393207
   "/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -37,9 +37,9 @@
   "/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def" 1306616590 55368 3c8a0d99822330f2dfabc0dfb09ce897 ""
   "/usr/share/texlive/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
-  "HW7.aux" 1416371144 8 a94a2480d3289e625eea47cd1b285758 ""
-  "HW7.tex" 1416371142 6077 fa71bf03e8d855973083bf7caf022526 ""
+  "HW7.aux" 1416393207 8 a94a2480d3289e625eea47cd1b285758 ""
+  "HW7.tex" 1416393206 8024 2bf5a2183712da8d949a3cbec0d3247d ""
   (generated)
-  "HW7.log"
   "HW7.pdf"
+  "HW7.log"
   "HW7.aux"
