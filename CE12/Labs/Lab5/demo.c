@@ -9,6 +9,7 @@
 // Standard libraries
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // Microchip libraries
 #include <xc.h>
@@ -94,13 +95,14 @@ int main(void)
     // Set the lowest bit
     int mask = 1;
     PORTESET = mask;
+    int delay = 0xA0000;
     // Loop forever, it is bad to exit in an embedded processor.
     int count=0; // move this into the delay function
     while (1) {
         // Move this printf into your getDelay function!
         printf("Hello, world! %d\n",count++);
         // Replace this with the getDelay function call!
-        int delay = 0x80000;
+     
         //int delay = getDelay();
 
         // do nothing for a lot of cycles
@@ -114,6 +116,11 @@ int main(void)
             mask = 1;
         // Set the output to the new mask
         PORTE=mask;
+
+        delay = 0xA0000 + 0x40000*sin((double)count/10) + 0x20000*cos((double)count/5);
+
+        if(delay < 0)
+            delay *= -1;
 
     }
 
