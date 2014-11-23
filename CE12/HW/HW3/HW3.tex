@@ -1,0 +1,141 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=0.8in]{geometry}
+
+\setlength{\voffset}{-0.5in}
+\setlength{\headsep}{5pt}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand{\answer}{\textbf{Answer : }}
+
+
+%===========---------================
+% Author John H Allard
+% CMPE 12, Lab #2 Write-up
+% October 9th, 2014
+%===========---------================
+
+\begin{document}
+   \vspace*{\stretch{1.0}}
+   \begin{center}
+      \Large\textbf{CMPE 12 Homework \#3}\\
+      \large\texttt{John Allard} \\
+      \small\texttt{November 20th, 2014}
+   \end{center}
+   \vspace*{\stretch{2.0}}
+
+%==========================================
+%==========================================
+%====== Begin Problems, 15 Total ==========
+%==========================================
+%==========================================
+
+\begin{enumerate}
+
+% ======== PROBLEM #1 ======== %
+\item The following operations are performed on the stack 
+$$ \texttt{PUSH A, PUSH B, POP, PUSH C, PUSH D, POP, PUSH E, POP, POP, PUSH F} $$
+\begin{enumerate}
+\item What does the stack contain after the \texttt{PUSH F} operation? \answer \texttt{A, F}
+\item At which point does the stack contain the most elements? \\ \answer After \texttt{PUSH D}, it contains 3 elements.  \\[.15in] 
+Without removing the elements left on the stack from the previous operations, we perform:
+\begin{center} \texttt{PUSH G, PUSH H, PUSH I, PUSH J, POP, PUSH K, POP, POP, POP \\ PUSH L, POP, POP, PUSH M} \end{center}
+\item What does the stack contain now? \\ \answer \texttt{A, L, M}
+\end{enumerate}
+
+% ======== PROBLEM #2 ======== %
+\item What are some disadvantages in programming in a higher level language? \\
+\answer First and formost, you don't have as much control over the operation of the computer. Higher level languages most of the time don't allow you to access memory locations directly. Also, higher level languages consist of operations that wrap around the opcodes for a given computers ISA, which means that you aren't directly able to call certain operations on a computer, you have to use the interface for those operations provided by a given language. This can restrict the user from using optimizations specific to certain architectures. Generally using a higher level language will compromise performance because of all of the extra computation that is going on in the background (garbage collection, reference counting, etc.).
+
+% ======== PROBLEM #3 ======== %
+\item Compare and contrast the execution process of an interpreter versus the execution process of compiled binary. What implications does interpretation have on performance? \\
+\answer An interpreter will take in a given source file, and break it up into a finite sequence of discrete chunks (lines, paragraphs, functions, etc). It will then read in each `chunk' of data, and interpret this chunk in a way to produce the desired results by the user. It then moves on to the next `chunk' of code, and repreats the same process. This is how a virtual machine acts. A compiler will take an entire source file, and translate it directly into a computers native language (it's ISA). Once this is done, we will then have a given executable file that can be run directly on the computers hardware without any further translation needed. Using an interpreter means that each `chunk' of commands will have to processed and translated into machine code during each run of the program. This means if you want to run a program many times it could be slower than using a compiler which will yield a single file of instructions in the computers native language. 
+\newpage
+% ======== PROBLEM #4 ======== %
+\item For this question refer to Figure 11.2 (Page 295 in the textbook).
+\begin{enumerate}
+\item Describe the input to the C preprocessor. \answer The input the C preproceser are the source and header files for a given C project. This means the raw source files as the user tpyed them in their editor. 
+\item Describe the input to the C compiler. \answer The compiler obtains the output of the C preprocessor. This means it gets almost the same text as the raw source files, except any of the preprocessor directives (\verb.#define., \verb.#pragma., etc.) have been converted into actual C commands that can be compiled.
+\item Describe the input the linker. \answer The linker recieves the output of the C compiler, which has turned nearly-raw C source code into individual object modules. The modules represent bits of a machine code for single sections of a program. These individual object modules are linked with object files from other libraries and from code that comes with the operating system to produce an executable program.
+\end{enumerate}
+
+% ======== PROBLEM #5 ======== %
+\item What happens if we change the second-to-last line of the program in Figure 11.3 from \\ \verb.printf("%d\n", counter);. to:
+\begin{enumerate}
+\item \verb.printf("%c\n", counter + 'A');. \\
+\answer This code would take counter, and add to it the value for the ASCII character A (65). This would give us counter'th letter in the alphabet if counter is less than 26 and greater than zero, then output this to the screen. Example, counter = 2, then this would print the letter B to the screen.
+\item \verb.printf("%d\n%d\n", counter, startPoint + counter);. \\
+\answer This would output to integers next to eachother. The first one will be the numbers counting down from counter to zero. The second number will be counting down from 2 times startpoint to startpoint before ending.
+\item \verb.printf("%x\n", counter);. \\
+\answer This would print out the hexidecimal numbers starting from counter to 0.
+\end{enumerate}
+
+% ======== PROBLEM #6 ======== %
+\item The \verb.scanf. reads in a character from the keyboard and the function \verb.printf. prints it out. What do the following two statements accomplish?
+\begin{enumerate}
+\item  \verb.scanf("%c", nextChar");. \answer This code reads in a single character from the keyboard and saves it into the nextChar variable.
+\item \verb.printf("%d\n", &nextChar");. \answer This takes the char from the nextChar variable and outputs it's ASCII value.
+\end{enumerate}
+
+% ======== PROBLEM #7 ======== %
+\item The following lines of C code appear in a program. What will be the output of each printf statement? \\
+\verb.#define LETTER '1'.  \\
+\verb.#define ZERO 0. \\
+\verb.#define NUMBER 123 . \\
+\verb.printf"%c", 'a'); .\\
+\verb.printf("x%x", 12288); .\\
+\verb_printf("$%d.%c%d\n", NUMBER LETTER, ZERO); _\\[.2in]
+\answer \\
+\verb.a. \\
+\verb.x3000. \\
+\verb_$123.10_ \\
+% ======== PROBLEM #8 ======== %
+\item a) The following code is intended to jump to k0+4112, but it doesn’t. [ 1 pts ] \\
+\verb.addiu. \\
+\verb.jr. \\
+\verb.addiu. \\
+\verb.k0,k0,4112. \\
+\verb.k0. \\
+\verb.k0,k0,-4112.
+\begin{enumerate}
+\item Why not?
+\item How can we fix the problem and ensure that the jump is taken and the second addiu is
+not performed?
+\end{enumerate}\item The unconditional jump instruction (J) performs PC = PC[31:28] — offset$<<2$. How can
+you jump if you want to modify PC[31:28] as well? [ 1 pts ]
+\item How is the stack on the PIC32 organized (where is it and which way does it grow)? [ 1 pt ]
+\item How do you...[ 2 pts ]
+\begin{enumerate}
+\item PUSH register 16 onto the stack?
+\item POP register 16 from the stack
+\end{enumerate}
+\item. What is the purpose of the \$fp register? [ 1 pts ]
+
+\item What is the difference between register \$v0 and \$r2? [ 1 pt ]
+\item How are branches in PIC32 different than branches in LC-3? [ 1 pt ]
+\item. Describe the operation of each instruction: [ 2 pts ]
+\begin{enumerate}
+\item eret
+\item bne at,r0,0x9d0000c0
+\item lui t1,0x0
+\item sw t1,0(t2)
+\end{enumerate}
+
+\item In PIC32, how do you: [ 2 pts ]
+\begin{enumerate}
+\item Add an signed immediate value of -2 to value in register 1.
+\item Enable interrupts.
+\item Branch forward 5 instructions if register 1 is less than register 0.
+\item Store the unsigned byte 7 to a memory location that is 5 instructions beyond register 7.
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}

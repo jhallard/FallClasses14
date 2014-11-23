@@ -1,9 +1,3 @@
-/* 
- * File:   demo.c
- * Author: mrg
- *
- * Created on October 31, 2014, 9:29 AM
- */
 
 // **** Include libraries here ****
 // Standard libraries
@@ -54,8 +48,6 @@
 // This needs to be uncommented to implement your assembly function
 //extern int getDelay();
 
-extern int getDelay();
-
 
 int main(void)
 {
@@ -102,11 +94,11 @@ int main(void)
     int count=0; // move this into the delay function
     while (1) {
         // Move this printf into your getDelay function!
-//         printf("Hello, world! %d\n",count++);
+        printf("Hello, world! %d\n",count++);
         // Replace this with the getDelay function call!
-     
-        int delay = getDelay();
-//
+
+        //int delay = getDelay();
+
         // do nothing for a lot of cycles
         int i=0;
         for(i=0;i<delay;i++)
@@ -119,12 +111,10 @@ int main(void)
         // Set the output to the new mask
         PORTE=mask;
 
-//        delay = 0xA0000 + 0x40000*sin((double)count/10) + 0x20000*cos((double)count/5);
-//
-//        if(delay < 0)
-//            delay *= -1;
+        delay = 0xA0000 + 0x40000*sin((double)count/10) + 0x20000*cos((double)count/5);
+
+        if(delay < 0)
+            delay *= -1;
 
     }
-
-
 }

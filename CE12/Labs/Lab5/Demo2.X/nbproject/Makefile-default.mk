@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../demo.c
+SOURCEFILES_QUOTED_IF_SPACED=../demo.c ../myfunction.s
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/demo.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/demo.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/demo.o ${OBJECTDIR}/_ext/1472/myfunction.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/demo.o.d ${OBJECTDIR}/_ext/1472/myfunction.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1472/demo.o
+OBJECTFILES=${OBJECTDIR}/_ext/1472/demo.o ${OBJECTDIR}/_ext/1472/myfunction.o
 
 # Source Files
-SOURCEFILES=../demo.c
+SOURCEFILES=../demo.c ../myfunction.s
 
 
 CFLAGS=
@@ -79,7 +79,15 @@ MP_LINKER_FILE_OPTION=
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/_ext/1472/myfunction.o: ../myfunction.s  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/1472 
+	@${RM} ${OBJECTDIR}/_ext/1472/myfunction.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/myfunction.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC} $(MP_EXTRA_AS_PRE)  -D__DEBUG  -D__MPLAB_DEBUGGER_PK3=1 -c -mprocessor=$(MP_PROCESSOR_OPTION)  -o ${OBJECTDIR}/_ext/1472/myfunction.o ../myfunction.s  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_PK3=1,--gdwarf-2,-MD="${OBJECTDIR}/_ext/1472/myfunction.o.d"
 else
+${OBJECTDIR}/_ext/1472/myfunction.o: ../myfunction.s  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/_ext/1472 
+	@${RM} ${OBJECTDIR}/_ext/1472/myfunction.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1472/myfunction.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC} $(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -o ${OBJECTDIR}/_ext/1472/myfunction.o ../myfunction.s  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),--gdwarf-2,-MD="${OBJECTDIR}/_ext/1472/myfunction.o.d"
 endif
 
 # ------------------------------------------------------------------------------------

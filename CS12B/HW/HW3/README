@@ -1,0 +1,15 @@
+Name   - John H Allard Jr.
+ID     - 1437547
+cruzid - jhallard
+Date   - Nov 4th, 2014
+
+This is the README file for xref project, which is assignment 3 for CS12 at UCSC under Prof. Whitehead.
+TThis project uses a binary tree of queues to track how many times any given word in a document appears and on what line numbers it appears.
+
+A list of files is given below :
+xref.java        - Our "main" file, runs the program using the tree.
+Queue.java       - Defines a queue class.
+Tree.java        - Defines a tree class
+auxlib.java      - Contains auxilary functions for the project.
+Makefile         - Defines how to make all of the different parts of the project.
+README           - This file, describes the project.
