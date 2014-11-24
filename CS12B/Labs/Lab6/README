@@ -1,0 +1,16 @@
+file   - README
+Author - John H Allard 
+CruzID - jhallard
+Date   - Nov 20th, 2014
+
+This is the README file for Lab #6 for CS12 at UCSC during the Fall of 2014. The purpose of this lab was to finish the implementation of a queue class that uses separate header and source files to form a complete definition. 
+
+Files included in this project -
+queue.c
+queue.h
+main.c
+Makefile
+README
+
+To make the project, navigate to the directory containing the code and type 
+make test
