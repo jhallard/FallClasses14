@@ -35,7 +35,7 @@ void putinqueue(queue *the_queue, FILE *input, char *filename) {
       linepos = strdup(buffer);
       assert(linepos != NULL);
       queue_insert(the_queue, linepos);
-      free(linepos); // this was a pain in the arse to find, I kept thinking the leak was from inside queue
+      // free(linepos); // this was a pain in the arse to find, I kept thinking the leak was from inside queue
    }
 }
 
@@ -69,9 +69,12 @@ int main (int argc, char **argv) {
       }
    }
 
-   // while (!queue_isempty(the_queue)) {
-   //    printf("%s\n", queue_remove(the_queue));
-   // }
+   while (!queue_isempty(the_queue)) {
+      queue_item_t temp = queue_remove(the_queue);
+      printf("%s\n", temp);
+      free(temp);
+   }
+   
    queue_free(the_queue);
 
    return exit_status;

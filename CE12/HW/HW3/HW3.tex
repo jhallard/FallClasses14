@@ -22,13 +22,13 @@
 %===========---------================
 
 \begin{document}
-   \vspace*{\stretch{1.0}}
+   \vspace*{\stretch{-0.5}}
    \begin{center}
       \Large\textbf{CMPE 12 Homework \#3}\\
       \large\texttt{John Allard} \\
       \small\texttt{November 20th, 2014}
    \end{center}
-   \vspace*{\stretch{2.0}}
+   \vspace*{\stretch{0.5}}
 
 %==========================================
 %==========================================
@@ -97,17 +97,15 @@ Without removing the elements left on the stack from the previous operations, we
 \verb_$123.10_ \\
 % ======== PROBLEM #8 ======== %
 \item a) The following code is intended to jump to k0+4112, but it doesn’t. [ 1 pts ] \\
-\verb.addiu. \\
-\verb.jr. \\
-\verb.addiu. \\
-\verb.k0,k0,4112. \\
-\verb.k0. \\
-\verb.k0,k0,-4112.
+\verb.addiu k0,k0,4112. \\
+\verb.jr k0. \\
+\verb.addiu k0,k0,-4112. \\
 \begin{enumerate}
-\item Why not?
-\item How can we fix the problem and ensure that the jump is taken and the second addiu is
-not performed?
-\end{enumerate}\item The unconditional jump instruction (J) performs PC = PC[31:28] — offset$<<2$. How can
+\item Why not? \answer The $k_n$ registers are only for use by the Operating System, so a user is not allowed to make a call like this. More importantly, a \verb.jr. routine always executes the next command, which means that we would be setting k0 back to it's original value before jumping there.
+\item How can we fix the problem and ensure that the jump is taken and the second addiu is not performed? We could simply insert a \verb.NOP. command on the line after the \verb.jr. command.
+\end{enumerate}
+
+\item The unconditional jump instruction (J) performs PC = PC[31:28] — offset$<<2$. How can
 you jump if you want to modify PC[31:28] as well? [ 1 pts ]
 \item How is the stack on the PIC32 organized (where is it and which way does it grow)? [ 1 pt ]
 \item How do you...[ 2 pts ]
@@ -115,24 +113,29 @@ you jump if you want to modify PC[31:28] as well? [ 1 pts ]
 \item PUSH register 16 onto the stack?
 \item POP register 16 from the stack
 \end{enumerate}
-\item. What is the purpose of the \$fp register? [ 1 pts ]
+\item. What is the purpose of the \$fp register? \answer The frame pointer always points to the base of the stack frame and stays at that position for the duration of the subroutine call. This allows the stack to grow and shrink inside of a subroutine while still knowing what was on there when the routine was started. 
 
-\item What is the difference between register \$v0 and \$r2? [ 1 pt ]
-\item How are branches in PIC32 different than branches in LC-3? [ 1 pt ]
+\item What is the difference between register \$v0 and \$r2? \answer They refer to the same register, just \$v0 is the symbolic name for register 2. Using symbolic names helps make the programmers life easier but does not change much of anything in the final code.
+
+\item How are branches in PIC32 different than branches in LC-3? \answer For one, the instruction after the branch routine is always read in in the PIC32 system. If you use the branch likely operation, this next instruction is only executed if the branch operation succeeds. The LC3 would not implement the instruction after a branch command unless the branch failed or the program returned from the branch some how. Also, one can branch to a much further location on the PIC32 system than on the LC3. Lastly, there are more cases to branch on in the MIPS ISA that runs on PIC32, such as Branch on Equal, Branch and Link, and others. LC3 just let you branch based on any  of the 3 binary flags available to the user (negative, zero, and positive).
+
 \item. Describe the operation of each instruction: [ 2 pts ]
 \begin{enumerate}
-\item eret
-\item bne at,r0,0x9d0000c0
-\item lui t1,0x0
-\item sw t1,0(t2)
+\item eret \answer Error Return, sets the PC equal to the value in \$14. Used by exception handlers to return control of the program.
+\item bne at,r0,0x9d0000c0 \answer This branches if the values held in the two registers, at and r0 are not equal. If so, it will increment the PC by $0x9d0000c0 << 2$. 
+\item lui t1,0x0 \answer The immediate value (0x0) is left shifted by sixteen bits and stored in the register t1. The lower 16 bits are all zeroes.
+\item sw t1,0(t2) \answer Store the value in register t1 into the address that is 0 words passed the address help in register t2.
 \end{enumerate}
 
 \item In PIC32, how do you: [ 2 pts ]
 \begin{enumerate}
-\item Add an signed immediate value of -2 to value in register 1.
+\item Add an signed immediate value of -2 to value in register 1. \answer \verb.addi r1, r1, -2.
 \item Enable interrupts.
-\item Branch forward 5 instructions if register 1 is less than register 0.
-\item Store the unsigned byte 7 to a memory location that is 5 instructions beyond register 7.
+\item Branch forward 5 instructions if register 1 is less than register 0. \verb.BLT r1 0x0005.
+\item Store the unsigned byte 7 to a memory location that is 5 instructions beyond register 7.  \\
+\answer
+\verb.addi \$t1 \$t1 0x0007. \\
+\verb.sb \$t1, 5(\$r7).
 \end{enumerate}
 
 

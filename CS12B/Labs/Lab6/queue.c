@@ -38,9 +38,11 @@ queue *queue_new(void) {
 void queue_free(queue *this) {
    queue_node * temp = this->front;
    while(temp != NULL) {
-      printf("%c\n", *temp->item);
+      // printf("%c\n", *temp->item);
+      queue_item_t tempItem = temp->item;
       queue_node * temp2 = temp;
       temp = temp->link;
+      free(tempItem);
       free(temp2);
    }
    free(this);
@@ -66,9 +68,12 @@ void queue_insert(queue *this, queue_item_t item) {
 queue_item_t queue_remove(queue *this) {
    assert(!queue_isempty(this));
    struct queue_node * temp = this->front;
-   queue_item_t ret = temp->item;
+   queue_item_t ret = malloc(sizeof(queue_item_t));
+   *ret = *(temp->item);
    this->front = this->front->link;
+   free(temp->item);
    free(temp);
+   
    return ret;
 }
 

@@ -27,23 +27,9 @@ add $a1, $a1, 1
 sw $a1, val
 
 
-la $a0, myStr
-lw $a1, val
-jal printf
-NOP
-
-lw $a1, val
-add $a1, $a1, 1
-sw $a1, val
-
-la $a0, myStr
-lw $a1, val
-jal printf
-NOP
-
 and $v0, $v0, 0
 addi $v0, $v0, 0xF
-sll $v0, $v0, 0x13
+sll $v0, $v0, 0x12
 
 lw   $s0, 0($sp)   # Copy from stack to $r2
 lw   $s1, 4($sp)   # Copy from stack to $r3

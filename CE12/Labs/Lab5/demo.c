@@ -106,7 +106,8 @@ int main(void)
         // Replace this with the getDelay function call!
      
         int delay = getDelay();
-//
+//        int x = PORTD;
+//        delay = x << 12;
         // do nothing for a lot of cycles
         int i=0;
         for(i=0;i<delay;i++)

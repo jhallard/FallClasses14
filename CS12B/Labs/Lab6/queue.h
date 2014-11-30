@@ -11,7 +11,7 @@
 
 
 #include <stdbool.h>
-
+#include <assert.h>
 /* External interface declarations */
 
 struct queue;
