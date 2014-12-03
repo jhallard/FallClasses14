@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   demo.c
  * Author: mrg
  *
@@ -101,13 +101,8 @@ int main(void)
     // Loop forever, it is bad to exit in an embedded processor.
     int count=0; // move this into the delay function
     while (1) {
-        // Move this printf into your getDelay function!
-//         printf("Hello, world! %d\n",count++);
-        // Replace this with the getDelay function call!
-     
+
         int delay = getDelay();
-        int x = PORTD;
-        delay = x << 12;
         // do nothing for a lot of cycles
         int i=0;
         for(i=0;i<delay;i++)
@@ -120,12 +115,9 @@ int main(void)
         // Set the output to the new mask
         PORTE=mask;
 
-//        delay = 0xA0000 + 0x40000*sin((double)count/10) + 0x20000*cos((double)count/5);
-//
-//        if(delay < 0)
-//            delay *= -1;
 
     }
 
 
 }
+

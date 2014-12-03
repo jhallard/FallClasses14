@@ -1,0 +1,171 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=0.5in]{geometry}
+\def\lc{\left\lceil}   
+\def\rc{\right\rceil}
+\def\lf{\left\lfloor}   
+\def\rf{\right\rfloor}
+
+% \setlength{\voffset}{-1.8in}
+\setlength{\headsep}{5pt}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand{\answer}{\textbf{Answer : }}
+
+
+%===========---------================
+% Author John H Allard
+% HW Assignment #6
+% CMPE 16 - Discrete Math
+% November 12th 2014
+%===========---------================
+
+
+% \title{ CMPE 16 Homework \#7}
+% \author{John Allard}
+% \date{November 11th, 2014}
+
+\begin{document}
+% \begin{titlepage}
+   % \vspace*{\stretch{1.5}}
+   \begin{center}
+      \Large\textbf{CMPE 16 Homework \#8}\\
+      \large\texttt{John Allard} \\
+      \small\texttt{Decmber 2nd, 2014}
+   \end{center}
+   % \vspace*{\stretch{-1.0}}
+% \end{titlepage}
+% \maketitle
+
+%***************************************
+%*********** HomeWork Problems *********
+%************** Nine Total *************
+\begin{enumerate} 
+
+
+%********************************
+%*********** Problem #1 *********
+%********************************
+\item For each of the following relations :
+    \begin{itemize}
+    \item Give 3 pairs of elements that are related, Determine whether the relation is reflective, Determine whether the relation is symmetric, determine whether the relation is transitive
+    \end{itemize}
+
+    \begin{enumerate}
+    \item $R_1 = \{(n,m) : n,m \in \mathbb{Z} \text{ and } n*m \geq 0 \}$ \\[.1in]
+        \begin{tabular}{l  l}
+        Part 1.) & (1, 2), (3, 4), (5, 6) \\
+        Part 2.) & True. For any $a \in \mathbb{Z}$, $ a*a \geq 0$. Thus $(a, a)$ exists for all $a \in \mathbb{Z}$\\
+        Part 3.) & True. $\forall (x,y) \in \mathbb{Z} \times \mathbb{Z}$ : $x*y \geq 0 \implies y*x \geq 0$ \\
+                 & Multiplication is communative, so $x*y \geq 0$ necessarily implies that $y*x \geq 0$, \\
+                 & because the two statements are equivalent. \\
+        Part 4.) & True. To prove : $\forall x \forall y \forall z [([(x,y) \in R_1] \wedge [(y,z) \in R_1] \implies (x, z) \in R_1) ]$ \\
+                 & This proof will use two cases, one where $x < 0$ and one where $x \geq 0$ \\
+        Case 1 : & $x < 0$ \\
+                 & If $x < 0$, then $y \leq 0$ for the relation to hold. \\
+                 & Since $y \leq 0$, then $z < 0$ for the relation to hold. \\
+                 & Since $x < 0$ and $z < 0$, $x*z > 0$, which proves transitivity under this relation \\
+        Case 2 : & $x \geq 0$ \\
+                 & If $x \geq 0$, then $y \geq 0$ for the relation to hold. \\
+                 & Since $y \geq 0$, then $z \geq 0$ for the relation to hold. \\
+                 & Since $x \geq 0$ and $z \geq 0$, $x*z \geq 0$, which proves transitivity under this relation \\
+        \end{tabular}
+
+    \item $R_2 = \{(a,b) : a,b \in \mathbb{Z} \text{ and } a*b > 0 \}$ \\[.1in]
+        \begin{tabular}{l  l}
+        Part 1.) & (1, 2), (3, 4), (5, 6) \\
+        Part 2.) & True. For any $a \in (\mathbb{Z} - \{0\})$, $ a*a > 0$. Thus $(a, a)$ exists for all $a \in \mathbb{Z}$\\
+        Part 3.) & True. $\forall (x,y) \in \mathbb{Z} \times \mathbb{Z}$ : $x*y > 0 \implies y*x > 0$ \\
+                 &  Multiplication is communative, so $x*y > 0$ necessarily implies that $y*x \geq 0$, \\
+                 &  because the two statements are equivalent. \\
+        Part 4.) & True. $\forall x \forall y \forall z [([(x,y) \in R_2] \wedge [(y,z) \in R_2] \implies (x, z) \in R_2) ]$ \\
+                 &   This proof will use two cases, one where $x < 0$ and one where $x > 0$ \\
+        Case 1 : & $x < 0$ \\
+                 & If $x < 0$, then $y < 0$ for the relation to hold. \\
+                 & Since $y < 0$, then $z < 0$ for the relation to hold. \\
+                 & Since $x < 0$ and $z < 0$, $x*z > 0$, which proves transitivity under this relation \\
+        Case 2 : & $x > 0$ \\
+                 & If $x > 0$, then $y > 0$ for the relation to hold. \\
+                 & Since $y > 0$, then $z > 0$ for the relation to hold. \\
+                 & Since $x > 0$ and $z > 0$, $x*z > 0$, which proves transitivity under this relation \\
+        \end{tabular}
+
+    \item $R_3 = \{(i,j) : i,j \in \mathbb{N} \text{ and } i/j \geq 1 \}$ \\[.1in]
+         \begin{tabular}{l  l}
+        Part 1.) & (10, 2), (20, 8), (1024, 2) \\
+        Part 2.) & True. $\forall i \in \mathbb{N}, i/i = 1.$ \\
+                 & Thus $\forall i \in \mathbb{N}$ : $(i, i) \in R_3 $ \\ 
+        Part 3.) & False. A counter example would be $ i = 4, j = 2$, $i/j > 1$ so $ (i, j) \in R_3$ but,\\
+                 & $j/i < 1$ so $ (j, i) \not\in R_3$ \\
+        Part 4.) & True. I will attemp a direct proof \\
+                 & To prove :  $\forall x \forall y \forall z [([(x,y) \in R_3] \wedge [(y,z) \in R_3] \implies (x, z) \in R_3) ]$ \\
+                 & $(x, y) \in R_3 \implies x/y \geq 1$, $(y, z) \in R_3 \implies y/z \geq 1$ \\
+                 & $x/y \geq 1$, $x \geq y$ \\
+                 & $y/z \geq 1$, $y \geq z$ \\
+                 & $x \geq y \geq z \geq 1$ ($z \geq 1$ by def. of natural numbers) \\
+                 & $x/z \geq y/z \geq 1 \geq 1/z$ \\
+                 & $x/z \geq 1$, that which was to be shown \\
+        \end{tabular}
+
+    \item $R_4 = \{(x,y) : x,y \in \mathbb{R} \text{ and } \lc{x}\rc = \lc{y}\rc \}$ \\[.1in]
+        \begin{tabular}{l l}
+        Part 1.) & (1.09, 1.85), (3.90, 3.95), (4.90, 4.95) \\
+        Part 2.) & \\
+        Part 3.) & \\
+        Part 4.) & \\
+        \end{tabular}
+    \end{enumerate}
+
+\item In each case below explain why the relation between the set S and the set T is \textbf{not} a function.
+
+    \begin{enumerate}
+    \item S is the set of all people at least 21 years old on October 25, 2014 and T is the set of all automobiles. A person is associated with their first car. \\
+    \answer Not a function because there are people at the age of 21 or older who have never owned a car, and thus aren't associated with a first car.
+
+    \item S is the set of all ordered pairs of integers ($\mathbb{Z} \times \mathbb{Z}$) and T is the set of all rational number ($\mathbb{Q}$). An ordered pair of integers ($m, n$) is associated with $n/m$ \\
+    \answer This is not a function because there is no defined mapping from $m \in \mathbb{Z}, n = 0$ to a rational number. (Rational numbers cannot have a zero in the denominator).
+
+    \item S is the set of all bit strings and T is the set of integers. A bit string is associated with the integer $n$ if it's $n$th bit is the rightmost bit which is a zero. \\
+    \answer This is not a function because the relation is undefined if the bitstring contains no zeros, ex \texttt{0xFFFF}. 
+
+    \item S is the set of all integers  and T is the set of all real numbers. An integer $n$ is associated with a real number $x$ if $\sqrt{n} = x$. \\
+    \answer This is not a function because $\sqrt{n^2} = \pm n $, thus one input maps to more than one output.
+    \end{enumerate}
+
+
+\item  In each case below, determine whether the function given is injective (one-to-one) and prove your answer.
+
+    \begin{enumerate}
+    \item $f : \mathbb{Z}^{+} \to \mathbb{R} \text{ where } f(x) = (3x-4)/8$ \\
+    \answer : True, $f$ is one-to-one. I will attempt to prove this using induction. To do this, I will show that the function $f$ is always strictly increasing over it's domain, which means that $f(x) > f(x-1) > f(x-2) > \ldots > f(1)$, which implies that all of the inputs have a different output over $f$ \\[.15in]
+        \begin{tabular}{l | l}
+        $\forall x \in \mathbb{Z}^+$ : $f(x-1) < f(x)$                           & \quad Inductive Hypothesis \\
+        $\forall x \in \mathbb{Z}^+$ : $f(x) < f(x+1)$                           & \quad Inductive Conclusion \\
+        $f(1)= -1/8$, $f(2) = 1/4$, $f(1) < f(2)$                                & \quad Base Case \\
+        $f(x) = (3x-4)/8 =  \frac{3}{8}x - \frac{4}{8}$                          & \quad Simplifying $f(x)$ for later use \\
+        $f(x+1) = (3(x+1)-4)/8 = (3x - 1)/8 = \frac{3}{8}x - \frac{1}{8}$        & \quad Inputing $x+1$ into $f$ \\
+        $f(x+1) = \frac{3}{8}x - \frac{4}{8} + \frac{3}{8} = f(x) + \frac{3}{8}$ & \quad Substituting in $f(x)$ \\
+        $f(x+1) = f(x) + \frac{3}{8} \implies f(x+1) > f(x)$                     & \quad The inductive conclusion has been shwon \\[.1in]
+
+        \end{tabular}
+
+    \item $f : \mathbb{Z}^{+} \times \mathbb{Z}^+ \to \mathbb{Q}^+ \text{ where } f(a, b) = a/b$\\
+
+    \item $f : \mathbb{N} \to \mathbb{R} \text{ where } f(n) = \frac{1}{n}$\\
+
+    \item $f : \mathbb{R} \to \mathbb{Z} \text{ where } f(x) = \lf x \rf$\\
+
+    \end{enumerate}
+
+
+
+\end{enumerate}
+
+
+\end{document}
