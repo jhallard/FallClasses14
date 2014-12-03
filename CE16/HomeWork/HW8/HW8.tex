@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,10pt]{article}
 \usepackage{amsmath}
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
@@ -122,6 +122,10 @@
         \end{tabular}
     \end{enumerate}
 
+
+%********************************
+%*********** Problem #2 *********
+%********************************
 \item In each case below explain why the relation between the set S and the set T is \textbf{not} a function.
 
     \begin{enumerate}
@@ -139,11 +143,15 @@
     \end{enumerate}
 
 
+
+%********************************
+%*********** Problem #4 *********
+%********************************
 \item  In each case below, determine whether the function given is injective (one-to-one) and prove your answer.
 
     \begin{enumerate}
     \item $f : \mathbb{Z}^{+} \to \mathbb{R} \text{ where } f(x) = (3x-4)/8$ \\
-    \answer : True, $f$ is one-to-one. I will attempt to prove this using induction. To do this, I will show that the function $f$ is always strictly increasing over it's domain, which means that $f(x) > f(x-1) > f(x-2) > \ldots > f(1)$, which implies that all of the inputs have a different output over $f$ \\[.15in]
+    \answer : True, $f$ is one-to-one. I will attempt to prove this using induction\footnote{`Why on earth would he possibly try and use induction here?', you must be asking yourself. That's a pretty good question..}. To do this, I will show that the function $f$ is always strictly increasing over it's domain, which means that $f(x) > f(x-1) > f(x-2) > \ldots > f(1)$, which implies that all of the inputs have a different output over $f$ \\[.15in]
         \begin{tabular}{l | l}
         $\forall x \in \mathbb{Z}^+$ : $f(x-1) < f(x)$                           & \quad Inductive Hypothesis \\
         $\forall x \in \mathbb{Z}^+$ : $f(x) < f(x+1)$                           & \quad Inductive Conclusion \\
@@ -155,15 +163,93 @@
 
         \end{tabular}
 
-    \item $f : \mathbb{Z}^{+} \times \mathbb{Z}^+ \to \mathbb{Q}^+ \text{ where } f(a, b) = a/b$\\
+    \item $f : \mathbb{Z}^{+} \times \mathbb{Z}^+ \to \mathbb{Q}^+ \text{ where } f(a, b) = a/b$ \\
+    \answer No this is not a function, a simple counter example would be : \\
+    $a = 10, b = 2, f(a, b) = 10/2 = 5$. $a = 20, b = 4, f(a, b) = 20/4 = 5$. \\
+    Thus two unique inputs share the same output value, and thus $f$ is not one-to-one.\\
 
-    \item $f : \mathbb{N} \to \mathbb{R} \text{ where } f(n) = \frac{1}{n}$\\
+    \item $f : \mathbb{N} \to \mathbb{R} \text{ where } f(n) = \frac{1}{n}$ \\
+    \answer True, $f$ is one-to-one. I will try to show this by contradiction. \\
+    Assume that $n,m \in \mathbb{N}$, $n \neq m$ but $f(n) = f(m)$. \\
+    $1/n = 1/m$ \\
+    $m/n = 1$ \\
+    $m = n$, but this contadicts the fact that $m \neq n$, thus our assumption that $f(n) = f(m)$ must be false \\ 
 
     \item $f : \mathbb{R} \to \mathbb{Z} \text{ where } f(x) = \lf x \rf$\\
+    \answer No this is not one-to-one. A simple counter example would be \\
+    $x = 0.1, y = 0.11$, $\lf x \rf = 0$, $ \lf y \rf = 0$, $\lf x \rf = \lf y \rf$ \\
+    Thus two different inputs map to the same output, and $f$ is not one-to-one.
 
     \end{enumerate}
 
+\item In each case determine whether the function is onto (surjective) and prove your answer.
+    \begin{enumerate}
+    \item $f$ : $\mathbb{Z}^+ \times \mathbb{Z}^+ \to \mathbb{R}^+$ where $f(a, b) = a/b$ \\
+    \answer False : \\
+    $\sqrt{2} \in \mathbb{R}$ but $\sqrt{2} \not \in \mathbb{Q}$ because $\sqrt{2}$ is not rational \\
+    $\forall a,b \in \mathbb{Z}^+$ : $\sqrt{2} \not \in \mathbb{Q} \implies \sqrt{2} \neq a/b $ \\
+    Thus there exists $x \in \mathbb{R}^+$ such that $\forall a,b \in \mathbb{Z}^+$, $x \neq a/b$ \\\
+    So $f$ is not surjective. \\
 
+    \item $f$ : $\mathbb{Z}^+ \times \mathbb{Q}^+ \to \mathbb{R}^+$ where $f(a, b) = a/b$ \\
+    \answer False : I will show by contradiction that $\sqrt{2}$ is in $\mathbb{R}^+$ but not in the domain of $f$ \\[.1in]
+    Assume for contradiction that $\sqrt{2} \not \in \mathbb{Q}^+$ but $\sqrt{2} \in a/b$ : $(a, b) \in \mathbb{Z}^+ \times \mathbb{Q}^+$ \\
+    \begin{tabular}{l | l}
+    $f(a,b) \to \sqrt{2} \implies \sqrt{2} = a/\frac{b}{c}$, $a,b,c \in \mathbb{Z}^+$ & Enumerating our assumption \\
+    $\sqrt{2} = \frac{ac}{b} = \frac{k}{b}$ : $k = ac \in \mathbb{Z}^+$ & Simplifying \\
+    $\sqrt{2} = k/c \implies \in \mathbb{Q}^+$ & Definition of the rational numbers \\
+    \end{tabular} \\
+    However this contradicts the fact that $\sqrt{2}$ is not a rational number, and thus our assumption that $\exists a,b $ : $f(a,b) \to \sqrt{2}$ is false. And thus $f$ is not surjective. \\
+
+    \item $f$ : $\mathbb{R} \to \mathbb{R} \text{ where } f(x) = (3x-4)/8$ \\
+    \answer Yes, $f$ is surjective. \\
+    Given a general value from the reals, $y$, there is a value x (also from the reals) such that $f(x) = y$.
+    Simply take $x = (8y+4)/3$, which is also a real number\footnote{This is because the reals are closed under $+/*$}, then .. \\
+    $f((8y+4/3)) = \frac{3[(8y+4)/3]-4}{8}$ \\
+    $f((8y+4/3)) = \frac{8y+4-4}{8}$ \\
+    $f((8y+4/3)) = \frac{8y}{8} = y$ \\
+    Thus given any number $y$ from the reals, we can find an input $x$ to $f$ such that $f(x) = y$, thus $f$ is surjective.
+
+    \item $f$ : $\mathbb{Z} \to \mathbb{Q} \text{ where } f(x) = (3x-4)/8$ \\ 
+    \answer False, $f$ is not surjective. A counter example is given below. \\
+    For $f$ to be surjective, there must be some integer, $x$, that maps to any rational number, $a/b$, over the relation $(3x-4)/8$. \\
+    If $a = 1, b = 2$, then $f(x) = 1/2$. \\
+    $(3x-4)/8 = 1/2$ \\
+    $x = 8/3 \not\in \mathbb{Z}$ \\
+    Thus there is no input to $f$ from $\mathbb{Z}$ that can produce an output of $\frac{1}{2}$
+    \end{enumerate}
+
+
+%********************************
+%*********** Problem #5 *********
+%********************************
+\item In this problem you will calculate the number of UCSC ID numbers that meet certain criteria. UCSC ID numbers all have 7 digits from 0 to 9. We will assume that all digits can be 0 through 9. Be careful! There are subtleties lurking here.
+
+    \begin{enumerate}
+    \item How many UCSC ID numbers have digits that sum to 9? \\
+    \answer $m = 7$, $r = 9$. ${(m+r-1) \choose r} = {15 \choose 9} = 5005$
+
+    \item How many UCSC ID numbers have digits that sum to 16? \\
+    \answer $m = 7$, $r = 16$. ${(m+r-1) \choose r} = {22 \choose 16} = 74,613$
+
+    \item How many UCSC ID numbers must you have to guarantee that at least two of them sum to the same number? \\
+    \answer There are 64 unqiue numbers that can be generated as the sum of a valid UCSC ID number ($0-63$). Thus if you have 65 ID numbers, at least two of them must sum to the same number.
+
+    \item How many UCSC ID numbers must you have to guarantee that at least four of them have the same last 3 digits?
+    \end{enumerate}
+
+
+%********************************
+%*********** Problem #6 *********
+%********************************
+\item These problems involve a fruit store that sells apples, bananas, pears and oranges.
+    \begin{enumerate}
+    \item How many ways are there to select a bag 10 fruits? \\
+    \answer $m = 4$, $r = 10$, ${m+r-1 \choose r} = {13 \choose 10} = 286$
+    \item How many ways are there to select a bag of 10 fruits if there are only 4 pears available?
+    \item How many ways are there to select a bag of 10 fruits if there are only 4 pears and 4 oranges available?
+    \item You can also buy a closed paper bag containing 10 fruit, but you can’t peek inside till you purchase it. What is the smallest number of the most frequent fruit in any possible bag of 10 fruit? (For example, if the bag contains 2 apples, 5 pears and 3 oranges, then the most frequent fruit is the pear, or if the bag contains 4 pears, 4 apples and 2 bananas, then the pears and apples are the most frequent fruit and so 4 is the number of the most frequent fruit.)
+    \end{enumerate}
 
 \end{enumerate}
 
