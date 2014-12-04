@@ -94,6 +94,11 @@ public:
     // @return - Boolean indicating success 
     bool deleteVertex(VertexType);
 
+    // @func   - getVertex
+    // @args   - vertex to be returned
+    // @return - vertex associated with arg data
+    VertexType getVertex(VertexType);
+
     // @func   - getAllVertices
     // @args   - none
     // @return - Vector of the data contained inside all vertices. 

@@ -109,6 +109,21 @@ bool dGraph<VertexType>::insertVertex(VertexType data) {
     
 }
 
+// @func   - updateVertex
+// @args   - #1 - Data contained by the vertex to be updated, #2 The new data to insert into that verex
+// @return - Boolean indicating success, returns false if it can't find the vertex to update.
+template<class VertexType>
+bool dGraph<VertexType>::updateVertex(VertexType before, VertexType after) {
+
+    AdjList<VertexType> * adj = this->findVertex(before);
+
+    if(!adj)
+        return false;
+
+    return adj->setVertex(after);
+}
+
+
 // @func   - deleteVertices
 // @args   - #1 Vector of Vertex data corresponding to the vertices to be added.
 // @return - Boolean indicating success, is false if any of the individual insertions fail
@@ -140,6 +155,19 @@ bool dGraph<VertexType>::deleteVertices(std::vector<VertexType> vertices) {
     }
 
     return ret;
+}
+
+// @func   - getVertex
+// @args   - vertex to be returned
+// @return - vertex associated with arg data
+template<class VertexType>
+VertexType dGraph<VertexType>::getVertex(VertexType data) {
+
+    AdjList<VertexType> * temp = this->findVertex(data);
+
+    if(!temp)
+        throw std::logic_error("Vertex Not Found");
+    return temp->getVertex()->getData();
 }
 
 

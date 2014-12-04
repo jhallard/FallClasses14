@@ -44,6 +44,9 @@ private:
 
     int getFileLines(std::string, std::string *);
 
+    bool validateCommand(char, char, std::string);
+
+
 
     //////////////////////////////////////
     ///////// Private Data ///////////////

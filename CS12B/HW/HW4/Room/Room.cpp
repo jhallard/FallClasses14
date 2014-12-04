@@ -175,8 +175,8 @@ namespace std {
       // second and third and combine them using XOR
       // and bit shifting:
 
-      return ((hash<std::string>()(k.getName())
-               ^ (hash<int>()(k.getNumDescriptors()) << 1)) >> 1);
+      return hash<std::string>()(k.getName());
+               // ^ (hash<int>()(k.getNumDescriptors()) << 1)) >> 1);
     }
   };
 

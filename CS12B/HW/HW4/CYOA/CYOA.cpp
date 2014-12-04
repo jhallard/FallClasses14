@@ -33,13 +33,111 @@ bool CYOA::parseInputfile(std::string fn) {
 
     std::string * lines;
     int numLines = this->getFileLines(fn, lines);
+    Room * currentRoom = new Room();
 
     if(numLines == -1)
         return false;
 
+    char lastCommand = '_';
+    for(int i  = 0; i < numLines; i++) {
+
+        std::string line = lines[i];
+
+        if(line.length() <= 1)
+            continue;
+
+        char command = line[0];
+
+        int j = 1;
+        for(; line[j] == ' '; j++);
+
+        std::string input = line.substr(j);
+
+        if(!this->validateCommand(command, lastCommand, input))
+            return false;
+
+        lastCommand = command;
+
+        Room temp;
+
+        switch(command) {
+
+            case 'r' :
+                temp.setName(input);
+                if(this->graph.containsVertex(temp))
+                    *currentRoom = graph.getVertex(temp);
+                else {
+                    graph.insertVertex(temp);
+                    *currentRoom = temp;
+                }
+            break;
+            
+
+            case 'd' :
+                temp = *currentRoom;
+
+                if(!temp.addDescriptor(input))
+                    return false;
+
+                graph.updateVertex(*currentRoom, temp);
+
+                *currentRoom = temp;
+            break;
+            
+
+            case('o'):
+                if(graph.getAdjVertices(*currentRoom).size() - currentRoom->getNumOptions() > 1)
+                    return false;
 
 
 
+            break;
+
+
+            case('t'):
+
+            break;
+
+
+
+        }
+    }
+
+}
+
+bool CYOA::validateCommand(char currentCommand, char lastCommand, std::string input) {
+
+    // the first command must be a new room
+    if(lastCommand == '_' && currentCommand != 'r')
+        return false;
+
+    switch(currentCommand) {
+
+        case('r'):
+            if(lastCommand == 'r')
+                return false;
+            if(lastCommand == 'o')
+                return false;
+        break;
+        
+
+        case('d'):
+
+        break;
+        
+
+        case('o'):
+
+        break;
+
+
+        case('t'):
+
+        break;
+
+    }
+
+    return true;
 }
 
 

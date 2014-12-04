@@ -130,6 +130,22 @@ bool uGraph<VertexType>::insertVertex(VertexType data) {
     
 }
 
+
+// @func   - updateVertex
+// @args   - #1 - Data contained by the vertex to be updated, #2 The new data to insert into that verex
+// @return - Boolean indicating success, returns false if it can't find the vertex to update.
+template<class VertexType>
+bool uGraph<VertexType>::updateVertex(VertexType before, VertexType after) {
+
+    AdjList<VertexType> * adj = this->findVertex(before);
+
+    if(!adj)
+        return false;
+
+    return adj->setVertex(after);
+}
+
+
 // @func   - deleteVertices
 // @args   - #1 Vector of Vertex data corresponding to the vertices to be added.
 // @return - Boolean indicating success, is false if any of the individual insertions fail
