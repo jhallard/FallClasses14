@@ -42,7 +42,7 @@ private:
     //////////////////////////////////////
     char getNextInput();
 
-    int getFileLines(std::string, std::string *);
+    std::string * getFileLines(std::string, int & );
 
     bool validateCommand(char, char, std::string);
 
@@ -51,6 +51,8 @@ private:
     //////////////////////////////////////
     ///////// Private Data ///////////////
     //////////////////////////////////////
+    std::string * lines;
+
     dGraph<Room> graph;
 
     Stack history_stack;

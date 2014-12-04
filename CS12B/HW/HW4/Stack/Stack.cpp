@@ -18,7 +18,7 @@ Stack::Stack() {
 
 Stack::~Stack() {
 
-    if(stack_arr)
+    if(stack_arr != nullptr)
         delete [] stack_arr;
 }
 

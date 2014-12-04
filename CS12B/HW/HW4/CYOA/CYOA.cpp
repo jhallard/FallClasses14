@@ -31,46 +31,14 @@ char CYOA::getNextInput() {
 
 bool CYOA::parseInputFile(std::string fn) {
 
-    std::string * lines;
-    // int numLines = this->getFileLines(fn, lines);
-    Room * currentRoom = new Room();
-
-    std::string line;
-    int numLines = 0;
-    int max_lines = 1000;
-    lines = new std::string[max_lines];
-    std::ifstream newfile(fn);
-
-    if (newfile.is_open()) {
-
-        while(getline (newfile,line)){
-            lines[numLines++] = line;
-            // std::cout << line << "\n";
-            if(numLines >= max_lines) {
-                max_lines *= 2;
-                std::string * temp = new std::string[max_lines];
-                for(int i = 0; i < numLines; i++)
-                    temp[i] = lines[i];
-
-                delete [] lines;
-
-                lines = temp;
-
-            }
-        }
-
-        newfile.close();
-    }
-    else
-        return false;
-
-    if(numLines == -1) 
-        return false;
-
+    int numLines = -1;
     char lastCommand = '_';
+    Room currentRoom;
 
-    // for(int i = 0; i < numLines; i++)
-    //     std::cout << lines[i] << "\n";
+    lines = this->getFileLines(fn, numLines);
+
+    if(numLines == -1)
+        return false;
 
     for(int i = 0; i < numLines; i++) {
 
@@ -88,79 +56,93 @@ bool CYOA::parseInputFile(std::string fn) {
 
         std::string input = line.substr(j, line.length());
 
-        if(!this->validateCommand(command, lastCommand, input))
+        if(!this->validateCommand(command, lastCommand, input)) {
+            
             return false;
+        }
 
         lastCommand = command;
 
         Room temp;
 
-        std::cout << command << " - " << input << "\n\n";
+        std::cout << command << " - " << input << "\n";
 
         switch(command) {
-            case 'r' :
-                std::cout << "case r\n";
-                temp.setName(input);
-                if(graph.containsVertex(temp)) {
-                    *currentRoom = graph.getVertex(temp);
-                }
-                else {
-                    graph.insertVertex(temp);
-                    *currentRoom = temp;
+        case 'r' :
+            std::cout << "case r\n\n";
+            temp.setName(input);
+            if(graph.containsVertex(temp)) {
+                currentRoom = graph.getVertex(temp);
+            }
+            else {
+                graph.insertVertex(temp);
+                currentRoom = temp;
 
-                }
-            break;
+            }
+        break;
             
 
-            case 'd' :
-                std::cout << "case d\n";
-                temp = *currentRoom;
+        case 'd' :
+            std::cout << "case d\n\n";
+            temp = currentRoom;
 
-                if(!temp.addDescriptor(input))
-                    return false;
-                std::cout << "case r\n";
-                graph.updateVertex(*currentRoom, temp);
-
-                *currentRoom = temp;
-            break;
+            if(!temp.addDescriptor(input)) 
+                return false;
             
 
-            case('o'):
-            std::cout << "case o\n";
-                // If this fails it means the user tried to add another option without fitting a tag to the previous option
-                if(graph.getAdjVertices(*currentRoom).size() > currentRoom->getNumOptions())
-                    return false;
+            if(!graph.updateVertex(currentRoom, temp)) {
+                return false;
+            }
 
-                temp = *currentRoom;
-                currentRoom->addOption(input);
+            currentRoom = temp;
+        break;
+        
 
-                graph.updateVertex(temp, *currentRoom);
+        case('o'):
+        std::cout << "case o\n\n";
+            // If this fails it means the user tried to add another option without fitting a tag to the previous option
+            if(graph.getAdjVertices(currentRoom).size() > currentRoom.getNumOptions())
+                return false;
+          
 
-            break;
+            temp = currentRoom;
+            temp.addOption(input);
 
+            if(!graph.updateVertex(currentRoom, temp)) {
+                return false;
+            }
 
-            case('t'):
-                std::cout << "case t\n";
-                // If this fails it means the user is trying to add a tag when there is no current option
-                if(graph.getAdjVertices(*currentRoom).size() - currentRoom->getNumOptions() != 1)
-                    return false;
+            currentRoom = temp;
 
-                // if the vertex to bridge to is already in the map, just set an edge between the two.
-                if(graph.containsVertex(input))
-                    graph.insertEdge(*currentRoom, Room(input));
-                // else we have to create the new vertex and wait for it's internals to be updated later
-                else {
-                    graph.insertVertex(Room(input));
-                    graph.insertEdge(*currentRoom, Room(input));
-                }   
-
-            break;
+        break;
 
 
+        case('t'):
+            std::cout << "case t\n\n";
+            // If this fails it means the user is trying to add a tag when there is no current option
+            if((graph.getAdjVertices(currentRoom).size() - currentRoom.getNumOptions()) != -1) {
+                std::cout << graph.getAdjVertices(currentRoom).size() << " _ " << currentRoom.getNumOptions() << "\n\n";
+                return false;
+            }
+            
+            std::cout << "b: " << graph.getAdjVertices(currentRoom).size() << "\n";
+            // if the vertex to bridge to is already in the map, just set an edge between the two.
+            if(graph.containsVertex(input)) {
+                graph.insertEdge(currentRoom, Room(input));
+            }
+            // else we have to create the new vertex and wait for it's internals to be updated later
+            else {
+                graph.insertVertex(Room(input));
+                graph.insertEdge(currentRoom, Room(input));
+            }   
 
-        }
-    }
+            std::cout << "a: " << graph.getAdjVertices(currentRoom).size() << "\n";
 
+        break;
+
+        } // end switch statement
+    } // end for-loop
+    
 }
 
 bool CYOA::validateCommand(char currentCommand, char lastCommand, std::string input) {
@@ -199,10 +181,10 @@ bool CYOA::validateCommand(char currentCommand, char lastCommand, std::string in
 }
 
 
-int CYOA::getFileLines(std::string fn, std::string * lines) {
+std::string * CYOA::getFileLines(std::string fn, int & numLines) {
 
     std::string line;
-    int numlines = 0;
+    numLines = 0;
     int max_lines = 1000;
     lines = new std::string[max_lines];
     std::ifstream newfile(fn);
@@ -210,25 +192,25 @@ int CYOA::getFileLines(std::string fn, std::string * lines) {
     if (newfile.is_open()) {
 
         while(getline (newfile,line)){
-            lines[numlines++] = line;
+            lines[numLines++] = line;
             // std::cout << line << "\n";
-            if(numlines >= max_lines) {
+            if(numLines >= max_lines) {
                 max_lines *= 2;
                 std::string * temp = new std::string[max_lines];
-                for(int i = 0; i < numlines; i++)
+
+                for(int i = 0; i < numLines; i++)
                     temp[i] = lines[i];
 
-                delete [] lines;
-
                 lines = temp;
-
             }
         }
 
         newfile.close();
-        return numlines;
+        return lines;
     }
-    else
-        return -1;
+    else {
+        numLines = -1;
+        return nullptr;
+    }
 
 }

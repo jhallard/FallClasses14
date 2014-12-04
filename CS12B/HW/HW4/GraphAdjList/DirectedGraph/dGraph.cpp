@@ -117,7 +117,7 @@ bool dGraph<VertexType>::updateVertex(VertexType before, VertexType after) {
 
     AdjList<VertexType> * adj = this->findVertex(before);
 
-    if(!adj)
+    if(adj == nullptr)
         return false;
 
     return adj->setVertex(after);
@@ -344,8 +344,10 @@ std::vector< std::pair<VertexType, double> > dGraph<VertexType>::getAdjVertices(
 
     AdjList<VertexType> *  adj1 = findVertex(v1);
 
-    if(adj1 == nullptr)
+    if(adj1 == nullptr) {
+        std::cout << "fuck\n";
         return retVector;
+    }
 
     std::vector<Edge<VertexType> *> edgeList = adj1->getAllEdges();
 

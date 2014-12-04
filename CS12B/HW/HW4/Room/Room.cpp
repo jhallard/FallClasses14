@@ -95,7 +95,6 @@ bool Room::addDescriptor(std::string new_desc) {
         this->num_desc++;
         return true;
     }
-    std::cout << "case r\n";
     max_desc *= 2;
     std::string * temp = new std::string[max_desc];
 
@@ -106,10 +105,8 @@ bool Room::addDescriptor(std::string new_desc) {
     temp[num_desc] = new_desc;
     num_desc++;
 
-    std::cout << "case r\n";
     if(descriptors != nullptr)
         delete [] descriptors;
-    std::cout << "case r\n";
 
     descriptors = temp;
 
@@ -165,8 +162,7 @@ bool Room::addOption(std::string new_opt) {
 
 bool Room::operator==(const Room &other) const
 { 
-    return (this->name == other.getName()) &&
-           (this->num_desc == other.getNumDescriptors());
+    return (this->name == other.getName());
 }
 
 bool Room::operator!=(const Room &other) const
@@ -220,7 +216,7 @@ namespace std {
       if(k.getName().length())
         return hash<std::string>()(k.getName());
       else
-        return hash<std::string>()("HelloTherexx");
+        return hash<std::string>()(k.getName());
 
     }
   };
