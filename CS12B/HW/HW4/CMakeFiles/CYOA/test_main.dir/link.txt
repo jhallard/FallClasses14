@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11    CMakeFiles/CYOA/test_main.dir/CYOA/test_main.cpp.o  -o CYOA/test_main -rdynamic 
