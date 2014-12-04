@@ -29,19 +29,54 @@ char CYOA::getNextInput() {
 }
 
 
-bool CYOA::parseInputfile(std::string fn) {
+bool CYOA::parseInputFile(std::string fn) {
 
     std::string * lines;
-    int numLines = this->getFileLines(fn, lines);
+    // int numLines = this->getFileLines(fn, lines);
     Room * currentRoom = new Room();
 
-    if(numLines == -1)
+    std::string line;
+    int numLines = 0;
+    int max_lines = 1000;
+    lines = new std::string[max_lines];
+    std::ifstream newfile(fn);
+
+    if (newfile.is_open()) {
+
+        while(getline (newfile,line)){
+            lines[numLines++] = line;
+            // std::cout << line << "\n";
+            if(numLines >= max_lines) {
+                max_lines *= 2;
+                std::string * temp = new std::string[max_lines];
+                for(int i = 0; i < numLines; i++)
+                    temp[i] = lines[i];
+
+                delete [] lines;
+
+                lines = temp;
+
+            }
+        }
+
+        newfile.close();
+    }
+    else
+        return false;
+
+    if(numLines == -1) 
         return false;
 
     char lastCommand = '_';
-    for(int i  = 0; i < numLines; i++) {
+
+    // for(int i = 0; i < numLines; i++)
+    //     std::cout << lines[i] << "\n";
+
+    for(int i = 0; i < numLines; i++) {
 
         std::string line = lines[i];
+
+        // std::cout << "\n" << line << "\n";
 
         if(line.length() <= 1)
             continue;
@@ -51,7 +86,7 @@ bool CYOA::parseInputfile(std::string fn) {
         int j = 1;
         for(; line[j] == ' '; j++);
 
-        std::string input = line.substr(j);
+        std::string input = line.substr(j, line.length());
 
         if(!this->validateCommand(command, lastCommand, input))
             return false;
@@ -60,25 +95,30 @@ bool CYOA::parseInputfile(std::string fn) {
 
         Room temp;
 
-        switch(command) {
+        std::cout << command << " - " << input << "\n\n";
 
+        switch(command) {
             case 'r' :
+                std::cout << "case r\n";
                 temp.setName(input);
-                if(this->graph.containsVertex(temp))
+                if(graph.containsVertex(temp)) {
                     *currentRoom = graph.getVertex(temp);
+                }
                 else {
                     graph.insertVertex(temp);
                     *currentRoom = temp;
+
                 }
             break;
             
 
             case 'd' :
+                std::cout << "case d\n";
                 temp = *currentRoom;
 
                 if(!temp.addDescriptor(input))
                     return false;
-
+                std::cout << "case r\n";
                 graph.updateVertex(*currentRoom, temp);
 
                 *currentRoom = temp;
@@ -86,15 +126,33 @@ bool CYOA::parseInputfile(std::string fn) {
             
 
             case('o'):
-                if(graph.getAdjVertices(*currentRoom).size() - currentRoom->getNumOptions() > 1)
+            std::cout << "case o\n";
+                // If this fails it means the user tried to add another option without fitting a tag to the previous option
+                if(graph.getAdjVertices(*currentRoom).size() > currentRoom->getNumOptions())
                     return false;
 
+                temp = *currentRoom;
+                currentRoom->addOption(input);
 
+                graph.updateVertex(temp, *currentRoom);
 
             break;
 
 
             case('t'):
+                std::cout << "case t\n";
+                // If this fails it means the user is trying to add a tag when there is no current option
+                if(graph.getAdjVertices(*currentRoom).size() - currentRoom->getNumOptions() != 1)
+                    return false;
+
+                // if the vertex to bridge to is already in the map, just set an edge between the two.
+                if(graph.containsVertex(input))
+                    graph.insertEdge(*currentRoom, Room(input));
+                // else we have to create the new vertex and wait for it's internals to be updated later
+                else {
+                    graph.insertVertex(Room(input));
+                    graph.insertEdge(*currentRoom, Room(input));
+                }   
 
             break;
 
@@ -108,7 +166,7 @@ bool CYOA::parseInputfile(std::string fn) {
 bool CYOA::validateCommand(char currentCommand, char lastCommand, std::string input) {
 
     // the first command must be a new room
-    if(lastCommand == '_' && currentCommand != 'r')
+    if(lastCommand == '_' && currentCommand != 'r') 
         return false;
 
     switch(currentCommand) {
@@ -147,14 +205,14 @@ int CYOA::getFileLines(std::string fn, std::string * lines) {
     int numlines = 0;
     int max_lines = 1000;
     lines = new std::string[max_lines];
-    std::ifstream newfile (fn);
+    std::ifstream newfile(fn);
 
     if (newfile.is_open()) {
 
         while(getline (newfile,line)){
             lines[numlines++] = line;
-
-            if(numlines >= 1000) {
+            // std::cout << line << "\n";
+            if(numlines >= max_lines) {
                 max_lines *= 2;
                 std::string * temp = new std::string[max_lines];
                 for(int i = 0; i < numlines; i++)
@@ -167,10 +225,9 @@ int CYOA::getFileLines(std::string fn, std::string * lines) {
             }
         }
 
-    newfile.close();
-    return numlines;
+        newfile.close();
+        return numlines;
     }
-
     else
         return -1;
 

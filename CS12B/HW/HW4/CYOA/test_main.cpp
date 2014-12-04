@@ -7,12 +7,9 @@
 
 int main() {
 
-    dGraph<Room> graph;
-    Stack mystack;
-    Room myRoom("hello");
+    CYOA theGame;
 
-    for(int i = 0; i < 10000; i++) {
-        mystack.push("hey, there");
-    }
+    if(!theGame.parseInputFile("CYOA/testinput.txt"))
+        std::cout << "NONONONO";
     return 0;
 }

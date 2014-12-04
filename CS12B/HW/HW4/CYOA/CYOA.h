@@ -31,7 +31,7 @@ public:
 
     ~CYOA();
 
-    bool parseInputfile(std::string);
+    bool parseInputFile(std::string);
 
     bool startGame();
 

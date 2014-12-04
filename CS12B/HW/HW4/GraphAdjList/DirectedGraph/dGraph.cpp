@@ -902,7 +902,8 @@ AdjList<VertexType> * dGraph<VertexType>::findVertex(VertexType data) {
     // if true then a vertex with the given data does not exist in our map, so return nullptr.
     if(get == lookupMap.end()) 
         return nullptr;
-    
+
+
     return get->second;
  }
 

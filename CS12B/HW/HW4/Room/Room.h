@@ -20,6 +20,7 @@ class Room {
 public:
     Room();
     Room(std::string);
+    Room(const Room &);
 
     ~Room();
 
@@ -38,6 +39,7 @@ public:
 
     bool operator==(const Room &other) const;
     bool operator!=(const Room &other) const;
+    bool operator=(const Room &other);
 
     friend std::ostream& operator<<(std::ostream& os, const Room& dt);
 

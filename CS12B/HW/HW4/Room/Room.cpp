@@ -33,13 +33,31 @@ Room::Room(std::string nm) {
     this->room_options = new std::string[max_opt];
 }
 
+Room::Room(const Room & other) {
+
+    this->setName(other.getName());
+    this->num_desc = other.getNumDescriptors();
+    this->max_desc = 2*num_desc+10;
+    this->descriptors = new std::string[max_desc];
+
+    this->num_opt = other.getNumOptions();
+    this->max_opt = 12;
+    this->room_options = new std::string[max_opt];
+
+    for(int i = 0; i < num_desc; i++)
+        descriptors[i] = other.getDescriptors()[i];
+
+    for(int i = 0; i < num_desc; i++)
+        room_options[i] = other.getOptions()[i];
+}
+
 Room::~Room() {
 
-    if(room_options)
-        delete [] room_options;
+    if(this->room_options != nullptr)
+        delete [] this->room_options;
 
-    if(descriptors)
-        delete [] descriptors;
+    if(this->descriptors != nullptr)
+        delete [] this->descriptors;
 }
 
 std::string Room::getName() const {
@@ -77,7 +95,7 @@ bool Room::addDescriptor(std::string new_desc) {
         this->num_desc++;
         return true;
     }
-
+    std::cout << "case r\n";
     max_desc *= 2;
     std::string * temp = new std::string[max_desc];
 
@@ -88,7 +106,10 @@ bool Room::addDescriptor(std::string new_desc) {
     temp[num_desc] = new_desc;
     num_desc++;
 
-    delete(descriptors);
+    std::cout << "case r\n";
+    if(descriptors != nullptr)
+        delete [] descriptors;
+    std::cout << "case r\n";
 
     descriptors = temp;
 
@@ -153,6 +174,28 @@ bool Room::operator!=(const Room &other) const
     return !(*this == other);
 }
 
+bool Room::operator=(const Room &other) {
+
+    if(!room_options) delete [] room_options;
+    if(!descriptors) delete [] descriptors;
+
+    std::string temp = other.getName();
+    this->setName(temp);
+    this->num_desc = other.getNumDescriptors();
+    this->max_desc = 2*num_desc+10;
+    this->descriptors = new std::string[max_desc];
+
+    this->num_opt = other.getNumOptions();
+    this->max_opt = 12;
+    this->room_options = new std::string[max_opt];
+
+    for(int i = 0; i < num_desc; i++)
+        descriptors[i] = other.getDescriptors()[i];
+
+    for(int i = 0; i < num_desc; i++)
+        room_options[i] = other.getOptions()[i];
+}
+
 std::ostream& operator<<(std::ostream& os, const Room& dt)
 {
     os << dt.name;
@@ -174,9 +217,11 @@ namespace std {
       // Compute individual hash values for first,
       // second and third and combine them using XOR
       // and bit shifting:
+      if(k.getName().length())
+        return hash<std::string>()(k.getName());
+      else
+        return hash<std::string>()("HelloTherexx");
 
-      return hash<std::string>()(k.getName());
-               // ^ (hash<int>()(k.getNumDescriptors()) << 1)) >> 1);
     }
   };
 
