@@ -1,0 +1,4 @@
+Scanning dependencies of target test_main
+[100%] Building CXX object CMakeFiles/CYOA/test_main.dir/CYOA/test_main.cpp.o
+Linking CXX executable CYOA/test_main
+[100%] Built target CYOA/test_main
