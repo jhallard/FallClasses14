@@ -41,13 +41,13 @@ Room::Room(const Room & other) {
     this->descriptors = new std::string[max_desc];
 
     this->num_opt = other.getNumOptions();
-    this->max_opt = 12;
+    this->max_opt = 2*num_opt+10;
     this->room_options = new std::string[max_opt];
 
     for(int i = 0; i < num_desc; i++)
         descriptors[i] = other.getDescriptors()[i];
 
-    for(int i = 0; i < num_desc; i++)
+    for(int i = 0; i < num_opt; i++)
         room_options[i] = other.getOptions()[i];
 }
 
@@ -182,13 +182,13 @@ bool Room::operator=(const Room &other) {
     this->descriptors = new std::string[max_desc];
 
     this->num_opt = other.getNumOptions();
-    this->max_opt = 12;
+    this->max_opt = 2*num_opt+10;
     this->room_options = new std::string[max_opt];
 
     for(int i = 0; i < num_desc; i++)
         descriptors[i] = other.getDescriptors()[i];
 
-    for(int i = 0; i < num_desc; i++)
+    for(int i = 0; i < num_opt; i++)
         room_options[i] = other.getOptions()[i];
 }
 

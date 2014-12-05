@@ -90,11 +90,11 @@ bool AdjList<VertexType>::addEdge(Vertex<VertexType> * vert, double wt){
         return true;
     }
 
-    // no self loops
-    if(pEdge->getVertex()->getData() == vert->getData()) {
-        delete(newEdge);
-        return false;
-    }
+    // // no self loops
+    // if(pEdge->getVertex()->getData() == vert->getData()) {
+    //     delete(newEdge);
+    //     return false;
+    // }
 
     Edge<VertexType> * temp;
     temp = pEdge;

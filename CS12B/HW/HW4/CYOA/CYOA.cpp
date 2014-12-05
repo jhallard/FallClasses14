@@ -13,6 +13,7 @@
 
 CYOA::CYOA() {
     current_input = '\0';
+    graph.setIsMultiGraph(true);
 }
 
 CYOA::~CYOA() {
@@ -25,12 +26,19 @@ bool CYOA::startGame() {
     if(!graph.getNumVertices())
         return false;
 
-    current_input = getNextInput();
+    current_input = 't'; //getNextInput();
     Room current_room = graph.getVertex(first_room);
 
+    printInfo(current_room);
+
     while(current_input != 'q') {
+        std::cout << "\n\n";
+
+        auto edges = graph.getAdjVertices(current_room);
 
         switch(current_input) {
+
+            case 't' : break; // default first case
 
             case 'z' :
             if(history_stack.getNumItems() <= 1) {
@@ -42,38 +50,67 @@ bool CYOA::startGame() {
             current_room = graph.getVertex(history_stack.peek());
             break;
 
+
             case 'r' :
             history_stack.clear();
             current_room = graph.getVertex(first_room);
             history_stack.push(first_room.getName());
             break;
 
+
             case 'y' :
-            graph.printGraph();
+            std::cout << current_room.getName() << "--";
+            for(auto edge : edges)
+                std::cout << edge.first.getName() << ", ";
+            std::cout << "\n\n";
             break;
 
-            default :
 
+            default :
             int edge_choice = current_input - 'a'; 
-            auto edges = graph.getAdjVertices(current_room);
 
             if(edge_choice >= edges.size()) {
                 std::cout << "There are not " << edge_choice << " Options Available \n";
                 break;
             }
 
+            std::string * opt = current_room.getOptions();
+            std::string temp = opt[edge_choice];
+
+            // if it's a cycle back to the same room
+            if(temp == current_room.getName())
+                break;
+
+            Room new_room;
+            new_room = edges[edge_choice].first;
+            current_room = graph.getVertex(new_room);
+            history_stack.push(current_room.getName());
+            printInfo(current_room);
             break;
         }
+        current_input = getNextInput();
     }
 
-    current_input = getNextInput();
+}
 
+bool CYOA::printInfo(Room room) {
+    std::string * temp = room.getDescriptors();
+    for(int i = 0; i < room.getNumDescriptors(); i++)
+        std::cout << temp[i] << "\n";
+    std::cout << "\n";
+
+    temp = room.getOptions();
+    for(int i = 0; i < room.getNumOptions(); i++)
+        std::cout << (char)('a'+i) << ".) " << temp[i] << "\n";
 }
 
 char CYOA::getNextInput() {
 
     while(true) {
         char inp = getchar();
+        std::cin.get();
+
+        // std::cout << (int)inp << "__" << (int)'a' << "__" << (int)'l' << "\n\n";
 
         if((inp >= 'a' && inp <= 'l') || inp == 'q' || inp == 'r' || inp == 'y' || inp == 'z')
             return inp;
@@ -169,7 +206,6 @@ bool CYOA::parseInputFile(std::string fn) {
                 return false;
            
             currentRoom = temp;
-
         break;
 
 
@@ -186,7 +222,6 @@ bool CYOA::parseInputFile(std::string fn) {
                 graph.insertVertex(Room(input));
                 graph.insertEdge(currentRoom, Room(input));
             }   
-
 
         break;
 

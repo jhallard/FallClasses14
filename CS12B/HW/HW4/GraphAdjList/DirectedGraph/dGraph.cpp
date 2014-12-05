@@ -405,7 +405,7 @@ bool dGraph<VertexType>::setIsMultiGraph(bool val) {
     this->isMultiGraph = val;
 
     for(auto i : list) {
-        i->setisMultiGraph(val);
+        i->setIsMultiGraph(val);
     }
 
     return true;

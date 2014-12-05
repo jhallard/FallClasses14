@@ -11,5 +11,7 @@ int main() {
 
     if(!theGame.parseInputFile("CYOA/testinput.txt"))
         std::cout << "NONONONO";
+
+    theGame.startGame();
     return 0;
 }
