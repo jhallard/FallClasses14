@@ -59,6 +59,8 @@ private:
 
     char current_input;
 
+    Room first_room;
+
 };
 
 #include "CYOA.cpp"

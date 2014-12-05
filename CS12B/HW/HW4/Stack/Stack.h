@@ -21,6 +21,9 @@ public:
     ~Stack();
 
     std::string peek() const;
+
+    bool clear();
+    
     bool pop();
 
     bool push(std::string);

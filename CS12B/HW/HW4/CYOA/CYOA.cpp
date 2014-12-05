@@ -22,18 +22,78 @@ CYOA::~CYOA() {
 
 bool CYOA::startGame() {
 
+    if(!graph.getNumVertices())
+        return false;
+
+    current_input = getNextInput();
+    Room current_room = graph.getVertex(first_room);
+
+    while(current_input != 'q') {
+
+        switch(current_input) {
+
+            case 'z' :
+            if(history_stack.getNumItems() <= 1) {
+                std::cout << "Already at First Room\n";
+                break;
+            }
+            
+            history_stack.pop();
+            current_room = graph.getVertex(history_stack.peek());
+            break;
+
+            case 'r' :
+            history_stack.clear();
+            current_room = graph.getVertex(first_room);
+            history_stack.push(first_room.getName());
+            break;
+
+            case 'y' :
+            graph.printGraph();
+            break;
+
+            default :
+
+            int edge_choice = current_input - 'a'; 
+            auto edges = graph.getAdjVertices(current_room);
+
+            if(edge_choice >= edges.size()) {
+                std::cout << "There are not " << edge_choice << " Options Available \n";
+                break;
+            }
+
+            break;
+        }
+    }
+
+    current_input = getNextInput();
+
 }
 
 char CYOA::getNextInput() {
+
+    while(true) {
+        char inp = getchar();
+
+        if((inp >= 'a' && inp <= 'l') || inp == 'q' || inp == 'r' || inp == 'y' || inp == 'z')
+            return inp;
+        else
+            std::cout << "Invalid Input, Try Again : \n";
+    }
 
 }
 
 
 bool CYOA::parseInputFile(std::string fn) {
 
+    // reset member values
+    graph = dGraph<Room>();
+    history_stack = Stack();
+
     int numLines = -1;
     char lastCommand = '_';
     Room currentRoom;
+    bool seen_first_room = false;
 
     lines = this->getFileLines(fn, numLines);
 
@@ -43,8 +103,6 @@ bool CYOA::parseInputFile(std::string fn) {
     for(int i = 0; i < numLines; i++) {
 
         std::string line = lines[i];
-
-        // std::cout << "\n" << line << "\n";
 
         if(line.length() <= 1)
             continue;
@@ -65,41 +123,40 @@ bool CYOA::parseInputFile(std::string fn) {
 
         Room temp;
 
-        std::cout << command << " - " << input << "\n";
-
         switch(command) {
         case 'r' :
-            std::cout << "case r\n\n";
+            
             temp.setName(input);
             if(graph.containsVertex(temp)) {
                 currentRoom = graph.getVertex(temp);
             }
             else {
+                if(!seen_first_room) {
+                    this->first_room = temp;
+                    seen_first_room = true;
+                }
                 graph.insertVertex(temp);
                 currentRoom = temp;
-
             }
         break;
             
 
         case 'd' :
-            std::cout << "case d\n\n";
+            
             temp = currentRoom;
 
             if(!temp.addDescriptor(input)) 
                 return false;
             
 
-            if(!graph.updateVertex(currentRoom, temp)) {
+            if(!graph.updateVertex(currentRoom, temp))
                 return false;
-            }
-
+           
             currentRoom = temp;
         break;
         
 
         case('o'):
-        std::cout << "case o\n\n";
             // If this fails it means the user tried to add another option without fitting a tag to the previous option
             if(graph.getAdjVertices(currentRoom).size() > currentRoom.getNumOptions())
                 return false;
@@ -108,24 +165,18 @@ bool CYOA::parseInputFile(std::string fn) {
             temp = currentRoom;
             temp.addOption(input);
 
-            if(!graph.updateVertex(currentRoom, temp)) {
+            if(!graph.updateVertex(currentRoom, temp))
                 return false;
-            }
-
+           
             currentRoom = temp;
 
         break;
 
 
         case('t'):
-            std::cout << "case t\n\n";
             // If this fails it means the user is trying to add a tag when there is no current option
-            if((graph.getAdjVertices(currentRoom).size() - currentRoom.getNumOptions()) != -1) {
-                std::cout << graph.getAdjVertices(currentRoom).size() << " _ " << currentRoom.getNumOptions() << "\n\n";
+            if((graph.getAdjVertices(currentRoom).size() - currentRoom.getNumOptions()) != -1)
                 return false;
-            }
-            
-            std::cout << "b: " << graph.getAdjVertices(currentRoom).size() << "\n";
             // if the vertex to bridge to is already in the map, just set an edge between the two.
             if(graph.containsVertex(input)) {
                 graph.insertEdge(currentRoom, Room(input));
@@ -136,13 +187,14 @@ bool CYOA::parseInputFile(std::string fn) {
                 graph.insertEdge(currentRoom, Room(input));
             }   
 
-            std::cout << "a: " << graph.getAdjVertices(currentRoom).size() << "\n";
 
         break;
 
         } // end switch statement
     } // end for-loop
     
+    graph.printGraph();
+    return true;
 }
 
 bool CYOA::validateCommand(char currentCommand, char lastCommand, std::string input) {

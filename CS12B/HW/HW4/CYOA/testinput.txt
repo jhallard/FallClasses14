@@ -5,10 +5,29 @@ o Go to sleep.
 t room2
 o Stay awake.
 t room1
+o Hit Him Up.
+t room4
 
 r room2
 d You are sleeping.
 o Stay asleep.
 t room2
 o Wake up.
+t room1
+o Knock Out.
+t room3
+
+r room3
+d This is room one.
+d You are awake.
+o Go to Bed Time Story.
+t room1
+o Pass Out.
+t room4
+
+r room4
+d You are sleeping.
+o Holy Molyp.
+t room3
+o Tired Time.
 t room1

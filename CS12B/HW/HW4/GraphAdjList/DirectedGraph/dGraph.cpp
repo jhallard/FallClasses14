@@ -345,7 +345,6 @@ std::vector< std::pair<VertexType, double> > dGraph<VertexType>::getAdjVertices(
     AdjList<VertexType> *  adj1 = findVertex(v1);
 
     if(adj1 == nullptr) {
-        std::cout << "fuck\n";
         return retVector;
     }
 

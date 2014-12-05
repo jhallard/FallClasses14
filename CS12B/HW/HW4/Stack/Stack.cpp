@@ -38,6 +38,17 @@ bool Stack::pop() {
     return true;
 }
 
+
+bool Stack::clear() {
+    if(!num_items)
+        return false;
+
+    while(num_items)
+        stack_arr[num_items--] = "";
+
+    return true;
+}
+
 bool Stack::push(std::string new_item) {
 
     if(num_items < max_items) {
