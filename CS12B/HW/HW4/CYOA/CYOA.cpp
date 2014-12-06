@@ -23,31 +23,37 @@ CYOA::~CYOA() {
 
 bool CYOA::startGame() {
 
-    if(!graph.getNumVertices())
+    if(!graph.getNumVertices()) // If there are no rooms the game can't start
         return false;
 
-    current_input = 't'; //getNextInput();
-    Room current_room = graph.getVertex(first_room);
+    current_input = '\0';
+
+    std::cout << "\n\n\n\n\n";
+
+    Room current_room = graph.getVertex(first_room); // we start the game in the first room
 
     printInfo(current_room);
 
     while(current_input != 'q') {
-        std::cout << "\n\n";
 
         auto edges = graph.getAdjVertices(current_room);
 
         switch(current_input) {
 
-            case 't' : break; // default first case
+            case '\0' : break; // default first case
 
             case 'z' :
             if(history_stack.getNumItems() <= 1) {
                 std::cout << "Already at First Room\n";
+                current_input = getNextInput();
+                continue;
                 break;
             }
             
             history_stack.pop();
             current_room = graph.getVertex(history_stack.peek());
+            printInfo(current_room);
+
             break;
 
 
@@ -55,31 +61,36 @@ bool CYOA::startGame() {
             history_stack.clear();
             current_room = graph.getVertex(first_room);
             history_stack.push(first_room.getName());
+            printInfo(current_room);
+
             break;
 
 
             case 'y' :
-            std::cout << current_room.getName() << "--";
-            for(auto edge : edges)
-                std::cout << edge.first.getName() << ", ";
-            std::cout << "\n\n";
+            graph.printGraph();
             break;
 
-
+            // default case is if the input is a-l
             default :
             int edge_choice = current_input - 'a'; 
 
             if(edge_choice >= edges.size()) {
-                std::cout << "There are not " << edge_choice << " Options Available \n";
+                std::cout << "There are not " << edge_choice+1 << " Options Available, Try Again \n";
+                // printInfo(current_room);
+                current_input = getNextInput();
+                continue;
                 break;
             }
 
             std::string * opt = current_room.getOptions();
             std::string temp = opt[edge_choice];
 
+            std::cout << "[ " << temp << " ]\n\n";
             // if it's a cycle back to the same room
-            if(temp == current_room.getName())
+            if(temp == current_room.getName()) {
+                history_stack.push(current_room.getName());
                 break;
+            }
 
             Room new_room;
             new_room = edges[edge_choice].first;
@@ -89,6 +100,7 @@ bool CYOA::startGame() {
             break;
         }
         current_input = getNextInput();
+        std::cout << "\n___________________________________\n";
     }
 
 }
@@ -108,9 +120,7 @@ char CYOA::getNextInput() {
 
     while(true) {
         char inp = getchar();
-        std::cin.get();
-
-        // std::cout << (int)inp << "__" << (int)'a' << "__" << (int)'l' << "\n\n";
+        std::cin.get(); // to clear the dangling \n off the buffer
 
         if((inp >= 'a' && inp <= 'l') || inp == 'q' || inp == 'r' || inp == 'y' || inp == 'z')
             return inp;
@@ -141,7 +151,7 @@ bool CYOA::parseInputFile(std::string fn) {
 
         std::string line = lines[i];
 
-        if(line.length() <= 1)
+        if(line.length() <= 1 || isCommentLine(line))
             continue;
 
         char command = line[0];
@@ -150,6 +160,8 @@ bool CYOA::parseInputFile(std::string fn) {
         for(; line[j] == ' '; j++);
 
         std::string input = line.substr(j, line.length());
+
+        // std::cout << "[ " << command << " : " << input << " ]\n";
 
         if(!this->validateCommand(command, lastCommand, input)) {
             
@@ -227,8 +239,7 @@ bool CYOA::parseInputFile(std::string fn) {
 
         } // end switch statement
     } // end for-loop
-    
-    graph.printGraph();
+
     return true;
 }
 
@@ -265,6 +276,32 @@ bool CYOA::validateCommand(char currentCommand, char lastCommand, std::string in
     }
 
     return true;
+}
+
+bool CYOA::isCommentLine(std::string str) {
+
+    if(!str.length())
+        return true;
+
+    char currentCommand = str[0];
+    switch(currentCommand) {
+
+        case('r'):
+
+        case('d'):
+        
+        case('o'):
+
+        case('t'):
+        return false;
+        break;
+
+        default :
+        return true;
+        break;
+
+    }
+
 }
 
 

@@ -41,7 +41,7 @@ Room::Room(const Room & other) {
     this->descriptors = new std::string[max_desc];
 
     this->num_opt = other.getNumOptions();
-    this->max_opt = 2*num_opt+10;
+    this->max_opt = 12;
     this->room_options = new std::string[max_opt];
 
     for(int i = 0; i < num_desc; i++)
@@ -160,13 +160,11 @@ bool Room::addOption(std::string new_opt) {
     return true;
 }
 
-bool Room::operator==(const Room &other) const
-{ 
+bool Room::operator==(const Room &other) const { 
     return (this->name == other.getName());
 }
 
-bool Room::operator!=(const Room &other) const
-{ 
+bool Room::operator!=(const Room &other) const { 
     return !(*this == other);
 }
 

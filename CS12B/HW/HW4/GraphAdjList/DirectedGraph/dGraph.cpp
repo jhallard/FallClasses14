@@ -3,14 +3,14 @@
 *   @File     - dGraph.cpp
 *   @Date     - 11/20/2014
 *   @Repo     - https://github.com/jhallard/DataStructures/Graphs
-*   @Purpose  - This is my definition of the dGraph (undirected Graph) class. This class represents a templated, 
-*               undirected graph, upon which a user can perform operations like searches, path finding, minimium-cut, etc. 
+*   @Purpose  - This is my definition of the dGraph (directed Graph) class. This class represents a templated, 
+*               directed graph, upon which a user can perform operations like searches, path finding, minimium-cut, etc. 
 *               This class was implemented as part of my C++ Data Structures personal project. All code is open license and free to use, just leave some
 *               sort of note in your source code giving credit to me and a link to my github (github.com/jhallard)
 *
 *   @Details  - This class uses a series of adjacency lists to represent a graph data structure. An adjacency list consists of a vertex and a list 
 *               of edges that eminate from this vertex to the other vertices in the map, along with the weight associated with those edges. 
-*               Thus if some vertex v had edges connected it with vertices a, b, c, d, and e, the adj list for vertex v would look like :
+*               Thus if some vertex v had edges connecting it with vertices a, b, c, d, and e, the adj list for vertex v would look like :
 *               v -> a* -> b* -> c* -> d* -> e* -> null
 *               Where x* is an edge that leads from vertex v to vertex x. Thus to find all of the edges that eminate from a given vertex v, you just need to
 *               traverse the list of edges on the AdjList that contains vertex v.
@@ -364,10 +364,20 @@ std::vector< std::pair<VertexType, double> > dGraph<VertexType>::getAdjVertices(
 // @info   - prints the adjecency list representation of the graph.
 template<class VertexType> void dGraph<VertexType>::printGraph() {
     
-    for(int i = 0; i < list.size(); i++) {
-        std::cout << "Vertex : " << list[i]->getVertex()->getData() << " -> ";
+    std::string * temp = new std::string[this->getNumVertices()];
+    int pos = 0;
+    for(auto i : list) 
+        temp[pos++] = i->getVertex()->getData().getName();
 
-        std::vector<Edge<VertexType> *> edges = list[i]->getAllEdges(); 
+    temp = merge_sort(temp, this->getNumVertices());
+    
+    for(int i = 0; i < list.size(); i++) {
+
+        AdjList<VertexType> * t = this->findVertex(Room(temp[i]));
+
+        std::cout << t->getVertex()->getData() << " -> ";
+
+        std::vector<Edge<VertexType> *> edges = t->getAllEdges(); 
 
         for(int j = 0; j < edges.size(); j++) {
             std::cout << edges[j]->getVertex()->getData() << ", ";
@@ -816,7 +826,7 @@ typename dGraph<VertexType>::dist_prev_pair dGraph<VertexType>::dijkstras(Vertex
     ret.first = prev;
     ret.second = dist;
 
-     return ret;
+    return ret;
 }
 
 // @func   - dijkstrasComputePath
@@ -832,6 +842,7 @@ std::pair<std::vector<VertexType>, double> dGraph<VertexType>::dijkstrasComputeP
     std::unordered_map<VertexType, VertexType> prev;
     std::unordered_map<VertexType, double> dist;
     std::vector<VertexType> path;
+    path.reserve(this->numVertices);
     std::pair<std::vector<VertexType>, double> ret;
 
     if(this->findVertex(src) == nullptr || this->findVertex(dest) == nullptr)
@@ -896,7 +907,7 @@ std::vector<VertexType> dGraph<VertexType>::aStar(VertexType, std::vector<Vertex
 // @return - Pointer to the AdjList containing the vertex in queston. nullptr if not found (possibly should throw exception?)
 // @info   - Goes through our vector of vertices and find which one (if any) contain the data given by the argument
 template<class VertexType>
-AdjList<VertexType> * dGraph<VertexType>::findVertex(VertexType data) {
+AdjList<VertexType> * dGraph<VertexType>::findVertex(const VertexType & data) {
 
     auto get = lookupMap.find(data);
 

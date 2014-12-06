@@ -7,11 +7,13 @@
 
 int main() {
 
-    CYOA theGame;
+    CYOA theGame; // our game object
 
-    if(!theGame.parseInputFile("CYOA/testinput.txt"))
-        std::cout << "NONONONO";
+    if(!theGame.parseInputFile("CYOA/new.adventure"))
+        std::cout << "Input File Parsing Failed";
 
     theGame.startGame();
+
+
     return 0;
 }

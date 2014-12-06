@@ -90,6 +90,7 @@ bool AdjList<VertexType>::addEdge(Vertex<VertexType> * vert, double wt){
         return true;
     }
 
+    // This is only commented out for the CYOA program, which needs self-loops.
     // // no self loops
     // if(pEdge->getVertex()->getData() == vert->getData()) {
     //     delete(newEdge);

@@ -46,6 +46,8 @@ private:
 
     bool validateCommand(char, char, std::string);
 
+    bool isCommentLine(std::string);
+
     bool printInfo(Room);
 
 

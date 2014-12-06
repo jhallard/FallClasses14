@@ -1,0 +1,269 @@
+You're back in your apartment, in Santa Cruz. 
+You should be going to work in about an hour, but their might be cooler things to do today.
+What should you do?
+
+a.) Skate over to your friends house
+b.) Go to your job at the College 9 DH
+c.) Go back to sleep
+a
+
+___________________________________
+[ Skate over to your friends house ]
+
+You arrive at your friends house, the one he shares with 10 other college kids.
+Your buddy and his two friends ask you what you want to do.
+
+a.) Go free diving out near Monterey.
+b.) Go for a hike in the redwood forests above campus
+c.) Your friends are lame, time to go back home.
+b
+
+___________________________________
+[ Go for a hike in the redwood forests above campus ]
+
+It sure is a nice day in the park with your friends.
+You're strolling along, when a little rabbit in a top-hat runs out ahead of you.
+As you follow the rabbit, you notice it keeps looking at it's stop watch 
+and shouting that it's going to be late!
+You follow the rabbit until it dives down a large hole in the ground.
+
+a.) Follow the rabbit down the rabbit hole
+b.) Go back to find your friends
+b
+
+___________________________________
+[ Go back to find your friends ]
+
+On the way back to finding your friends, you find an awesome swimming hole.
+You see it has an epic cliff jump, but it's getting late. What to do?
+
+a.) Go find your friends.
+b.) do the Jump! Do the Jump!
+c.) Might as well just go back home
+a
+
+___________________________________
+[ Go find your friends. ]
+
+You arrive at your friends house, the one he shares with 10 other college kids.
+Your buddy and his two friends ask you what you want to do.
+
+a.) Go free diving out near Monterey.
+b.) Go for a hike in the redwood forests above campus
+c.) Your friends are lame, time to go back home.
+c
+
+___________________________________
+[ Your friends are lame, time to go back home. ]
+
+You're back in your apartment, in Santa Cruz. 
+You should be going to work in about an hour, but their might be cooler things to do today.
+What should you do?
+
+a.) Skate over to your friends house
+b.) Go to your job at the College 9 DH
+c.) Go back to sleep
+c
+
+___________________________________
+[ Go back to sleep ]
+
+You wake up covered in fine dust, looking up at the darkest sky you've ever seen.
+You look around, it's the dark side of the moon.
+What to do now, all alone of the dark side of the moon.
+
+a.) Call for the help of an alien species
+b.) Assume the fetal position and cry
+c.) Click your heels three times
+c
+
+___________________________________
+[ Click your heels three times ]
+
+You're back in your apartment, in Santa Cruz. 
+You should be going to work in about an hour, but their might be cooler things to do today.
+What should you do?
+
+a.) Skate over to your friends house
+b.) Go to your job at the College 9 DH
+c.) Go back to sleep
+b
+
+___________________________________
+[ Go to your job at the College 9 DH ]
+
+You park in your usual spot above the Merill Apartments.
+On your way to the dining hall, you notice it's blocked off by a line of protesters.
+They seem to be protesting the inclusion of vegan-bacon on the menu.
+
+a.) Join the protesters in their crusade against the bacon imposter!
+b.) Charge through the picket line to get to work.
+c.) Let's go see what your friends are up to
+d.) Quit your job at the Dining Hall
+a
+
+___________________________________
+[ Join the protesters in their crusade against the bacon imposter! ]
+
+You try and join the protesters ranks, but they tell you to leave.
+
+a.) Try and join them anyways
+b.) Go Back home
+c.) Go find your friends
+a
+
+___________________________________
+[ Try and join them anyways ]
+
+Ahh, the hospital!
+What did you do to end up here? 
+And the bill, $50,000 dollars! You don't have that type of money
+
+a.) I'll go back home and have a beer
+b.) Skip the country to dodge the bills.
+a
+
+___________________________________
+[ I'll go back home and have a beer ]
+
+You're back in your apartment, in Santa Cruz. 
+You should be going to work in about an hour, but their might be cooler things to do today.
+What should you do?
+
+a.) Skate over to your friends house
+b.) Go to your job at the College 9 DH
+c.) Go back to sleep
+b
+
+___________________________________
+[ Go to your job at the College 9 DH ]
+
+You park in your usual spot above the Merill Apartments.
+On your way to the dining hall, you notice it's blocked off by a line of protesters.
+They seem to be protesting the inclusion of vegan-bacon on the menu.
+
+a.) Join the protesters in their crusade against the bacon imposter!
+b.) Charge through the picket line to get to work.
+c.) Let's go see what your friends are up to
+d.) Quit your job at the Dining Hall
+d
+
+___________________________________
+[ Quit your job at the Dining Hall ]
+
+Oh no, what's this!
+You wake up in a daze, you look around, and all you see is corn!
+You're in Nebraska! How did things end up like this!
+
+a.) Take a bus back home to Santa Cruz
+b.) You've already made it this far, might as well hitch-hike to Florida!
+c.) Time to go back to sleep, I'll deal with this when I wake up.
+a
+
+___________________________________
+[ Take a bus back home to Santa Cruz ]
+
+You're back in your apartment, in Santa Cruz. 
+You should be going to work in about an hour, but their might be cooler things to do today.
+What should you do?
+
+a.) Skate over to your friends house
+b.) Go to your job at the College 9 DH
+c.) Go back to sleep
+b
+
+___________________________________
+[ Go to your job at the College 9 DH ]
+
+You park in your usual spot above the Merill Apartments.
+On your way to the dining hall, you notice it's blocked off by a line of protesters.
+They seem to be protesting the inclusion of vegan-bacon on the menu.
+
+a.) Join the protesters in their crusade against the bacon imposter!
+b.) Charge through the picket line to get to work.
+c.) Let's go see what your friends are up to
+d.) Quit your job at the Dining Hall
+c
+
+___________________________________
+[ Let's go see what your friends are up to ]
+
+You arrive at your friends house, the one he shares with 10 other college kids.
+Your buddy and his two friends ask you what you want to do.
+
+a.) Go free diving out near Monterey.
+b.) Go for a hike in the redwood forests above campus
+c.) Your friends are lame, time to go back home.
+z
+
+___________________________________
+You park in your usual spot above the Merill Apartments.
+On your way to the dining hall, you notice it's blocked off by a line of protesters.
+They seem to be protesting the inclusion of vegan-bacon on the menu.
+
+a.) Join the protesters in their crusade against the bacon imposter!
+b.) Charge through the picket line to get to work.
+c.) Let's go see what your friends are up to
+d.) Quit your job at the Dining Hall
+z
+
+___________________________________
+You're back in your apartment, in Santa Cruz. 
+You should be going to work in about an hour, but their might be cooler things to do today.
+What should you do?
+
+a.) Skate over to your friends house
+b.) Go to your job at the College 9 DH
+c.) Go back to sleep
+z
+
+___________________________________
+Oh no, what's this!
+You wake up in a daze, you look around, and all you see is corn!
+You're in Nebraska! How did things end up like this!
+
+a.) Take a bus back home to Santa Cruz
+b.) You've already made it this far, might as well hitch-hike to Florida!
+c.) Time to go back to sleep, I'll deal with this when I wake up.
+z
+
+___________________________________
+You park in your usual spot above the Merill Apartments.
+On your way to the dining hall, you notice it's blocked off by a line of protesters.
+They seem to be protesting the inclusion of vegan-bacon on the menu.
+
+a.) Join the protesters in their crusade against the bacon imposter!
+b.) Charge through the picket line to get to work.
+c.) Let's go see what your friends are up to
+d.) Quit your job at the Dining Hall
+y
+
+___________________________________
+Big Basin State Park, CA -> Summit, Olympus Mons, Mars, Swimming Hole, Forests, 
+College 9 DH Protests -> Hospital, Santa Cruz, Home, Santa Cruz, CA, West Side, Santa Cruz, 
+Dark Side of the Moon, The Moon -> Summit, Olympus Mons, Mars, Guantanamo Bay, Cuba, Home, Santa Cruz, CA, 
+Florida -> Summit, Olympus Mons, Mars, West Side, Santa Cruz, Florida, Guantanamo Bay, Cuba, 
+Guantanamo Bay, Cuba -> Summit, Olympus Mons, Mars, Home, Santa Cruz, CA, 
+Home, Santa Cruz, CA -> West Side, Santa Cruz, UCSC, Upper Campus, Dark Side of the Moon, The Moon, 
+Honolulu, Hawaii -> Los Angeles, CA, Guantanamo Bay, Cuba, 
+Hospital, Santa Cruz -> Home, Santa Cruz, CA, Guantanamo Bay, Cuba, 
+Los Angeles, CA -> Home, Santa Cruz, CA, Dark Side of the Moon, The Moon, Honolulu, Hawaii, Guantanamo Bay, Cuba, 
+Monterey, CA -> Honolulu, Hawaii, Hospital, Santa Cruz, 
+Omaha, Nebraska -> Home, Santa Cruz, CA, Florida, Dark Side of the Moon, The Moon, 
+Summit, Olympus Mons, Mars -> Hospital, Santa Cruz, Guantanamo Bay, Cuba, Omaha, Nebraska, 
+Swimming Hole, Forests -> West Side, Santa Cruz, Hospital, Santa Cruz, Home, Santa Cruz, CA, 
+UCSC, Upper Campus -> College 9 DH Protests, Dark Side of the Moon, The Moon, West Side, Santa Cruz, Omaha, Nebraska, 
+West Side, Santa Cruz -> Monterey, CA, Big Basin State Park, CA, Home, Santa Cruz, CA, 
+
+
+
+r
+
+___________________________________
+You're back in your apartment, in Santa Cruz. 
+You should be going to work in about an hour, but their might be cooler things to do today.
+What should you do?
+
+a.) Skate over to your friends house
+b.) Go to your job at the College 9 DH
+c.) Go back to sleep

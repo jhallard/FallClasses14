@@ -54,6 +54,7 @@
 #include "../AdjacencyList/AdjList.h"
 #include "../Vertex/Vertex.h"
 #include "../Edge/Edge.h"
+#include "../../Misc/MergeSort.cpp"
 
 
 template <class VertexType> // VertexType is whatever type of data you want your vertices to hold (ints, strings, custom classes, etc.)
@@ -278,7 +279,7 @@ private:
     // @args   - #1 Value contained in the vertex to be found
     // @return - pointer to the vertex to be found, null if not found
     // @info   - Goes through our vector of vertices and find which one (if any) contain the data given by the argument
-    AdjList<VertexType> *  findVertex(VertexType);
+    AdjList<VertexType> *  findVertex(const VertexType &);
 
 
 };
