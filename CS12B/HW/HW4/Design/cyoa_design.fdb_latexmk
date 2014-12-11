@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1417834710 "cyoa_design.tex" "cyoa_design.pdf" "cyoa_design" 1417834710
+["pdflatex"] 1418084649 "cyoa_design.tex" "cyoa_design.pdf" "cyoa_design" 1418084649
   "/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -21,7 +21,6 @@
   "/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty" 1362954379 4082 502152465aedb8f6a3c4b0b7c0fa8ae5 ""
   "/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty" 1362954379 2637 846ebe982d3549c7ede7ce135456f54a ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/article.cls" 1254151887 20571 b8bd218bf2e18b4f5817ee643cd9c515 ""
-  "/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd" 1254151887 2109 c400bd6c901edc4a09e4d53fcffd3b3c ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo" 1254151887 9058 640f9c40a6d912e30839a669c8a999ec ""
   "/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty" 1160175134 20521 e5d13d98d57bd53d4fed3aa61bd29c86 ""
   "/usr/share/texlive/texmf-dist/tex/latex/float/float.sty" 1137110151 6749 16d2656a1984957e674b149555f1ea1d ""
@@ -38,9 +37,11 @@
   "/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def" 1306616590 55368 3c8a0d99822330f2dfabc0dfb09ce897 ""
   "/usr/share/texlive/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
-  "cyoa_design.aux" 1417834710 231 ee58fc46d8501089d02c0e0bb68a774d ""
-  "cyoa_design.tex" 1417834706 8769 53652b7e675e9c8c9f2b970909d1f28f ""
+  "cyoa_design.aux" 1418084649 1511 5cb83fc1cf2076c98e9b7e6a15a64e17 ""
+  "cyoa_design.tex" 1418084648 16795 76223af0b3ed87a9dfe13283c5863656 ""
+  "cyoa_design.toc" 1418084649 1161 e6131fca5f94b64802a1e81e6306f111 ""
   (generated)
-  "cyoa_design.pdf"
   "cyoa_design.aux"
+  "cyoa_design.pdf"
   "cyoa_design.log"
+  "cyoa_design.toc"

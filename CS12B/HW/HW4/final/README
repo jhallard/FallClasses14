@@ -1,0 +1,41 @@
+
+John Allard
+jhallard
+12/07/2014
+README file for the CYOA program, Assignment #4, CS12, UC Santa Cruz.
+
+The cyoa program is a program that can run many different types of text-based adventure games. The user starts
+in the first room defined in the adventure file, and can move from room to room while exploring the game map.
+Only certain rooms share connections though, so the task of navigating between two specific rooms is not as cut
+and dry as it may seem to be.
+
+Quick Start Guide :
+
+make                // build the project
+cyoa demo.adventure // run the game on the included demo adventure file
+
+To win the game :
+bacababcbad (One of many ways to reach the winning room)
+
+Files :
+
+GraphInterface.h : Abstract Interface base class for dGraph
+dGraph.h         : Declaration of home-made directed graph class that is used extensively in this project.
+dGraph.cpp       : Definition of dGraph class 
+AdjList.h        : Declaration of AdjList class (adjacency list), used extensively inside dGraph
+AdjList.cpp      : Defintion of AdjList class
+Edge.h           : Declaration of the Edge class (edge between vertices). Used in AdjList class
+Edge.cpp         : Defintion of Edge class.
+Vertex.h         : Declaration of the Vertex class, used as the vertices in dGraph
+Vertex.cpp       : Defintion of above class.
+Room.h           : Declaration of Room class, represents a single room in our game.
+Room.cpp         : Defintion of above class.
+Stack.h          : Declaration of a simple stack class
+Stack.cpp        : Defintion of Stack class
+CYOA.h           : Declaration of the main game control class, CYOA
+CYOA.cpp         : Defintion of CYOA class
+main.cpp         : Contains the main() function for our program
+MergeSort.cpp    : A simple templated merge sort routine.
+demo.adventure   : The demo adventure file that I wrote for this project.
+Design.pdf       : Design document outlining in more detail the design choices I made during the creation of this project.
+README           : This README file, what you are currently reading.

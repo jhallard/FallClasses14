@@ -1,0 +1,171 @@
+r Home, Santa Cruz, CA
+d You're back in your apartment, in Santa Cruz. 
+d You should be going to work in about an hour, but their might be cooler things to do today.
+d What should you do?
+o Skate over to your friends house
+t West Side, Santa Cruz
+o Go to your job at the College 9 DH
+t UCSC, Upper Campus
+o Go back to sleep
+t Dark Side of the Moon, The Moon
+
+r West Side, Santa Cruz
+d You arrive at your friends house, the one he shares with 10 other college kids.
+d Your buddy and his two friends ask you what you want to do.
+o Go free diving out near Monterey.
+t Monterey, CA
+o Go for a hike in the redwood forests above campus
+t Big Basin State Park, CA
+o Your friends are lame, time to go back home.
+t Home, Santa Cruz, CA
+
+r UCSC, Upper Campus
+d You park in your usual spot above the Merill Apartments.
+d On your way to the dining hall, you notice it's blocked off by a line of protesters.
+d They seem to be protesting the inclusion of vegan-bacon on the menu.
+o Join the protesters in their crusade against the bacon imposter!
+t College 9 DH Protests
+o Charge through the picket line to get to work.
+t Dark Side of the Moon, The Moon
+o Let's go see what your friends are up to
+t West Side, Santa Cruz
+o Quit your job at the Dining Hall
+t Omaha, Nebraska
+
+r Monterey, CA
+d It's cold out in the bay, and the waves are unusually high.
+d You're not that good of a swimmer, and you're starting to struggle to keep your head above water.
+d Next thing you know, a big speed-boat comes by.
+d They offer to take you back to shore.
+o Get in the speed-boat!
+t Honolulu, Hawaii
+o Your mom did say to never talk to strangers, politely decline the offer
+t Hospital, Santa Cruz
+
+r Los Angeles, CA
+d Your flight got rerouted to Los Angeles.
+d You have a few days to kill, what should you do?
+o Hitch Hike back home
+t Home, Santa Cruz, CA
+o Go to sleep on a park bench
+t Dark Side of the Moon, The Moon
+o I'm going back to Hawaii!
+t Honolulu, Hawaii
+o Spread glorious communist doctrine to Angelinos!
+t Guantanamo Bay, Cuba
+
+r College 9 DH Protests
+d You try and join the protesters ranks, but they tell you to leave.
+o Try and join them anyways
+t Hospital, Santa Cruz
+o Go Back home
+t Home, Santa Cruz, CA
+o Go find your friends
+t West Side, Santa Cruz
+
+r Big Basin State Park, CA
+d It sure is a nice day in the park with your friends.
+d You're strolling along, when a little rabbit in a top-hat runs out ahead of you.
+d As you follow the rabbit, you notice it keeps looking at it's stop watch 
+d and shouting that it's going to be late!
+d You follow the rabbit until it dives down a large hole in the ground.
+o Follow the rabbit down the rabbit hole
+t Summit, Olympus Mons, Mars
+o Go back to find your friends
+t Swimming Hole, Forests
+
+r Swimming Hole, Forests
+d On the way back to finding your friends, you find an awesome swimming hole.
+d You see it has an epic cliff jump, but it's getting late. What to do?
+o Go find your friends.
+t West Side, Santa Cruz
+o do the Jump! Do the Jump!
+t Hospital, Santa Cruz
+o Might as well just go back home
+t Home, Santa Cruz, CA
+
+r Guantanamo Bay, Cuba
+d Now you've screwed up! 
+d You did something bad and now you're stuck in Guantanamo Bay!
+d What will you ever do now?
+o Summon an Alien Species to save you
+t Summit, Olympus Mons, Mars
+o Try and break out
+t Home, Santa Cruz, CA
+
+r Dark Side of the Moon, The Moon
+d You wake up covered in fine dust, looking up at the darkest sky you've ever seen.
+d You look around, it's the dark side of the moon.
+d What to do now, all alone of the dark side of the moon.
+o Call for the help of an alien species
+t Summit, Olympus Mons, Mars
+o Assume the fetal position and cry
+t Guantanamo Bay, Cuba
+o Click your heels three times
+t Home, Santa Cruz, CA
+
+r Omaha, Nebraska
+d Oh no, what's this!
+d You wake up in a daze, you look around, and all you see is corn!
+d You're in Nebraska! How did things end up like this!
+o Take a bus back home to Santa Cruz
+t Home, Santa Cruz, CA
+o You've already made it this far, might as well hitch-hike to Florida!
+t Florida
+o Time to go back to sleep, I'll deal with this when I wake up.
+t Dark Side of the Moon, The Moon
+
+r Florida
+d Ahh good old Florida, why would you ever want to leave?
+d What should we do to pass the time?
+o Try and create a worm-hole
+t Summit, Olympus Mons, Mars
+o Actually you're kind of bored, let's go see what your friends are up to.
+t West Side, Santa Cruz
+o Let's stay right here in Florida!
+t Florida
+o Start a Communist Revolution
+t Guantanamo Bay, Cuba
+
+r Honolulu, Hawaii
+d Here we are, beautiful Hawaii.
+d Yup, somehow on the way back to shore on that speed boat you ended up back here in hawaii.
+d Where should we go from here?
+o Let's fly back home, I probably need to catch up on CS12 Home Work!
+t Los Angeles, CA
+o While we're here, might as well try and start a communist revolution.
+t Guantanamo Bay, Cuba
+
+r Hospital, Santa Cruz
+d Ahh, the hospital!
+d What did you do to end up here? 
+d And the bill, $50,000 dollars! You don't have that type of money
+o I'll go back home and have a beer
+t Home, Santa Cruz, CA
+o Skip the country to dodge the bills.
+t Guantanamo Bay, Cuba
+
+r Summit, Olympus Mons, Mars
+d The orange land scape, it's unmistakeable.
+d You're on mars, and not just on any part of mars.
+d You're on top of one of the largest mountains in the solar system, Olympus Mons.
+o Do a front flip down the mountain!
+t Hospital, Santa Cruz
+o Claim Mars as new Soviet Empire
+t Guantanamo Bay, Cuba
+o Call for help from an alien civilization
+t Omaha, Nebraska
+o Offer yourself as a sacrific to the Gods!
+t Pluto
+
+r Pluto
+d Congratulations, you have won the game!
+d You are on pluto, and will be dead any minute. 
+o Go back home
+t Home, Santa Cruz, CA
+o Go to Florida
+t Omaha, Nebraska
+
+
+
+

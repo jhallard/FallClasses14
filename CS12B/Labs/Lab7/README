@@ -1,0 +1,11 @@
+John Allard
+jhallard
+12/09/2014
+Lab #7, CS12 UCSC Fall 2014
+
+For lab #7, we were only required to implement a single function inside of the main.c file. The goal was to implement a hashing function that could get the number of collisions down as load as possibile.
+
+Files :
+main.c
+README
+Makefile

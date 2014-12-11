@@ -1,0 +1,242 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=0.8in]{geometry}
+
+% \setlength{\voffset}{-0.5in}
+\setlength{\headsep}{5pt}
+\newcommand{\suchthat}{\;\ifnum\currentgrouptype=16 \middle\fi|\;}
+\newcommand{\answer}{\textbf{Answer : }}
+\newcommand{\cd}{\texttt}
+\newcommand{\benu}{\begin{enumerate}}
+\newcommand{\enu}{\end{enumerate}}
+
+
+%===========---------================
+% Author John H Allard
+% CMPE 12, HW #4
+% December 10th, 2014
+%===========---------================
+
+\begin{document}
+   % \vspace*{\stretch{-0.5}}
+   \begin{center}
+      \Large\textbf{CMPE 12 Homework \#4}\\
+      \large\texttt{John Allard} \\
+      \small\texttt{November 20th, 2014}
+   \end{center}
+   % \vspace*{\stretch{0.5}}
+
+%==========================================
+%==========================================
+%====== Begin Problems, 15 Total ==========
+%==========================================
+%==========================================
+
+\benu
+
+% ======== PROBLEM #1 ======== %
+\item Write the following in MIPS assembly (with each line commented!) HINT: Use your lab knowledge to do it easily.
+\answer 
+\texttt{
+\\ !    int myarray[5]=\{1,3,5,7,9\};
+\\ ADDIU V0, ZERO, 1
+\\ SW V0, 4(S8)
+\\ ADDIU V0, ZERO, 3
+\\ SW V0, 8(S8)
+\\ ADDIU V0, ZERO, 5
+\\ SW V0, 12(S8)
+\\ ADDIU V0, ZERO, 7
+\\ SW V0, 16(S8)
+\\ ADDIU V0, ZERO, 9
+\\ SW V0, 20(S8)
+\\ SW ZERO, 0(S8)
+} \texttt{
+\\ \!    for(int i = 0;i<5;i++)
+\\ J 0x9D000150
+\\ NOP
+\\ LW V0, 0(S8)
+\\ ADDIU V0, V0, 1
+\\ SW V0, 0(S8)
+\\ LW V0, 0(S8)
+\\ SLTI V0, V0, 5
+\\ BNE V0, ZERO, 0x9D00011C
+\\ NOP
+}\texttt{
+\\ !        myarray[i] = (myarray[i] \& 0xf) << 4;
+\\ LW V0, 0(S8)
+\\ SLL V0, V0, 2
+\\ ADDU V0, S8, V0
+\\ LW V0, 4(V0)
+\\ SLL V0, V0, 4
+\\ ANDI V1, V0, 255
+\\ LW V0, 0(S8)
+\\ SLL V0, V0, 2
+\\ ADDU V0, S8, V0
+\\ SW V1, 4(V0)
+\\ !\}
+\\ ADDU SP, S8, ZERO
+\\ LW S8, 28(SP)
+\\ ADDIU SP, SP, 32
+\\ JR RA
+\\ NOP }
+
+\item Write the following in MIPS assembly, with each line commented
+\answer \\
+\texttt{
+\\ !int Fibonacci(int n)
+\\ !{
+\\ ADDIU SP, SP, -32
+\\ SW RA, 28(SP)
+\\ SW S8, 24(SP)
+\\ SW S0, 20(SP)
+\\ ADDU S8, SP, ZERO
+\\ SW A0, 32(S8)
+\\ !if ( n == 0 )
+\\ LW V0, 32(S8)
+\\ BNE V0, ZERO, 0x9D00010C
+\\ NOP}
+\texttt{
+\\ !return 0;
+\\ ADDU V0, ZERO, ZERO
+\\ J 0x9D000158
+\\ NOP
+\\ !else if ( n == 1 )
+\\ LW V1, 32(S8)
+\\ ADDIU V0, ZERO, 1
+\\ BNE V1, V0, 0x9D000128
+\\ NOP
+\\ !return 1;
+\\ ADDIU V0, ZERO, 1
+\\ J 0x9D000158
+\\ NOP }
+\texttt{
+\\ !else
+\\ !return ( Fibonacci(n-1) + Fibonacci(n-2) );
+\\ LW V0, 32(S8)
+\\ ADDIU V0, V0, -1
+\\ ADDU A0, V0, ZERO
+\\ JAL Fibonacci
+\\ NOP
+\\ ADDU S0, V0, ZERO
+\\ LW V0, 32(S8)
+\\ ADDIU V0, V0, -2
+\\ ADDU A0, V0, ZERO
+\\ JAL Fibonacci
+\\ NOP
+\\ ADDU V0, S0, V0
+\\ !}
+\\ ADDU SP, S8, ZERO
+\\ LW RA, 28(SP)
+\\ LW S8, 24(SP)
+\\ LW S0, 20(SP)
+\\ ADDIU SP, SP, 32
+\\ JR RA
+\\ NOP
+}
+
+\item Given that \cd{a} and \cd{b} are both integers where a and b have been assigned the values 6 and 9 respectively, what is the value of each of the following (12) expressions? If \cd{a} or \cd{b} changes then give their new value.
+\benu
+\item \cd{a | b} \\
+\answer \cd{000110 | 001001 = 001111 =} 15
+\item \cd{a || b } \\
+\answer \cd{6 || 9} = 1 (or any other non-zero value)
+\item \cd{a \& b} \\
+\answer \cd{000110 \& 001001 = 000000 = 0}
+\item \cd{a \&\& b} \\
+\answer \cd{6 \&\& 9} = 1 (or any other non-zero value)
+\item \cd{!(a+b)} \\
+\answer False, because \cd{(a+b)} is true
+\item \cd{a \% b} \\
+\answer 6, because $\frac{6}{9} = 0 \text{ r } 6$
+\item \cd{b / a} \\
+\answer \cd{1}
+\item \cd{a = b} \\
+\answer \cd{a = 9}, value of expression returned is 9
+\item \cd{a = b = 5} \\
+\answer \cd{b = 5, a = 5}, the value returned is 5
+\item \cd{++a + b--} \\
+\answer \cd{a = 7, b = 8} Expression returns the value of \cd{7+9 = 16}
+\item \cd{a = (++b < 3)? a : b)} \\
+\answer \cd{a = 10, b = 10}, Expression returns a value of \cd{10}
+\item \cd{a<<=b}
+ \enu
+
+ \item Supposed a program contains the two integer variables \cd{x} and \cd{y}, which have values of 3 and 4 respectively. Write C statements that will exchange the values in \cd{x} and \cd{y} so that after the statements are executed, \cd{x} is equal to 4 and \cd{y} is equal to 3.
+ \benu
+ \item First do this using a temporary variable for storage \\
+ \cd{int temp = x;} \\
+ \cd{x = y;} \\
+ \cd{y = temp;} \\
+ \item Now rewrite this routine without using a temporary variable. \\
+ \cd{x = x+y} \\
+ \cd{y = x-y} \\
+ \cd{x = x-y} \\
+ \enu
+
+ \item 
+ \benu
+ \item Convert the following \cd{while} loop into a \cd{for} loop. \\
+ \cd{while (condition)} \\
+ \quad \cd{loopBody} \\
+ \answer \\
+ \cd {for(;condition;)} \\
+ \quad \cd{loopbody} \\
+ \item Convert the follow \cd{for} loop into a while loop \\
+ \cd{for(init;confition;reinit)} \\
+ \cd{loopbody} \\
+ \answer \\
+\cd{init;} \\
+\cd{while(condition) \{} \\
+\qquad \cd{loopBody;} \\
+\cd{reinit;} \\
+\cd{\}} \\
+\enu
+
+\item Provide the output for each of the following code statements. \\
+\benu
+\item \answer \cd{******}
+\item \answer \cd{**********}
+\item \answer \cd{*****} (one for each of the odd numbers, 1-10)
+\item \answer \cd{*********}
+\enu
+
+\item For each of the following items, identify whether the caller fucntion or the callee function performs the actions.
+\benu
+\item Writing the parameters into the activation record. \\
+\answer Caller
+\item Writing the return value. \\
+\answer Callee
+\item Writing the dynamic link. \\
+\answer Callee
+\item Modifying the value in R5 to point within the callee functions activation record. \\
+\answer Caller
+\enu
+
+\item TODO
+
+\item Write a C program that computes the pig-latin translation of an english word. \\
+\cd{int translate(char str[]) \{ } \\
+\cd{    if(str == NULL) // make sure the argument isn't null } \\
+\cd{      return 0; } \\
+\cd{    int i = 0; } \\
+\cd{    while(str[i+1] != }\verb.'\0'.\cd{) // find the end of the c string } \\
+\cd{        i++;        } \\
+\cd{    char temp = str[i]; // swap the first and last letters;} \\
+\cd{    str[i] = str[0];}
+\cd{    str[0] = temp;          } \\
+\cd{} \\
+\cd{    str[++i] = }\verb.'a'.\cd{; // add on the last two letters} \\
+\cd{    str[++i] = }\verb.'y'.\cd{;} \\
+\cd{    str[++i] =  }\verb.'\0'.\cd{; // set the null character to mark the new end of the string} \\
+\cd{\}}
+
+ \enu
+
+\end{document}
