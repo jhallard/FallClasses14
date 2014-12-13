@@ -1,0 +1,12 @@
+John Allard
+jhallard
+12/11/2014
+Lab #8, CS12 UCSC Fall 2014
+
+For lab #8, it was our job to finish a simple heap implemtation in the C programming language. This meant writing the function to check
+if a heap is empty, check if it is full, and perform insertion of the elements. 
+
+Files :
+heap.c
+README
+Makefile

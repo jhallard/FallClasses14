@@ -80,7 +80,7 @@
 \\ SLL V0, V0, 2
 \\ ADDU V0, S8, V0
 \\ SW V1, 4(V0)
-\\ !\}
+\\ ! \! \}
 \\ ADDU SP, S8, ZERO
 \\ LW S8, 28(SP)
 \\ ADDIU SP, SP, 32
@@ -91,7 +91,7 @@
 \answer \\
 \texttt{
 \\ !int Fibonacci(int n)
-\\ !{
+\\ \! \{
 \\ ADDIU SP, SP, -32
 \\ SW RA, 28(SP)
 \\ SW S8, 24(SP)
@@ -131,7 +131,7 @@
 \\ JAL Fibonacci
 \\ NOP
 \\ ADDU V0, S0, V0
-\\ !}
+\\ \! \} 
 \\ ADDU SP, S8, ZERO
 \\ LW RA, 28(SP)
 \\ LW S8, 24(SP)
