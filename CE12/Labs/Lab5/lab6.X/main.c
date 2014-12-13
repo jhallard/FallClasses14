@@ -111,10 +111,9 @@ int main(void)
 
     extern volatile int milliseconds;
     int temp = 0;
-    // Either write your C program here or call your (new) assembler function
     int i = 1;
     int count = 0;
-    OledSetCursor(10, 10);
+    printTime(0, 0);
     while(1) {
         // Display the least significant part of the time for debugging
        int x = PORTD & 0xfff;
@@ -125,38 +124,31 @@ int main(void)
             count++;
             int minutes = count/60;
             int seconds = count % 60;
-            char temp1[50];
-            OledClear();
-            OledSetCursor(10, 10);
-            sprintf(temp1, "%d:%02d", minutes, seconds);
-            printf("%d\n", count);
-            OledPutString(temp1);
+            printTime(minutes,seconds);
             temp = milliseconds;
         }
        }
        else if(x == 784 || x == 528) {
            if(stopped != 1) {
-            char temp1[50];
-            OledClear();
-            OledSetCursor(10, 10);
-             sprintf(temp1, "0:00");
-             OledPutString(temp1);
+             printTime(0, 0);
              T1Stop();
-           stopped = 1;
-           count = 0;
+             stopped = 1;
+             count = 0;
           }
 
        }
        else
            continue;
 
-
     }
 
+}
 
-
-
-
-
+void printTime(int min, int sec) {
+    char temp1[50];
+    OledClear();
+    OledSetCursor(10, 10);
+    sprintf(temp1, "%d:%02d", min, sec);
+    OledPutString(temp1);
 }
 
