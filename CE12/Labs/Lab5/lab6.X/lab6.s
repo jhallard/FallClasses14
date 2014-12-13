@@ -8,7 +8,6 @@
 .global milliseconds
 
 .data
-str: .asciiz "Hello, world!\n"
 milliseconds: .word 0
 
 .section .vector_4, code
@@ -33,6 +32,9 @@ addi $sp, $sp, -36  # Decrement stack pointer by 36 (9 word)
     sw   $s6, 24($sp)   # Save $r4 to stack
     sw   $s7, 28($sp)   # Save $r4 to stack
     sw   $ra, 32($sp)  # save return address
+
+	la $t4, IEC0
+	sw $t2, 8($t4)
 
     la $t0, T1CON
     li $t1, 0x8000
@@ -67,9 +69,13 @@ sw   $s6, 24($sp)   # Save $r4 to stack
 sw   $s7, 28($sp)   # Save $r4 to stack
 sw   $ra, 32($sp)  # save return address
 
+	la $t4, IEC0
+	sw $t2, 4($t4)
+
     la $t0, T1CON
     li $t1, 0x8000
     sw $t1, 4($t0)
+
 
 lw   $s0, 0($sp)   # Copy from stack to $r2
 lw   $s1, 4($sp)   # Copy from stack to $r3
@@ -100,10 +106,6 @@ T1Setup:
      sw   $s7, 28($sp)   # Save $r4 to stack
      sw   $ra, 32($sp)  # save return address
 
-    la $a0, str
-    jal printf
-    nop
-
 	li $t0, 0
 	la $t1, T1CON
 	sw $t0, 0($t1)
@@ -114,7 +116,7 @@ T1Setup:
 	la $t3, TMR1
 	sw $t0, 0($t3)
 
-	li $t4, 100
+	li $t4, 158
 	la $t5, PR1
 	sw $t4, 8($t5)
 
@@ -174,12 +176,12 @@ T1_ISR:
 	sw $t2, 0($t3)
 
 
-	li $t4, 8
-	la $t5, PORTD
-	sw $t4, 12($t5)
+;	li $t4, 8
+;	la $t5, PORTD
+;	sw $t4, 12($t5)
 
     lw $t0, milliseconds
-    add $t0, $t0, 100
+    add $t0, $t0, 2
     sw $t0, milliseconds
 
     lw   $s0, 0($sp)   # Copy from stack to $r2

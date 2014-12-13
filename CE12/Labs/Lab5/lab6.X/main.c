@@ -5,10 +5,6 @@
  * Created on October 31, 2014, 9:29 AM
  */
 
- // @Author - john Allard (hash function only)
- // @ID     - jhallard
- // @Info   - main,c file for lab #7, CS12 at UCSC.
-
 // **** Include libraries here ****
 // Standard libraries
 #include <stdio.h>
@@ -111,19 +107,49 @@ int main(void)
     printf("Starting Timer Set-up\n");
     T1Setup();
 
-
+    int stopped = 0;
 
     extern volatile int milliseconds;
     int temp = 0;
     // Either write your C program here or call your (new) assembler function
     int i = 1;
+    int count = 0;
+    OledSetCursor(10, 10);
     while(1) {
         // Display the least significant part of the time for debugging
-        
+       int x = PORTD & 0xfff;
+       if(x == 272) {
+           if(stopped)
+               stopped = 0;
         if(milliseconds - temp >= 1000) {
-            printf("%d", milliseconds);
+            count++;
+            int minutes = count/60;
+            int seconds = count % 60;
+            char temp1[50];
+            OledClear();
+            OledSetCursor(10, 10);
+            sprintf(temp1, "%d:%02d", minutes, seconds);
+            printf("%d\n", count);
+            OledPutString(temp1);
             temp = milliseconds;
         }
+       }
+       else if(x == 784 || x == 528) {
+           if(stopped != 1) {
+            char temp1[50];
+            OledClear();
+            OledSetCursor(10, 10);
+             sprintf(temp1, "0:00");
+             OledPutString(temp1);
+             T1Stop();
+           stopped = 1;
+           count = 0;
+          }
+
+       }
+       else
+           continue;
+
 
     }
 
