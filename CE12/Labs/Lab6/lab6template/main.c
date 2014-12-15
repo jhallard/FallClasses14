@@ -1,13 +1,9 @@
-/* 
+/*
  * File:   demo.c
  * Author: mrg
  *
  * Created on October 31, 2014, 9:29 AM
  */
-
- // @Author - john Allard (hash function only)
- // @ID     - jhallard
- // @Info   - main,c file for lab #7, CS12 at UCSC.
 
 // **** Include libraries here ****
 // Standard libraries
@@ -82,7 +78,7 @@ int main(void)
 
     // Enable multi-vector interrupts
     INTEnableSystemMultiVectoredInt();
-    
+
 
     // Set up the UART peripheral so we can send serial data.
     UARTConfigure(UART_USED, UART_ENABLE_PINS_TX_RX_ONLY);
@@ -108,20 +104,57 @@ int main(void)
 
     OledInit();
     OledDisplayOn();
+    printf("Starting Timer Set-up\n");
     T1Setup();
- 
-    extern volatile int milliseconds;
 
-    // Either write your C program here or call your (new) assembler function
+    int stopped = 0, reset = 0;
+
+    extern volatile int milliseconds;
+    int temp = 0;
+    int count = 0;
+    printTime(0, 0);
     while(1) {
         // Display the least significant part of the time for debugging
-        PORTE = 0x00FF & milliseconds;
+       int x = PORTD & 0xfff;
+       if(x == 272) {
+           if(stopped) {
+               stopped = 0;
+               T1Start();
+           }
+           if(reset)
+               reset = 0;
+        if(milliseconds - temp >= 1000) {
+            count++;
+            int minutes = count/60;
+            int seconds = count % 60;
+            printTime(minutes,seconds);
+            temp = milliseconds;
+        }
+       }
+       else if(x == 784 || x == 528) {
+           if(reset != 1) {
+             printTime(0, 0);
+             T1Stop();
+             stopped = 1;
+             reset = 1;
+             count = 0;
+          }
+
+       }
+       else {
+           stopped = 1;
+           continue;
+       }
 
     }
 
-
-
-    
-
-
 }
+
+void printTime(int min, int sec) {
+    char temp1[10];
+    OledSetCursor(10, 10);
+    sprintf(temp1, "%d:%02d", min, sec);
+    OledClear();
+    OledPutString(temp1);
+}
+

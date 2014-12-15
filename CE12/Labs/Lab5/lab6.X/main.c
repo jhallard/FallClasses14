@@ -107,19 +107,22 @@ int main(void)
     printf("Starting Timer Set-up\n");
     T1Setup();
 
-    int stopped = 0;
+    int stopped = 0, reset = 0;
 
     extern volatile int milliseconds;
     int temp = 0;
-    int i = 1;
     int count = 0;
     printTime(0, 0);
     while(1) {
         // Display the least significant part of the time for debugging
        int x = PORTD & 0xfff;
        if(x == 272) {
-           if(stopped)
+           if(stopped) {
                stopped = 0;
+               T1Start();
+           }
+           if(reset)
+               reset = 0;
         if(milliseconds - temp >= 1000) {
             count++;
             int minutes = count/60;
@@ -129,26 +132,29 @@ int main(void)
         }
        }
        else if(x == 784 || x == 528) {
-           if(stopped != 1) {
+           if(reset != 1) {
              printTime(0, 0);
              T1Stop();
              stopped = 1;
+             reset = 1;
              count = 0;
           }
 
        }
-       else
+       else {
+           stopped = 1;
            continue;
+       }
 
     }
 
 }
 
 void printTime(int min, int sec) {
-    char temp1[50];
-    OledClear();
+    char temp1[10];
     OledSetCursor(10, 10);
     sprintf(temp1, "%d:%02d", min, sec);
+    OledClear();
     OledPutString(temp1);
 }
 
